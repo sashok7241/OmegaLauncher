@@ -24,10 +24,11 @@ public class LauncherButton extends JButton implements LauncherConstants
 		setFont(FONT_MC.deriveFont(16F));
 		setBackground(Color.BLACK);
 		setForeground(Color.WHITE);
+		addActionListener(new LauncherActionListener());
 	}
 
 	@Override
-	protected void paintComponent(Graphics g1)
+	public void paintComponent(Graphics g1)
 	{
 		ButtonModel buttonModel = getModel();
 		Graphics2D g = (Graphics2D) g1.create();

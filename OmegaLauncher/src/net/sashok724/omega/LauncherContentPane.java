@@ -16,6 +16,7 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 	public static LauncherLabel login_label = new LauncherLabel(LOGIN, 205, 75, 200, 23);
 	public static LauncherLabel password_label = new LauncherLabel(PASSWORD, 205, 175, 200, 23);
 	public static LauncherButton login_button = new LauncherButton(DO_LOGIN, 200, 300);
+	public static LauncherButton offline_button = new LauncherButton(OFFLINE, 200, 350);
 
 	public LauncherContentPane()
 	{
@@ -28,6 +29,7 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 		add(password_label);
 		add(password);
 		add(login_button);
+		add(offline_button);
 		instance = this;
 	}
 

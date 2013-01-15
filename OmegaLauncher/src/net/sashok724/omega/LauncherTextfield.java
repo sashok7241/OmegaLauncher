@@ -35,7 +35,7 @@ public class LauncherTextfield extends JTextField implements LauncherConstants, 
 	}
 
 	@Override
-	protected void paintComponent(Graphics maing)
+	public void paintComponent(Graphics maing)
 	{
 		Graphics2D g = (Graphics2D) maing.create();
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
