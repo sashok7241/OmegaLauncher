@@ -2,6 +2,7 @@ package net.sashok724.omega;
 
 import java.awt.Color;
 import java.awt.Graphics;
+
 import javax.swing.JLabel;
 
 public class LauncherLabel extends JLabel implements LauncherConstants
@@ -17,7 +18,8 @@ public class LauncherLabel extends JLabel implements LauncherConstants
 		setForeground(Color.WHITE);
 		setFont(FONT_MC.deriveFont(16F));
 	}
-	
+
+	@Override
 	public void paintComponent(Graphics g)
 	{
 		g.setFont(getFont());
