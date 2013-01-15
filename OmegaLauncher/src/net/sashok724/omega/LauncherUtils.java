@@ -23,6 +23,18 @@ public class LauncherUtils implements LauncherConstants
 		g.fillRect(x, y, w, h);
 	}
 
+	public static Font loadFont(String name)
+	{
+		try
+		{
+			return Font.createFont(Font.TRUETYPE_FONT, LauncherUtils.class.getResourceAsStream(name + ".ttf"));
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 	public static BufferedImage loadImage(String name)
 	{
 		try
@@ -31,18 +43,6 @@ public class LauncherUtils implements LauncherConstants
 		} catch (Exception e)
 		{
 			return new BufferedImage(64, 64, 2);
-		}
-	}
-
-	public static Font loadFont(String name)
-	{
-		try
-		{
-			return Font.createFont(Font.TRUETYPE_FONT, LauncherUtils.class.getResourceAsStream(name + ".ttf"));
-		} catch(Exception e)
-		{
-			e.printStackTrace();
-			return null;
 		}
 	}
 }

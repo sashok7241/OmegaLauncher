@@ -39,7 +39,7 @@ public class LauncherTextfield extends JTextField implements LauncherConstants, 
 	{
 		Graphics2D g = (Graphics2D) maing.create();
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		if(focused) g.drawImage(IMG_TEXTFIELD_SEL, 0, 0, getWidth(), getHeight(), null);
+		if (focused) g.drawImage(IMG_TEXTFIELD_SEL, 0, 0, getWidth(), getHeight(), null);
 		else g.drawImage(IMG_TEXTFIELD_DEF, 0, 0, getWidth(), getHeight(), null);
 		g.dispose();
 		super.paintComponent(maing);
@@ -47,18 +47,6 @@ public class LauncherTextfield extends JTextField implements LauncherConstants, 
 
 	@Override
 	public void changedUpdate(DocumentEvent e)
-	{
-		LauncherConfig.set(name, getText());
-	}
-
-	@Override
-	public void insertUpdate(DocumentEvent e)
-	{
-		LauncherConfig.set(name, getText());
-	}
-
-	@Override
-	public void removeUpdate(DocumentEvent e)
 	{
 		LauncherConfig.set(name, getText());
 	}
@@ -75,5 +63,17 @@ public class LauncherTextfield extends JTextField implements LauncherConstants, 
 	{
 		focused = false;
 		repaint();
+	}
+
+	@Override
+	public void insertUpdate(DocumentEvent e)
+	{
+		LauncherConfig.set(name, getText());
+	}
+
+	@Override
+	public void removeUpdate(DocumentEvent e)
+	{
+		LauncherConfig.set(name, getText());
 	}
 }

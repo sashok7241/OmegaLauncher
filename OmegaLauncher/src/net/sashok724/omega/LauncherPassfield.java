@@ -40,7 +40,7 @@ public class LauncherPassfield extends JPasswordField implements LauncherConstan
 	{
 		Graphics2D g = (Graphics2D) maing.create();
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		if(focused) g.drawImage(IMG_TEXTFIELD_SEL, 0, 0, getWidth(), getHeight(), null);
+		if (focused) g.drawImage(IMG_TEXTFIELD_SEL, 0, 0, getWidth(), getHeight(), null);
 		else g.drawImage(IMG_TEXTFIELD_DEF, 0, 0, getWidth(), getHeight(), null);
 		g.dispose();
 		super.paintComponent(maing);
@@ -48,18 +48,6 @@ public class LauncherPassfield extends JPasswordField implements LauncherConstan
 
 	@Override
 	public void changedUpdate(DocumentEvent e)
-	{
-		LauncherConfig.set(name, new String(getPassword()));
-	}
-
-	@Override
-	public void insertUpdate(DocumentEvent e)
-	{
-		LauncherConfig.set(name, new String(getPassword()));
-	}
-
-	@Override
-	public void removeUpdate(DocumentEvent e)
 	{
 		LauncherConfig.set(name, new String(getPassword()));
 	}
@@ -76,5 +64,17 @@ public class LauncherPassfield extends JPasswordField implements LauncherConstan
 	{
 		focused = false;
 		repaint();
+	}
+
+	@Override
+	public void insertUpdate(DocumentEvent e)
+	{
+		LauncherConfig.set(name, new String(getPassword()));
+	}
+
+	@Override
+	public void removeUpdate(DocumentEvent e)
+	{
+		LauncherConfig.set(name, new String(getPassword()));
 	}
 }

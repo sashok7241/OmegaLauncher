@@ -25,20 +25,17 @@ public class LauncherButton extends JButton implements LauncherConstants
 		setBackground(Color.BLACK);
 		setForeground(Color.WHITE);
 	}
-	
+
+	@Override
 	protected void paintComponent(Graphics g1)
 	{
 		ButtonModel buttonModel = getModel();
 		Graphics2D g = (Graphics2D) g1.create();
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		int w = getWidth(), h = getHeight();
-		if(!isEnabled())
-		{
-		//	g.drawImage(IMG_BUTTON_LCK, 0, 0, w, h, null);
-		} else if(buttonModel.isRollover())
-		{
-			g.drawImage(IMG_BUTTON_SEL, 0, 0, w, h, null);
-		} else g.drawImage(IMG_BUTTON_DEF, 0, 0, w, h, null);
+		if (!isEnabled()) g.drawImage(IMG_BUTTON_LCK, 0, 0, w, h, null);
+		else if (buttonModel.isRollover()) g.drawImage(IMG_BUTTON_SEL, 0, 0, w, h, null);
+		else g.drawImage(IMG_BUTTON_DEF, 0, 0, w, h, null);
 		g.dispose();
 		super.paintComponent(g1);
 	}

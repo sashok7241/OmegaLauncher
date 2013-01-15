@@ -11,7 +11,6 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 {
 	public static final long serialVersionUID = 1L;
 	public static LauncherContentPane instance;
-	
 	public static LauncherTextfield login = new LauncherTextfield("login", 200, 100);
 	public static LauncherPassfield password = new LauncherPassfield("password", 200, 200);
 	public static LauncherLabel login_label = new LauncherLabel(LOGIN, 205, 75, 200, 23);
