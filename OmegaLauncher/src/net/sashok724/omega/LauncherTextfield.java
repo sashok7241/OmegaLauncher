@@ -30,7 +30,6 @@ public class LauncherTextfield extends JTextField implements LauncherConstants, 
 		setFont(FONT_MC.deriveFont(16F));
 		getDocument().addDocumentListener(this);
 		addFocusListener(this);
-		validate();
 		name = param;
 	}
 
