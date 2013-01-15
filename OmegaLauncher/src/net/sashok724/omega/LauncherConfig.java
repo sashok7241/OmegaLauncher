@@ -31,6 +31,7 @@ public class LauncherConfig implements LauncherConstants
 
 	public static String getString(String key, String def)
 	{
+		if(key == null) return "";
 		try
 		{
 			load();
@@ -66,6 +67,7 @@ public class LauncherConfig implements LauncherConstants
 
 	public static void set(String key, Object value)
 	{
+		if(key == null) return;
 		table.put(key, String.valueOf(value));
 		try
 		{

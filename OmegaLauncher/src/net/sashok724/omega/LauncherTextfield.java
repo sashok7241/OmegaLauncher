@@ -75,4 +75,10 @@ public class LauncherTextfield extends JTextField implements LauncherConstants, 
 	{
 		LauncherConfig.set(name, getText());
 	}
+
+	public LauncherTextfield setW(int i)
+	{
+		setSize(i, getHeight());
+		return this;
+	}
 }

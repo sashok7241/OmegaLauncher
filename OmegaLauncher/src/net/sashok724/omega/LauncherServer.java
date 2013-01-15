@@ -11,11 +11,10 @@ public class LauncherServer extends JComponent implements LauncherConstants
 	public String address;
 	public int port;
 
-	public LauncherServer(String _address, int _port, int w)
+	public LauncherServer(String _address, int _port)
 	{
 		address = _address;
 		port = _port;
-		setBounds(5, 5, w - 10, 100);
 	}
 
 	@Override

@@ -14,6 +14,9 @@ public class LauncherActionListener implements ActionListener
 		} else if (e.getSource() == LauncherContentPane.offline_button)
 		{
 			// TODO
+		} else if (e.getSource() == LauncherContentPane.addserver_button)
+		{
+			LauncherContentPane.addServerAdderElements();
 		}
 	}
 }
