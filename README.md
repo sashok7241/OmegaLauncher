@@ -1,0 +1,4 @@
+OmegaLauncher
+=============
+
+Custom Minecraft Launcher
