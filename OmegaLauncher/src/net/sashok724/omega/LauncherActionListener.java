@@ -8,10 +8,10 @@ public class LauncherActionListener implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if(e.getSource() == LauncherContentPane.login_button)
+		if (e.getSource() == LauncherContentPane.login_button)
 		{
 			// TODO
-		} else if(e.getSource() == LauncherContentPane.offline_button)
+		} else if (e.getSource() == LauncherContentPane.offline_button)
 		{
 			// TODO
 		}
