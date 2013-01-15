@@ -14,6 +14,8 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 	
 	public static LauncherTextfield login = new LauncherTextfield("login", 200, 100);
 	public static LauncherPassfield password = new LauncherPassfield("password", 200, 200);
+	public static LauncherLabel login_label = new LauncherLabel(LOGIN, 205, 75, 200, 23);
+	public static LauncherLabel password_label = new LauncherLabel(PASSWORD, 205, 175, 200, 23);
 
 	public LauncherContentPane()
 	{
@@ -21,7 +23,9 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 		setBackground(Color.BLACK);
 		setForeground(Color.BLACK);
 		setLayout(null);
+		add(login_label);
 		add(login);
+		add(password_label);
 		add(password);
 		instance = this;
 	}
