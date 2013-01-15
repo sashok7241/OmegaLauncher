@@ -7,18 +7,18 @@ import java.awt.RenderingHints;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
-import javax.swing.JTextField;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-public class LauncherTextfield extends JTextField implements LauncherConstants, DocumentListener, FocusListener
+public class LauncherPassfield extends JPasswordField implements LauncherConstants, DocumentListener, FocusListener
 {
 	public static final long serialVersionUID = 1L;
 	public String name;
 	public boolean focused = false;
 
-	public LauncherTextfield(String param, int x, int y)
+	public LauncherPassfield(String param, int x, int y)
 	{
 		super(LauncherConfig.getString(param, ""));
 		setOpaque(false);
@@ -26,6 +26,7 @@ public class LauncherTextfield extends JTextField implements LauncherConstants, 
 		setBackground(Color.BLACK);
 		setForeground(Color.WHITE);
 		setCaretColor(Color.WHITE);
+		setEchoChar('*');
 		setBorder(new EmptyBorder(10, 10, 10, 10));
 		setFont(FONT_MC.deriveFont(16F));
 		getDocument().addDocumentListener(this);
@@ -48,19 +49,19 @@ public class LauncherTextfield extends JTextField implements LauncherConstants, 
 	@Override
 	public void changedUpdate(DocumentEvent e)
 	{
-		LauncherConfig.set(name, getText());
+		LauncherConfig.set(name, new String(getPassword()));
 	}
 
 	@Override
 	public void insertUpdate(DocumentEvent e)
 	{
-		LauncherConfig.set(name, getText());
+		LauncherConfig.set(name, new String(getPassword()));
 	}
 
 	@Override
 	public void removeUpdate(DocumentEvent e)
 	{
-		LauncherConfig.set(name, getText());
+		LauncherConfig.set(name, new String(getPassword()));
 	}
 
 	@Override

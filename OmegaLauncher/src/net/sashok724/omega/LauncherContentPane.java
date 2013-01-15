@@ -13,7 +13,7 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 	public static LauncherContentPane instance;
 	
 	public static LauncherTextfield login = new LauncherTextfield("login", 200, 100);
-	public static LauncherTextfield password = new LauncherTextfield("password", 200, 200);
+	public static LauncherPassfield password = new LauncherPassfield("password", 200, 200);
 
 	public LauncherContentPane()
 	{

@@ -1,6 +1,7 @@
 package net.sashok724.omega;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
@@ -30,6 +31,18 @@ public class LauncherUtils implements LauncherConstants
 		} catch (Exception e)
 		{
 			return new BufferedImage(64, 64, 2);
+		}
+	}
+
+	public static Font loadFont(String name)
+	{
+		try
+		{
+			return Font.createFont(Font.TRUETYPE_FONT, LauncherUtils.class.getResourceAsStream(name + ".ttf"));
+		} catch(Exception e)
+		{
+			e.printStackTrace();
+			return null;
 		}
 	}
 }
