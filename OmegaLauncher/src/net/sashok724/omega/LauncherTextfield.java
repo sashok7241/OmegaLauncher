@@ -22,7 +22,7 @@ public class LauncherTextfield extends JTextField implements LauncherConstants, 
 	{
 		super(LauncherConfig.getString(param, ""));
 		setOpaque(false);
-		setBounds(x, y, IMG_TEXTFIELD.getWidth(), IMG_TEXTFIELD.getHeight());
+		setBounds(x, y, IMG_TEXTFIELD_DEF.getWidth(), IMG_TEXTFIELD_DEF.getHeight());
 		setBackground(Color.BLACK);
 		setForeground(Color.WHITE);
 		setCaretColor(Color.WHITE);
@@ -40,7 +40,7 @@ public class LauncherTextfield extends JTextField implements LauncherConstants, 
 		Graphics2D g = (Graphics2D) maing.create();
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		if(focused) g.drawImage(IMG_TEXTFIELD_SEL, 0, 0, getWidth(), getHeight(), null);
-		else g.drawImage(IMG_TEXTFIELD, 0, 0, getWidth(), getHeight(), null);
+		else g.drawImage(IMG_TEXTFIELD_DEF, 0, 0, getWidth(), getHeight(), null);
 		g.dispose();
 		super.paintComponent(maing);
 	}
