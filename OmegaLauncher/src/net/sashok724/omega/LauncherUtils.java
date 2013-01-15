@@ -16,15 +16,6 @@ public class LauncherUtils implements LauncherConstants
 				g.drawImage(IMG_BACKGROUND, x, y, null);
 	}
 
-	public static void drawBorder(Graphics2D g)
-	{
-		int width = LauncherAuthPane.instance.getWidth();
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, width, 3);
-		g.setColor(Color.DARK_GRAY);
-		g.fillRect(0, 2, width, 1);
-	}
-
 	public static void drawTransparentRect(Graphics2D g, int x, int y, int w, int h)
 	{
 		g.setColor(new Color(0, 0, 0, 0.5F));

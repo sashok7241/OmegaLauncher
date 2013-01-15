@@ -1,6 +1,5 @@
 package net.sashok724.omega;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -12,14 +11,18 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 {
 	public static final long serialVersionUID = 1L;
 	public static LauncherContentPane instance;
+	
+	public static LauncherTextfield login = new LauncherTextfield("login", 200, 100);
+	public static LauncherTextfield password = new LauncherTextfield("password", 200, 200);
 
 	public LauncherContentPane()
 	{
 		setDoubleBuffered(true);
 		setBackground(Color.BLACK);
 		setForeground(Color.BLACK);
-		setLayout(new BorderLayout());
-		add(new LauncherAuthPane(), BorderLayout.SOUTH);
+		setLayout(null);
+		add(login);
+		add(password);
 		instance = this;
 	}
 

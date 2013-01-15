@@ -9,4 +9,5 @@ public interface LauncherConstants extends LauncherLocalizations
 	// Изображения
 	public static final BufferedImage IMG_BACKGROUND = LauncherUtils.loadImage("background");
 	public static final BufferedImage IMG_TEXTFIELD = LauncherUtils.loadImage("textfield");
+	public static final BufferedImage IMG_TEXTFIELD_SEL = LauncherUtils.loadImage("textfield_sel");
 }
