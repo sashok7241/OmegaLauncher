@@ -16,4 +16,6 @@ public interface LauncherConstants extends LauncherLocalizations
 	public static final BufferedImage IMG_BUTTON_SEL = LauncherUtils.loadImage("button_sel");
 	// Шрифты
 	public static final Font FONT_MC = LauncherUtils.loadFont("textfield");
+	// Режимы
+	public static final int MODE_LOGIN = 0, MODE_DOWNLOAD_BEGIN = 1;
 }

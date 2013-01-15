@@ -4,11 +4,25 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 import javax.imageio.ImageIO;
 
 public class LauncherUtils implements LauncherConstants
 {
+	public static final File minecraftDir = getMinecraftDir();
+
+	public static boolean checkClient()
+	{
+		if (!new File(minecraftDir, "bin").exists()) return false;
+		if (!new File(minecraftDir, "bin/lwjgl.jar").exists()) return false;
+		if (!new File(minecraftDir, "bin/jinput.jar").exists()) return false;
+		if (!new File(minecraftDir, "bin/minecraft.jar").exists()) return false;
+		if (!new File(minecraftDir, "bin/lwjgl_util.jar").exists()) return false;
+		if (!new File(minecraftDir, "bin/natives").exists()) return false;
+		return true;
+	}
+
 	public static void drawBackground(Graphics2D g)
 	{
 		int backgroundWidth = IMG_BACKGROUND.getWidth(), backgroundHeight = IMG_BACKGROUND.getHeight();
@@ -21,6 +35,31 @@ public class LauncherUtils implements LauncherConstants
 	{
 		g.setColor(new Color(0, 0, 0, 0.5F));
 		g.fillRect(x, y, w, h);
+	}
+
+	public static File getMinecraftDir()
+	{
+		String home = System.getProperty("user.home", "");
+		String path = ".minecraft";
+		switch (getPlatform())
+		{
+			case 0:
+				String appData = System.getenv("AppData");
+				if (appData != null) return new File(appData + File.separator + path);
+				else return new File(home + File.separator + path);
+			case 1:
+				return new File(home, "Library/Application Support/" + File.separator + path);
+			default:
+				return new File(home + File.separator + path);
+		}
+	}
+
+	public static int getPlatform()
+	{
+		String osName = System.getProperty("os.name").toLowerCase();
+		if (osName.contains("win")) return 0;
+		if (osName.contains("mac")) return 1;
+		return 2;
 	}
 
 	public static Font loadFont(String name)
