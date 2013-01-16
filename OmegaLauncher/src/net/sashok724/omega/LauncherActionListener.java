@@ -43,7 +43,7 @@ public class LauncherActionListener implements ActionListener, LauncherConstants
 				LauncherContentPane.serverName.setForeground(Color.RED);
 				return;
 			}
-			if(addr.length() < 4)
+			if (addr.length() < 4)
 			{
 				LauncherContentPane.serverAddr.setForeground(Color.RED);
 				return;

@@ -89,6 +89,31 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 		mode = MODE_DOWNLOAD_BEGIN;
 	}
 
+	public static void loadServers()
+	{
+		servers.clear();
+		for (String currentServer : LauncherConfig.getString("servers", "").split(exdel))
+		{
+			String[] splitted = currentServer.split(delim);
+			if (splitted.length != 3) continue;
+			String addr = splitted[0];
+			String port = splitted[1];
+			String name = splitted[2];
+			if (!LauncherActionListener.checkInteger(port)) continue;
+			servers.add(new LauncherServer(name, addr, Integer.parseInt(port)));
+		}
+		addLoginElements();
+	}
+
+	public static void saveServers()
+	{
+		String toSettings = "";
+		if (servers.size() == 0) return;
+		for (LauncherServer server : servers)
+			toSettings += exdel + server.address + delim + server.port + delim + server.name;
+		LauncherConfig.set("servers", toSettings.substring(exdel.length()));
+	}
+
 	public LauncherContentPane()
 	{
 		instance = this;
@@ -108,32 +133,5 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 		g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		LauncherUtils.drawBackground(g2d);
 		LauncherUtils.drawTransparentRect(g2d, 510, 10, 325, 450);
-	}
-	
-	public static void saveServers()
-	{
-		String toSettings = "";
-		if(servers.size() == 0) return;
-		for(LauncherServer server : servers)
-		{
-			toSettings += exdel + server.address + delim + server.port + delim + server.name;
-		}
-		LauncherConfig.set("servers", toSettings.substring(exdel.length()));
-	}
-	
-	public static void loadServers()
-	{
-		servers.clear();
-		for(String currentServer : LauncherConfig.getString("servers", "").split(exdel))
-		{
-			String[] splitted = currentServer.split(delim);
-			if(splitted.length != 3) continue;
-			String addr = splitted[0];
-			String port = splitted[1];
-			String name = splitted[2];
-			if(!LauncherActionListener.checkInteger(port)) continue;
-			servers.add(new LauncherServer(name, addr, Integer.parseInt(port)));
-		}
-		addLoginElements();
 	}
 }
