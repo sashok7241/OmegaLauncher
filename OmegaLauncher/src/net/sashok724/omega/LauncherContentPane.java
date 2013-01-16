@@ -21,16 +21,16 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 	public static LauncherPassfield password = new LauncherPassfield("password", 10, 125);
 	public static LauncherButton login_button = new LauncherButton(DO_LOGIN, 10, 300);
 	public static LauncherButton offline_button = new LauncherButton(OFFLINE, 10, 350);
-	public static LauncherButton addserver_button = new LauncherButton(ADD_SERVER, 505, 415).setW(315);
+	public static LauncherButton addserver_button = new LauncherButton(ADD_SERVER, 515, 415).setW(315);
 	// ========================================================================================
-	public static LauncherLabel serverAddrLabel = new LauncherLabel(SERVER_IP, 510, 15, 200, 23);
-	public static LauncherTextfield serverAddr = new LauncherTextfield(null, 510, 40, "").setW(305);
-	public static LauncherLabel serverPortLabel = new LauncherLabel(SERVER_PORT, 510, 100, 200, 23);
-	public static LauncherTextfield serverPort = new LauncherTextfield(null, 510, 125, "25565").setW(305);
-	public static LauncherLabel serverNameLabel = new LauncherLabel(SERVER_NAME, 510, 180, 200, 23);
-	public static LauncherTextfield serverName = new LauncherTextfield(null, 510, 205, "Minecraft Server").setW(305);
-	public static LauncherButton addserver_cancel = new LauncherButton(SERVER_CNC, 505, 370).setW(315);
-	public static LauncherButton addserver_accept = new LauncherButton(ADD_SERVER, 505, 415).setW(315);
+	public static LauncherLabel serverAddrLabel = new LauncherLabel(SERVER_IP, 520, 15, 200, 23);
+	public static LauncherTextfield serverAddr = new LauncherTextfield(null, 520, 40, "").setW(305);
+	public static LauncherLabel serverPortLabel = new LauncherLabel(SERVER_PORT, 520, 100, 200, 23);
+	public static LauncherTextfield serverPort = new LauncherTextfield(null, 520, 125, "25565").setW(305);
+	public static LauncherLabel serverNameLabel = new LauncherLabel(SERVER_NAME, 520, 180, 200, 23);
+	public static LauncherTextfield serverName = new LauncherTextfield(null, 520, 205, "Minecraft Server").setW(305);
+	public static LauncherButton addserver_cancel = new LauncherButton(SERVER_CNC, 515, 370).setW(315);
+	public static LauncherButton addserver_accept = new LauncherButton(ADD_SERVER, 515, 415).setW(315);
 	// ========================================================================================
 	public static ArrayList<LauncherServer> servers = new ArrayList<LauncherServer>();
 
@@ -47,7 +47,7 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 		instance.add(serverlist);
 		serverlist.setOpaque(false);
 		serverlist.getViewport().setOpaque(false);
-		serverlist.setBounds(500, 10, 325, 400);
+		serverlist.setBounds(510, 10, 325, 400);
 		serverlist.setBorder(null);
 		serverlist.removeAll();
 		for (int i = 0; i < servers.size(); i++)
@@ -106,6 +106,6 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		LauncherUtils.drawBackground(g2d);
-		LauncherUtils.drawTransparentRect(g2d, 500, 10, 325, 450);
+		LauncherUtils.drawTransparentRect(g2d, 510, 10, 325, 450);
 	}
 }
