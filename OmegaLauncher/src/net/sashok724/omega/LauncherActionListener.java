@@ -49,6 +49,7 @@ public class LauncherActionListener implements ActionListener, LauncherConstants
 				return;
 			}
 			LauncherContentPane.servers.add(new LauncherServer(name, addr, Integer.parseInt(port)));
+			LauncherContentPane.saveServers();
 			LauncherContentPane.addLoginElements();
 		} else if (e.getSource() == LauncherContentPane.addserver_cancel) LauncherContentPane.addLoginElements();
 	}
