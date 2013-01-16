@@ -1,10 +1,23 @@
 package net.sashok724.omega;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LauncherActionListener implements ActionListener
+public class LauncherActionListener implements ActionListener, LauncherConstants
 {
+	public static boolean checkInteger(String text)
+	{
+		try
+		{
+			Integer.parseInt(text);
+			return true;
+		} catch (Exception e)
+		{
+			return false;
+		}
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
@@ -15,5 +28,15 @@ public class LauncherActionListener implements ActionListener
 		{
 			// TODO
 		} else if (e.getSource() == LauncherContentPane.addserver_button) LauncherContentPane.addServerAdderElements();
+		else if (e.getSource() == LauncherContentPane.addserver_accept)
+		{
+			String port = LauncherContentPane.serverPort.getText();
+			if (!checkInteger(port) || Integer.parseInt(port) > 65535 || Integer.parseInt(port) < 0)
+			{
+				LauncherContentPane.serverPort.setForeground(Color.RED);
+				return;
+			}
+			LauncherContentPane.addLoginElements();
+		} else if (e.getSource() == LauncherContentPane.addserver_cancel) LauncherContentPane.addLoginElements();
 	}
 }

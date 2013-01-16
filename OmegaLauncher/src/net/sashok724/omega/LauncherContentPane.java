@@ -21,12 +21,16 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 	public static LauncherPassfield password = new LauncherPassfield("password", 10, 125);
 	public static LauncherButton login_button = new LauncherButton(DO_LOGIN, 10, 300);
 	public static LauncherButton offline_button = new LauncherButton(OFFLINE, 10, 350);
-	public static LauncherButton addserver_button = new LauncherButton(ADD_SERVER, 505, 415);
+	public static LauncherButton addserver_button = new LauncherButton(ADD_SERVER, 505, 415).setW(315);
 	// ========================================================================================
 	public static LauncherLabel serverAddrLabel = new LauncherLabel(SERVER_IP, 510, 15, 200, 23);
 	public static LauncherTextfield serverAddr = new LauncherTextfield(null, 510, 40, "").setW(305);
 	public static LauncherLabel serverPortLabel = new LauncherLabel(SERVER_PORT, 510, 100, 200, 23);
 	public static LauncherTextfield serverPort = new LauncherTextfield(null, 510, 125, "25565").setW(305);
+	public static LauncherLabel serverNameLabel = new LauncherLabel(SERVER_NAME, 510, 180, 200, 23);
+	public static LauncherTextfield serverName = new LauncherTextfield(null, 510, 205, "Minecraft Server").setW(305);
+	public static LauncherButton addserver_cancel = new LauncherButton(SERVER_CNC, 505, 370).setW(315);
+	public static LauncherButton addserver_accept = new LauncherButton(ADD_SERVER, 505, 415).setW(315);
 	// ========================================================================================
 	public static ArrayList<LauncherServer> servers = new ArrayList<LauncherServer>();
 
@@ -41,7 +45,6 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 		instance.add(offline_button);
 		instance.add(addserver_button);
 		instance.add(serverlist);
-		addserver_button.setSize(315, addserver_button.getHeight());
 		serverlist.setOpaque(false);
 		serverlist.getViewport().setOpaque(false);
 		serverlist.setBounds(500, 10, 325, 400);
@@ -73,7 +76,12 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 		instance.add(serverAddrLabel);
 		instance.add(serverAddr);
 		instance.add(serverPortLabel);
-		instance.add(serverPort);
+		instance.add(serverPort.resetC());
+		instance.add(serverNameLabel);
+		instance.add(serverName);
+		instance.add(addserver_cancel);
+		instance.add(addserver_accept);
+		serverAddr.requestFocusInWindow();
 		instance.validate();
 		instance.repaint();
 	}

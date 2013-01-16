@@ -27,4 +27,10 @@ public class LauncherLabel extends JLabel implements LauncherConstants
 		g.drawString(getText(), 2, 19);
 		super.paintComponent(g);
 	}
+
+	public LauncherLabel resetC()
+	{
+		setForeground(Color.WHITE);
+		return this;
+	}
 }

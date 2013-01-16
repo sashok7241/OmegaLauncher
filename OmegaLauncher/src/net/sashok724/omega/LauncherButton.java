@@ -44,4 +44,10 @@ public class LauncherButton extends JButton implements LauncherConstants
 		g.dispose();
 		super.paintComponent(g1);
 	}
+
+	public LauncherButton setW(int i)
+	{
+		setSize(i, getHeight());
+		return this;
+	}
 }
