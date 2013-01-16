@@ -18,9 +18,9 @@ public class LauncherTextfield extends JTextField implements LauncherConstants, 
 	public String name;
 	public boolean focused = false;
 
-	public LauncherTextfield(String param, int x, int y)
+	public LauncherTextfield(String param, int x, int y, String def)
 	{
-		super(LauncherConfig.getString(param, ""));
+		super(LauncherConfig.getString(param, def));
 		setOpaque(false);
 		setBounds(x, y, IMG_TEXTFIELD_DEF.getWidth(), IMG_TEXTFIELD_DEF.getHeight());
 		setBackground(Color.BLACK);

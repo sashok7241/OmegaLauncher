@@ -16,16 +16,18 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 	public static LauncherContentPane instance;
 	public static JScrollPane serverlist = new JScrollPane();
 	public static LauncherLabel login_label = new LauncherLabel(LOGIN, 15, 5, 200, 23);
-	public static LauncherTextfield login = new LauncherTextfield("login", 10, 30);
+	public static LauncherTextfield login = new LauncherTextfield("login", 10, 30, "");
 	public static LauncherLabel password_label = new LauncherLabel(PASSWORD, 15, 100, 200, 23);
 	public static LauncherPassfield password = new LauncherPassfield("password", 10, 125);
 	public static LauncherButton login_button = new LauncherButton(DO_LOGIN, 10, 300);
 	public static LauncherButton offline_button = new LauncherButton(OFFLINE, 10, 350);
 	public static LauncherButton addserver_button = new LauncherButton(ADD_SERVER, 505, 415);
-	//========================================================================================
+	// ========================================================================================
 	public static LauncherLabel serverAddrLabel = new LauncherLabel(SERVER_IP, 510, 15, 200, 23);
-	public static LauncherTextfield serverAddr = new LauncherTextfield(null, 510, 40).setW(305);
-	//========================================================================================
+	public static LauncherTextfield serverAddr = new LauncherTextfield(null, 510, 40, "").setW(305);
+	public static LauncherLabel serverPortLabel = new LauncherLabel(SERVER_PORT, 510, 100, 200, 23);
+	public static LauncherTextfield serverPort = new LauncherTextfield(null, 510, 125, "25565").setW(305);
+	// ========================================================================================
 	public static ArrayList<LauncherServer> servers = new ArrayList<LauncherServer>();
 
 	public static void addLoginElements()
@@ -45,16 +47,33 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 		serverlist.setBounds(500, 10, 325, 400);
 		serverlist.setBorder(null);
 		serverlist.removeAll();
-		//===============================
+		// ===============================
 		servers.add(new LauncherServer("sashok724.net", 25565));
-		//===============================
-		for(int i = 0; i < servers.size(); i++)
+		// ===============================
+		for (int i = 0; i < servers.size(); i++)
 		{
 			LauncherServer server = servers.get(i);
 			server.setBounds(5, i * 105 + 5, serverlist.getWidth() - 10, 100);
 			serverlist.add(server);
 		}
 		mode = MODE_LOGIN;
+		instance.validate();
+		instance.repaint();
+	}
+
+	public static void addServerAdderElements()
+	{
+		instance.removeAll();
+		instance.add(login_label);
+		instance.add(login);
+		instance.add(password_label);
+		instance.add(password);
+		instance.add(login_button);
+		instance.add(offline_button);
+		instance.add(serverAddrLabel);
+		instance.add(serverAddr);
+		instance.add(serverPortLabel);
+		instance.add(serverPort);
 		instance.validate();
 		instance.repaint();
 	}
@@ -83,20 +102,5 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 		g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		LauncherUtils.drawBackground(g2d);
 		LauncherUtils.drawTransparentRect(g2d, 500, 10, 325, 450);
-	}
-
-	public static void addServerAdderElements()
-	{
-		instance.removeAll();
-		instance.add(login_label);
-		instance.add(login);
-		instance.add(password_label);
-		instance.add(password);
-		instance.add(login_button);
-		instance.add(offline_button);
-		instance.add(serverAddrLabel);
-		instance.add(serverAddr);
-		instance.validate();
-		instance.repaint();
 	}
 }
