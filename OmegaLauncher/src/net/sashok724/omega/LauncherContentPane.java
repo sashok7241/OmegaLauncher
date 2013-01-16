@@ -50,9 +50,6 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 		serverlist.setBounds(500, 10, 325, 400);
 		serverlist.setBorder(null);
 		serverlist.removeAll();
-		// ===============================
-		servers.add(new LauncherServer("sashok724.net", 25565));
-		// ===============================
 		for (int i = 0; i < servers.size(); i++)
 		{
 			LauncherServer server = servers.get(i);
