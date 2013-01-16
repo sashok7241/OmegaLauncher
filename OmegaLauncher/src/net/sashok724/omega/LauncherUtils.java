@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 public class LauncherUtils implements LauncherConstants
 {
 	public static final File minecraftDir = getMinecraftDir();
-
+	
 	public static boolean checkClient()
 	{
 		if (!new File(minecraftDir, "bin").exists()) return false;

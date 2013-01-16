@@ -27,8 +27,8 @@ public class LauncherServer extends JComponent implements LauncherConstants
 		LauncherUtils.drawTransparentRect(g, 0, 0, getWidth(), getHeight());
 		LauncherUtils.drawIcon(g, 5, 5, status == 0 ? IMG_SERVER_POLL : status == 1 ? IMG_SERVER_ONLINE : IMG_SERVER_OFFLINE);
 		LauncherUtils.drawText(g, 30, 19, name, Color.WHITE);
-		LauncherUtils.drawText(g, 5, 40, MOTD + motd, Color.DARK_GRAY);
-		LauncherUtils.drawText(g, 5, 60, PLAYERS + curplayers + " / " + maxplayers, Color.DARK_GRAY);
-		LauncherUtils.drawText(g, 5, 80, ADDRESS + address + ":" + port, Color.DARK_GRAY);
+		LauncherUtils.drawText(g, 5, 40, MOTD + motd, Color.GRAY);
+		LauncherUtils.drawText(g, 5, 60, PLAYERS + curplayers + " / " + maxplayers, Color.GRAY);
+		LauncherUtils.drawText(g, 5, 80, ADDRESS + address + ":" + port, Color.GRAY);
 	}
 }

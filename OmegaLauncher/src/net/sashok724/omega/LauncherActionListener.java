@@ -43,6 +43,11 @@ public class LauncherActionListener implements ActionListener, LauncherConstants
 				LauncherContentPane.serverName.setForeground(Color.RED);
 				return;
 			}
+			if(addr.length() < 4)
+			{
+				LauncherContentPane.serverAddr.setForeground(Color.RED);
+				return;
+			}
 			LauncherContentPane.servers.add(new LauncherServer(name, addr, Integer.parseInt(port)));
 			LauncherContentPane.addLoginElements();
 		} else if (e.getSource() == LauncherContentPane.addserver_cancel) LauncherContentPane.addLoginElements();
