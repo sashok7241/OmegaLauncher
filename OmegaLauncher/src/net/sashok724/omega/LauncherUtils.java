@@ -31,6 +31,20 @@ public class LauncherUtils implements LauncherConstants
 				g.drawImage(IMG_BACKGROUND, x, y, null);
 	}
 
+	public static void drawIcon(Graphics2D g, int x, int y, BufferedImage img)
+	{
+		g.drawImage(img, x, y, null);
+	}
+
+	public static void drawText(Graphics2D g, int x, int y, String text, Color c)
+	{
+		g.setFont(FONT_MC.deriveFont(16F));
+		g.setColor(SHADOW);
+		g.drawString(text, x + 2, y + 2);
+		g.setColor(c);
+		g.drawString(text, x, y);
+	}
+
 	public static void drawTransparentRect(Graphics2D g, int x, int y, int w, int h)
 	{
 		g.setColor(new Color(0, 0, 0, 0.5F));

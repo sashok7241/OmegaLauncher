@@ -12,7 +12,7 @@ public class LauncherStarter implements LauncherConstants
 	public static void main(String[] args) throws Exception
 	{
 		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		frame.setIconImage(LauncherUtils.loadImage("favicon"));
+		frame.setIconImage(IMG_FAVICON);
 		frame.setContentPane(new LauncherContentPane());
 		frame.setBackground(Color.BLACK);
 		frame.setForeground(Color.WHITE);
