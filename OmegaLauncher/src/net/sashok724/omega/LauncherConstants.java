@@ -19,6 +19,8 @@ public interface LauncherConstants extends LauncherLocalizations
 	public static final BufferedImage IMG_SERVER_POLL = LauncherUtils.loadImage("server_poll");
 	public static final BufferedImage IMG_SERVER_ONLINE = LauncherUtils.loadImage("server_on");
 	public static final BufferedImage IMG_SERVER_OFFLINE = LauncherUtils.loadImage("server_off");
+	public static final BufferedImage IMG_DELETE_DEF = LauncherUtils.loadImage("delete_def");
+	public static final BufferedImage IMG_DELETE_SEL = LauncherUtils.loadImage("delete_sel");
 	// Шрифты
 	public static final Font FONT_MC = LauncherUtils.loadFont("textfield");
 	public static final Color SHADOW = Color.DARK_GRAY, DARK_SHADOW = new Color(0x151515);

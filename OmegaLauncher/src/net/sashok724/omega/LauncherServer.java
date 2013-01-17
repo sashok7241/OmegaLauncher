@@ -3,14 +3,18 @@ package net.sashok724.omega;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JComponent;
 
-public class LauncherServer extends JComponent implements LauncherConstants
+public class LauncherServer extends JComponent implements LauncherConstants, ActionListener
 {
 	public static final long serialVersionUID = 1L;
 	public String address, name, motd = "???", maxplayers = "???", curplayers = "???";
 	public int port, status;
+	public LauncherServerPoll thread = new LauncherServerPoll(this);
+	public LauncherButton remove = new LauncherButton("", 290, 5).setTextures(IMG_DELETE_DEF, IMG_DELETE_SEL);
 
 	public LauncherServer(String _name, String _address, int _port)
 	{
@@ -18,7 +22,9 @@ public class LauncherServer extends JComponent implements LauncherConstants
 		name = _name;
 		address = _address.toLowerCase();
 		port = _port;
-		new LauncherServerPoll(this);
+		setLayout(null);
+		add(remove);
+		remove.addActionListener(this);
 	}
 
 	@Override
@@ -31,5 +37,15 @@ public class LauncherServer extends JComponent implements LauncherConstants
 		LauncherUtils.drawText(g, 5, 40, MOTD + motd, Color.DARK_GRAY);
 		LauncherUtils.drawText(g, 5, 60, PLAYERS + curplayers + " / " + maxplayers, Color.DARK_GRAY);
 		LauncherUtils.drawText(g, 5, 80, ADDRESS + address + ":" + port, Color.DARK_GRAY);
+		super.paintComponent(g1);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+		thread.interrupt();
+		LauncherContentPane.servers.remove(this);
+		LauncherContentPane.saveServers();
+		LauncherContentPane.addLoginElements();
 	}
 }
