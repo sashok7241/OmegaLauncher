@@ -51,5 +51,6 @@ public class LauncherActionListener implements ActionListener, LauncherConstants
 			LauncherContentPane.addLoginElements();
 		} else if (e.getSource() == LauncherContentPane.addserver_cancel) LauncherContentPane.addLoginElements();
 		else if (e.getSource() == LauncherContentPane.download_cancel) LauncherContentPane.addLoginElements();
+		else if (e.getSource() == LauncherContentPane.download_accept) LauncherContentPane.addDownloadElements();
 	}
 }

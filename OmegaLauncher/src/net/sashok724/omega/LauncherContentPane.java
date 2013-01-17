@@ -40,6 +40,14 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 	// ========================================================================================
 	public static ArrayList<LauncherServer> servers = new ArrayList<LauncherServer>();
 
+	public static void addDownloadElements()
+	{
+		instance.removeAll();
+		mode = MODE_DOWNLOAD_BEGIN;
+		instance.validate();
+		instance.repaint();
+	}
+
 	public static void addLoginElements()
 	{
 		instance.removeAll();
@@ -104,12 +112,6 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 		serverAddr.requestFocusInWindow();
 		instance.validate();
 		instance.repaint();
-	}
-
-	public static void addUpdaterElements()
-	{
-		instance.removeAll();
-		mode = MODE_DOWNLOAD_BEGIN;
 	}
 
 	public static void loadServers()
