@@ -24,7 +24,7 @@ public class LauncherLabel extends JLabel implements LauncherConstants
 	{
 		g.setFont(getFont());
 		g.setColor(SHADOW);
-		g.drawString(getText(), 2, 19);
+		g.drawString(getText(), 2, 17);
 		super.paintComponent(g);
 	}
 

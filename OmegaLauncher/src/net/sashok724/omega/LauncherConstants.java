@@ -21,7 +21,7 @@ public interface LauncherConstants extends LauncherLocalizations
 	public static final BufferedImage IMG_SERVER_OFFLINE = LauncherUtils.loadImage("server_off");
 	// Шрифты
 	public static final Font FONT_MC = LauncherUtils.loadFont("textfield");
-	public static final Color SHADOW = Color.DARK_GRAY, DARK_SHADOW = new Color(20, 20, 20);
+	public static final Color SHADOW = Color.DARK_GRAY, DARK_SHADOW = new Color(0x151515);
 	// Режимы
 	public static final int MODE_LOGIN = 0, MODE_DOWNLOAD_BEGIN = 1;
 }

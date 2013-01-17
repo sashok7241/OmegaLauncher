@@ -20,7 +20,7 @@ public class LauncherTextfield extends JTextField implements LauncherConstants, 
 
 	public LauncherTextfield(String param, int x, int y, String def)
 	{
-		super(LauncherConfig.getString(param, def));
+		super(LauncherConfig.getString(param, def), 16);
 		setOpaque(false);
 		setBounds(x, y, IMG_TEXTFIELD_DEF.getWidth(), IMG_TEXTFIELD_DEF.getHeight());
 		setBackground(Color.BLACK);
