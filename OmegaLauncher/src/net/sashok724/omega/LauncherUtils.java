@@ -4,7 +4,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 
 import javax.imageio.ImageIO;
 
@@ -97,5 +102,67 @@ public class LauncherUtils implements LauncherConstants
 		{
 			return new BufferedImage(64, 64, 2);
 		}
+	}
+
+	public static void pollServer(LauncherServer server)
+	{
+		Socket soc = null;
+		DataInputStream dis = null;
+		DataOutputStream dos = null;
+		try
+		{
+			server.status = 0;
+			soc = new Socket();
+			soc.setSoTimeout(3000);
+			soc.setTcpNoDelay(true);
+			soc.setTrafficClass(18);
+			soc.connect(new InetSocketAddress(server.address, server.port), 3000);
+			dis = new DataInputStream(soc.getInputStream());
+			dos = new DataOutputStream(soc.getOutputStream());
+			dos.write(254);
+			if (dis.read() != 255) throw new IOException("Bad message");
+			String[] string = readString(dis, 256).split("§");
+			server.status = 1;
+			server.curplayers = string[1];
+			server.maxplayers = string[2];
+			server.motd = string[0];
+		} catch (Exception e)
+		{
+			server.status = 2;
+			server.curplayers = "???";
+			server.maxplayers = "???";
+			server.motd = "<Недоступен>";
+		} finally
+		{
+			try
+			{
+				dis.close();
+			} catch (Exception e)
+			{
+			}
+			try
+			{
+				dos.close();
+			} catch (Exception e)
+			{
+			}
+			try
+			{
+				soc.close();
+			} catch (Exception e)
+			{
+			}
+		}
+	}
+
+	public static String readString(DataInputStream is, int d) throws IOException
+	{
+		short word = is.readShort();
+		if (word > d) throw new IOException();
+		if (word < 0) throw new IOException();
+		StringBuilder res = new StringBuilder();
+		for (int i = 0; i < word; i++)
+			res.append(is.readChar());
+		return res.toString();
 	}
 }

@@ -18,6 +18,7 @@ public class LauncherServer extends JComponent implements LauncherConstants
 		name = _name;
 		address = _address;
 		port = _port;
+		new LauncherServerPoll(this);
 	}
 
 	@Override

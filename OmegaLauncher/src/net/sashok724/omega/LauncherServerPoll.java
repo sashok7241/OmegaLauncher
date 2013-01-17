@@ -2,8 +2,26 @@ package net.sashok724.omega;
 
 public class LauncherServerPoll extends Thread implements LauncherConstants
 {
-	public LauncherServerPoll(LauncherServer server)
+	public LauncherServer server;
+	
+	public LauncherServerPoll(LauncherServer _server)
 	{
-		// TODO Continue coming soon
+		server = _server;
+		start();
+	}
+	
+	public void run()
+	{
+		while (true)
+		{
+			LauncherUtils.pollServer(server);
+			try
+			{
+				Thread.sleep(5000L);
+			} catch (InterruptedException e)
+			{
+			}
+			server.repaint();
+		}
 	}
 }
