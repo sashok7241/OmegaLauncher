@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 public class LauncherContentPane extends JPanel implements LauncherConstants
 {
@@ -21,7 +22,7 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 	public static LauncherPassfield password = new LauncherPassfield("password", 10, 125);
 	public static LauncherButton login_button = new LauncherButton(DO_LOGIN, 10, 415);
 	public static LauncherButton offline_button = new LauncherButton(OFFLINE, 10, 370);
-	public static LauncherButton addserver_button = new LauncherButton(ADD_SERVER, 515, 415).setW(315);
+	public static LauncherButton addserver_button = new LauncherButton(ADD_SERVER, 515, 420).setW(315);
 	// ========================================================================================
 	public static LauncherLabel serverNameLabel = new LauncherLabel(SERVER_NAME, 520, 15);
 	public static LauncherTextfield serverName = new LauncherTextfield(null, 520, 35, "Minecraft Server").setW(305);
@@ -30,8 +31,8 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 	public static LauncherLabel serverPortLabel = new LauncherLabel(SERVER_PORT, 520, 185);
 	public static LauncherTextfield serverPort = new LauncherTextfield(null, 520, 205, "25565").setW(305);
 	
-	public static LauncherButton addserver_cancel = new LauncherButton(SERVER_CNC, 515, 370).setW(315);
-	public static LauncherButton addserver_accept = new LauncherButton(ADD_SERVER, 515, 415).setW(315);
+	public static LauncherButton addserver_cancel = new LauncherButton(SERVER_CNC, 515, 375).setW(315);
+	public static LauncherButton addserver_accept = new LauncherButton(ADD_SERVER, 515, 420).setW(315);
 	// ========================================================================================
 	public static ArrayList<LauncherServer> servers = new ArrayList<LauncherServer>();
 
@@ -46,10 +47,12 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 		instance.add(offline_button);
 		instance.add(addserver_button);
 		instance.add(serverlist);
+		addserver_button.setEnabled(servers.size() < 4);
 		serverlist.setOpaque(false);
 		serverlist.getViewport().setOpaque(false);
-		serverlist.setBounds(510, 10, 325, 400);
+		serverlist.setBounds(510, 10, 325, 405);
 		serverlist.setBorder(null);
+		serverlist.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		serverlist.removeAll();
 		for (int i = 0; i < servers.size(); i++)
 		{
@@ -133,6 +136,6 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		LauncherUtils.drawBackground(g2d);
-		LauncherUtils.drawTransparentRect(g2d, 510, 10, 325, 450);
+		LauncherUtils.drawTransparentRect(g2d, 510, 10, 325, 455);
 	}
 }
