@@ -157,13 +157,20 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		LauncherUtils.drawBackground(g2d);
-		if (mode == MODE_LOGIN) LauncherUtils.drawTransparentRect(g2d, 510, 10, 325, 455);
-		if (mode == MODE_DOWNLOAD_REQUEST)
+		switch (mode)
 		{
-			LauncherUtils.drawText(g2d, 100, 100, "Клиент не был найден", Color.WHITE, 48);
-			LauncherUtils.drawText(g2d, 100, 135, "Запуск клиента невозможен без наличия самого клиента.", Color.GRAY, 16);
-			LauncherUtils.drawText(g2d, 100, 155, "Закачать недостоющие файлы используя интернет?", Color.GRAY, 16);
-			LauncherUtils.drawText(g2d, 100, 175, "(могут быть удалены установленные моды и аддоны)", Color.GRAY, 16);
+			case MODE_LOGIN:
+				LauncherUtils.drawTransparentRect(g2d, 510, 10, 325, 455);
+				break;
+			case MODE_DOWNLOAD_REQUEST:
+				LauncherUtils.drawText(g2d, 100, 100, "Клиент не был найден", Color.WHITE, 48);
+				LauncherUtils.drawText(g2d, 100, 135, "Запуск клиента невозможен без наличия самого клиента.", Color.GRAY, 16);
+				LauncherUtils.drawText(g2d, 100, 155, "Закачать недостоющие файлы используя интернет?", Color.GRAY, 16);
+				LauncherUtils.drawText(g2d, 100, 175, "(могут быть удалены установленные моды и аддоны)", Color.GRAY, 16);
+				break;
+			case MODE_DOWNLOAD_BEGIN:
+				LauncherUtils.drawText(g2d, 100, 100, "Клиент закачивается...", Color.WHITE, 48);
+				break;
 		}
 	}
 }
