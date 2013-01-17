@@ -10,22 +10,32 @@ import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 public class LauncherUtils implements LauncherConstants
 {
 	public static final File minecraftDir = getMinecraftDir();
 
-	public static boolean checkClient()
+	public static ArrayList<File> checkClient()
 	{
-		if (!new File(minecraftDir, "bin").exists()) return false;
-		if (!new File(minecraftDir, "bin/lwjgl.jar").exists()) return false;
-		if (!new File(minecraftDir, "bin/jinput.jar").exists()) return false;
-		if (!new File(minecraftDir, "bin/minecraft.jar").exists()) return false;
-		if (!new File(minecraftDir, "bin/lwjgl_util.jar").exists()) return false;
-		if (!new File(minecraftDir, "bin/natives").exists()) return false;
-		return true;
+		ArrayList<File> files = new ArrayList<File>();
+		File bin = new File(minecraftDir, "bin");
+		File natives = new File(bin, "natives");
+		files.add(new File(bin, "lwjgl.jar"));
+		files.add(new File(bin, "lwjgl_util.jar"));
+		files.add(new File(bin, "jinput.jar"));
+		files.add(new File(bin, "minecraft.jar"));
+		files.add(new File(natives, "jinput-dx8.dll"));
+		files.add(new File(natives, "jinput-dx8_64.dll"));
+		files.add(new File(natives, "jinput-raw.dll"));
+		files.add(new File(natives, "jinput-raw_64.dll"));
+		files.add(new File(natives, "lwjgl.dll"));
+		files.add(new File(natives, "lwjgl64.dll"));
+		files.add(new File(natives, "OpenAL32.dll"));
+		files.add(new File(natives, "OpenAL64.dll"));
+		for(File file : files) if(file.exists()) files.remove(file);
+		return files;
 	}
 
 	public static void drawBackground(Graphics2D g)
@@ -41,13 +51,15 @@ public class LauncherUtils implements LauncherConstants
 		g.drawImage(img, x, y, null);
 	}
 
-	public static void drawText(Graphics2D g, int x, int y, String text, Color c)
+	public static void drawText(Graphics2D g, int x, int y, String text, Color c, int i)
 	{
-		g.setFont(FONT_MC.deriveFont(16F));
+		Color prev = g.getColor();
+		g.setFont(FONT_MC.deriveFont(Float.valueOf(i)));
 		g.setColor(DARK_SHADOW);
 		g.drawString(text, x + 2, y + 2);
 		g.setColor(c);
 		g.drawString(text, x, y);
+		g.setColor(prev);
 	}
 
 	public static void drawTransparentRect(Graphics2D g, int x, int y, int w, int h)

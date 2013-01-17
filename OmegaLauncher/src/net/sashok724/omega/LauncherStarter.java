@@ -7,7 +7,7 @@ import javax.swing.UIManager;
 
 public class LauncherStarter implements LauncherConstants
 {
-	public static final JFrame frame = new JFrame(TITLE + VERSION);
+	public static final JFrame frame = new JFrame("OmegaLauncher v" + VERSION);
 
 	public static void main(String[] args) throws Exception
 	{

@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.image.BufferedImage;
 
-public interface LauncherConstants extends LauncherLocalizations
+public interface LauncherConstants
 {
 	// Строковые константы
 	public static final String VERSION = "0.1a", delim = "<:>", exdel = "<:n:>";
@@ -25,5 +25,5 @@ public interface LauncherConstants extends LauncherLocalizations
 	public static final Font FONT_MC = LauncherUtils.loadFont("textfield");
 	public static final Color SHADOW = Color.DARK_GRAY, DARK_SHADOW = new Color(0x151515);
 	// Режимы
-	public static final int MODE_LOGIN = 0, MODE_DOWNLOAD_BEGIN = 1;
+	public static final int MODE_LOGIN = 0, MODE_DOWNLOAD_REQUEST = 1, MODE_DOWNLOAD_BEGIN = 2, MODE_MODMM = 3;
 }
