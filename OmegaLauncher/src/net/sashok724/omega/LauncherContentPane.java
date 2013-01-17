@@ -170,6 +170,12 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 				break;
 			case MODE_DOWNLOAD_BEGIN:
 				LauncherUtils.drawText(g2d, 100, 100, "Клиент закачивается...", Color.WHITE, 48);
+				LauncherUtils.drawText(g2d, 100, 135, "Текущий файл: jigurda.zip", Color.GRAY, 16);
+				LauncherUtils.drawText(g2d, 100, 155, "Размер файлов: 9999mb", Color.GRAY, 16);
+				LauncherUtils.drawText(g2d, 100, 175, "Осталось: 2tb", Color.GRAY, 16);
+				LauncherUtils.drawText(g2d, 100, 195, "Скорость: 100500kb/s", Color.GRAY, 16);
+				LauncherUtils.drawTransparentRect(g2d, 100, 350, 650, 35);
+				LauncherUtils.drawProgressBar(g2d, 105, 355, 640, 25);
 				break;
 		}
 	}

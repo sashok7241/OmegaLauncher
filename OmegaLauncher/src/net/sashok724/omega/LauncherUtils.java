@@ -194,4 +194,12 @@ public class LauncherUtils implements LauncherConstants
 			res.append(is.readChar());
 		return res.toString();
 	}
+
+	public static void drawProgressBar(Graphics2D g2d, int x, int y, int w, int h)
+	{
+		g2d.setColor(Color.BLUE);
+		g2d.fillRect(x, y, w, h);
+		g2d.setColor(Color.CYAN);
+		g2d.fillRect(x, y, w, 2);
+	}
 }
