@@ -9,14 +9,14 @@ public class LauncherLabel extends JLabel implements LauncherConstants
 {
 	public static final long serialVersionUID = 1L;
 
-	public LauncherLabel(String label, int x, int y, int w, int h)
+	public LauncherLabel(String label, int x, int y)
 	{
 		super(label);
 		setOpaque(false);
-		setBounds(x, y, w, h);
 		setBackground(Color.BLACK);
 		setForeground(Color.WHITE);
 		setFont(FONT_MC.deriveFont(16F));
+		setBounds(x, y, getFontMetrics(getFont()).stringWidth(getText()), getFontMetrics(getFont()).getHeight());
 	}
 
 	@Override

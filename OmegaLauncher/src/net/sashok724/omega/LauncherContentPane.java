@@ -15,20 +15,23 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 	public static int mode = 0;
 	public static LauncherContentPane instance;
 	public static JScrollPane serverlist = new JScrollPane();
-	public static LauncherLabel login_label = new LauncherLabel(LOGIN, 15, 5, 200, 23);
+	public static LauncherLabel login_label = new LauncherLabel(LOGIN, 15, 5);
 	public static LauncherTextfield login = new LauncherTextfield("login", 10, 30, "");
-	public static LauncherLabel password_label = new LauncherLabel(PASSWORD, 15, 100, 200, 23);
+	public static LauncherLabel password_label = new LauncherLabel(PASSWORD, 15, 100);
 	public static LauncherPassfield password = new LauncherPassfield("password", 10, 125);
 	public static LauncherButton login_button = new LauncherButton(DO_LOGIN, 10, 300);
 	public static LauncherButton offline_button = new LauncherButton(OFFLINE, 10, 350);
 	public static LauncherButton addserver_button = new LauncherButton(ADD_SERVER, 515, 415).setW(315);
 	// ========================================================================================
-	public static LauncherLabel serverAddrLabel = new LauncherLabel(SERVER_IP, 520, 15, 200, 23);
-	public static LauncherTextfield serverAddr = new LauncherTextfield(null, 520, 40, "").setW(305);
-	public static LauncherLabel serverPortLabel = new LauncherLabel(SERVER_PORT, 520, 100, 200, 23);
-	public static LauncherTextfield serverPort = new LauncherTextfield(null, 520, 125, "25565").setW(305);
-	public static LauncherLabel serverNameLabel = new LauncherLabel(SERVER_NAME, 520, 180, 200, 23);
+	public static LauncherLabel serverNameLabel = new LauncherLabel(SERVER_NAME, 520, 180);
 	public static LauncherTextfield serverName = new LauncherTextfield(null, 520, 205, "Minecraft Server").setW(305);
+	
+	public static LauncherLabel serverAddrLabel = new LauncherLabel(SERVER_IP, 520, 15);
+	public static LauncherTextfield serverAddr = new LauncherTextfield(null, 520, 40, "").setW(305);
+	
+	public static LauncherLabel serverPortLabel = new LauncherLabel(SERVER_PORT, 520, 100);
+	public static LauncherTextfield serverPort = new LauncherTextfield(null, 520, 125, "25565").setW(305);
+	
 	public static LauncherButton addserver_cancel = new LauncherButton(SERVER_CNC, 515, 370).setW(315);
 	public static LauncherButton addserver_accept = new LauncherButton(ADD_SERVER, 515, 415).setW(315);
 	// ========================================================================================

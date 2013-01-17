@@ -15,13 +15,14 @@ public class LauncherServerPoll extends Thread implements LauncherConstants
 		while (true)
 		{
 			LauncherUtils.pollServer(server);
+			server.repaint();
 			try
 			{
-				Thread.sleep(5000L);
-			} catch (InterruptedException e)
+				Thread.sleep(2000L);
+			} catch(Exception e)
 			{
+				
 			}
-			server.repaint();
 		}
 	}
 }

@@ -44,7 +44,7 @@ public class LauncherUtils implements LauncherConstants
 	public static void drawText(Graphics2D g, int x, int y, String text, Color c)
 	{
 		g.setFont(FONT_MC.deriveFont(16F));
-		g.setColor(SHADOW);
+		g.setColor(DARK_SHADOW);
 		g.drawString(text, x + 2, y + 2);
 		g.setColor(c);
 		g.drawString(text, x, y);
@@ -104,14 +104,13 @@ public class LauncherUtils implements LauncherConstants
 		}
 	}
 
-	public static void pollServer(LauncherServer server)
+	public static synchronized void pollServer(LauncherServer server)
 	{
 		Socket soc = null;
 		DataInputStream dis = null;
 		DataOutputStream dos = null;
 		try
 		{
-			server.status = 0;
 			soc = new Socket();
 			soc.setSoTimeout(3000);
 			soc.setTcpNoDelay(true);
@@ -129,8 +128,8 @@ public class LauncherUtils implements LauncherConstants
 		} catch (Exception e)
 		{
 			server.status = 2;
-			server.curplayers = "???";
-			server.maxplayers = "???";
+			server.curplayers = "0";
+			server.maxplayers = "0";
 			server.motd = "<Недоступен>";
 		} finally
 		{
