@@ -24,10 +24,8 @@ public class LauncherActionListener implements ActionListener, LauncherConstants
 		if (e.getSource() == LauncherContentPane.login_button)
 		{
 			// TODO
-		} else if (e.getSource() == LauncherContentPane.offline_button)
-		{
-			LauncherContentPane.addModManagerComponents();
-		} else if (e.getSource() == LauncherContentPane.addserver_button) LauncherContentPane.addServerAdderElements();
+		} else if (e.getSource() == LauncherContentPane.offline_button) LauncherContentPane.addModManagerComponents();
+		else if (e.getSource() == LauncherContentPane.addserver_button) LauncherContentPane.addServerAdderElements();
 		else if (e.getSource() == LauncherContentPane.addserver_accept)
 		{
 			String addr = LauncherContentPane.serverAddr.getText();

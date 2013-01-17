@@ -3,13 +3,14 @@ package net.sashok724.omega;
 public class LauncherServerPoll extends Thread implements LauncherConstants
 {
 	public LauncherServer server;
-	
+
 	public LauncherServerPoll(LauncherServer _server)
 	{
 		server = _server;
 		start();
 	}
-	
+
+	@Override
 	public void run()
 	{
 		while (true)
@@ -19,9 +20,8 @@ public class LauncherServerPoll extends Thread implements LauncherConstants
 			try
 			{
 				Thread.sleep(2000L);
-			} catch(Exception e)
+			} catch (Exception e)
 			{
-				
 			}
 		}
 	}

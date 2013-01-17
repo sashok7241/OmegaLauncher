@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.ArrayList;
+
 import javax.imageio.ImageIO;
 
 public class LauncherUtils implements LauncherConstants
@@ -34,7 +35,8 @@ public class LauncherUtils implements LauncherConstants
 		files.add(new File(natives, "lwjgl64.dll"));
 		files.add(new File(natives, "OpenAL32.dll"));
 		files.add(new File(natives, "OpenAL64.dll"));
-		for(File file : files) if(file.exists()) files.remove(file);
+		for (File file : files)
+			if (file.exists()) files.remove(file);
 		return files;
 	}
 
@@ -131,12 +133,28 @@ public class LauncherUtils implements LauncherConstants
 			dis = new DataInputStream(soc.getInputStream());
 			dos = new DataOutputStream(soc.getOutputStream());
 			dos.write(254);
+			dos.write(1);
 			if (dis.read() != 255) throw new IOException("Bad message");
-			String[] string = readString(dis, 256).split("§");
-			server.status = 1;
-			server.curplayers = string[1];
-			server.maxplayers = string[2];
-			server.motd = string[0];
+			String[] args = readString(dis, 256).split("§");
+			switch (args.length)
+			{
+				case 3:
+					server.status = 1;
+					server.curplayers = args[1];
+					server.maxplayers = args[2];
+					server.motd = args[0];
+					break;
+				case 2:
+					String[] args2 = args[1].split("\\" + String.valueOf((char) 0));
+					if (args2.length != 6) throw new IOException("Bad message");
+					server.status = 1;
+					server.curplayers = args2[4];
+					server.maxplayers = args2[5];
+					server.motd = args2[3] + " (" + args2[2] + ")";
+					break;
+				default:
+					throw new IOException("Bad message");
+			}
 		} catch (Exception e)
 		{
 			server.status = 2;

@@ -28,6 +28,15 @@ public class LauncherServer extends JComponent implements LauncherConstants, Act
 	}
 
 	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+		thread.interrupt();
+		LauncherContentPane.servers.remove(this);
+		LauncherContentPane.saveServers();
+		LauncherContentPane.addLoginElements();
+	}
+
+	@Override
 	public void paintComponent(Graphics g1)
 	{
 		Graphics2D g = (Graphics2D) g1;
@@ -38,14 +47,5 @@ public class LauncherServer extends JComponent implements LauncherConstants, Act
 		LauncherUtils.drawText(g, 5, 60, "Игроки: " + curplayers + " / " + maxplayers, Color.DARK_GRAY, 16);
 		LauncherUtils.drawText(g, 5, 80, "Адрес: " + address + ":" + port, Color.DARK_GRAY, 16);
 		super.paintComponent(g1);
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e)
-	{
-		thread.interrupt();
-		LauncherContentPane.servers.remove(this);
-		LauncherContentPane.saveServers();
-		LauncherContentPane.addLoginElements();
 	}
 }
