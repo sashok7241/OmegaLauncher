@@ -23,7 +23,50 @@ public class LauncherActionListener implements ActionListener, LauncherConstants
 	{
 		if (e.getSource() == LauncherPanel.login_button)
 		{
-			// TODO
+			String login = LauncherPanel.login.getText(), password = new String(LauncherPanel.password.getPassword());
+			String authurl = LauncherPanel.authurl.getText(), authext = LauncherPanel.authext.getText();
+			if (login.length() < 3)
+			{
+				LauncherPanel.login.setForeground(Color.RED);
+				return;
+			} else LauncherPanel.login.setForeground(Color.WHITE);
+			if (password.length() < 3)
+			{
+				LauncherPanel.password.setForeground(Color.RED);
+				return;
+			} else LauncherPanel.password.setForeground(Color.WHITE);
+			if (!authurl.startsWith("http://"))
+			{
+				LauncherPanel.authurl.setForeground(Color.RED);
+				return;
+			} else LauncherPanel.authurl.setForeground(Color.WHITE);
+			if (!authext.startsWith("notch:") && !authext.startsWith("sashok:"))
+			{
+				LauncherPanel.authext.setForeground(Color.RED);
+				return;
+			}
+			if (authext.startsWith("notch"))
+			{
+				String[] splitted = authext.split(":");
+				if (splitted.length != 2)
+				{
+					LauncherPanel.authext.setForeground(Color.RED);
+					return;
+				}
+				new LauncherAuthNotch(splitted[1]);
+			}
+			if (authext.startsWith("sashok"))
+			{
+				String[] splitted = authext.split(":");
+				if (splitted.length != 3)
+				{
+					LauncherPanel.authext.setForeground(Color.RED);
+					return;
+				}
+				new LauncherAuthSashok(splitted[1], splitted[2]);
+			}
+			LauncherUtils.disableAll(LauncherPanel.instance);
+			LauncherPanel.authext.setForeground(Color.WHITE);
 		} else if (e.getSource() == LauncherPanel.offline_button) LauncherPanel.addModManagerComponents();
 		else if (e.getSource() == LauncherPanel.addserver_button) LauncherPanel.addServerAdderElements();
 		else if (e.getSource() == LauncherPanel.addserver_accept)
@@ -35,17 +78,17 @@ public class LauncherActionListener implements ActionListener, LauncherConstants
 			{
 				LauncherPanel.serverPort.setForeground(Color.RED);
 				return;
-			}
+			} else LauncherPanel.serverPort.setForeground(Color.WHITE);
 			if (name.length() < 3)
 			{
 				LauncherPanel.serverName.setForeground(Color.RED);
 				return;
-			}
+			} else LauncherPanel.serverName.setForeground(Color.WHITE);
 			if (addr.length() < 4)
 			{
 				LauncherPanel.serverAddr.setForeground(Color.RED);
 				return;
-			}
+			} else LauncherPanel.serverAddr.setForeground(Color.WHITE);
 			LauncherPanel.servers.add(new LauncherServer(name, addr, Integer.parseInt(port)));
 			LauncherPanel.saveServers();
 			LauncherPanel.addLoginElements();

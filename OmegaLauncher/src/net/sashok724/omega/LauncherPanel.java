@@ -15,6 +15,7 @@ public class LauncherPanel extends JPanel implements LauncherConstants
 {
 	public static final long serialVersionUID = 1L;
 	public static ArrayList<File> requiredFiles;
+	public static String session;
 	public static int mode = 0;
 	public static LauncherPanel instance;
 	public static JScrollPane serverlist = new JScrollPane();

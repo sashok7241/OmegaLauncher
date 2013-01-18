@@ -1,6 +1,7 @@
 package net.sashok724.omega;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -13,6 +14,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
+import javax.swing.JComponent;
 
 public class LauncherUtils implements LauncherConstants
 {
@@ -38,6 +40,12 @@ public class LauncherUtils implements LauncherConstants
 		for (File file : files)
 			if (file.exists()) files.remove(file);
 		return files;
+	}
+
+	public static void disableAll(JComponent comp)
+	{
+		for (Component current : comp.getComponents())
+			current.setEnabled(false);
 	}
 
 	public static void drawBackground(Graphics2D g)
@@ -76,6 +84,12 @@ public class LauncherUtils implements LauncherConstants
 	{
 		g.setColor(new Color(0, 0, 0, 0.5F));
 		g.fillRect(x, y, w, h);
+	}
+
+	public static void enableAll(JComponent comp)
+	{
+		for (Component current : comp.getComponents())
+			current.setEnabled(true);
 	}
 
 	public static File getMinecraftDir()
