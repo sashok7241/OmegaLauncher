@@ -19,19 +19,21 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 	public static LauncherContentPane instance;
 	public static JScrollPane serverlist = new JScrollPane();
 	public static LauncherLabel login_label = new LauncherLabel("Логин:", 15, 10);
-	public static LauncherTextfield login = new LauncherTextfield("login", 10, 30, "");
-	public static LauncherLabel password_label = new LauncherLabel("Пароль:", 15, 105);
-	public static LauncherPassfield password = new LauncherPassfield("password", 10, 125);
+	public static LauncherTextfield login = new LauncherTextfield("login", 10, 30, "", 16);
+	public static LauncherLabel password_label = new LauncherLabel("Пароль:", 15, 90);
+	public static LauncherPassfield password = new LauncherPassfield("password", 10, 110);
+	public static LauncherLabel authurl_label = new LauncherLabel("Ссылка авторизации:", 15, 170);
+	public static LauncherTextfield authurl = new LauncherTextfield("authurl", 10, 190, "http://session.minecraft.net/", 100);
 	public static LauncherButton login_button = new LauncherButton("Войти в аккаунт", 10, 415);
 	public static LauncherButton offline_button = new LauncherButton("Играть оффлайн", 10, 370);
 	public static LauncherButton addserver_button = new LauncherButton("Добавить сервер", 515, 420).setW(315);
 	// ========================================================================================
 	public static LauncherLabel serverNameLabel = new LauncherLabel("Имя сервера:", 520, 15);
-	public static LauncherTextfield serverName = new LauncherTextfield(null, 520, 35, "Minecraft Server").setW(305);
+	public static LauncherTextfield serverName = new LauncherTextfield(null, 520, 35, "Minecraft Server", 25).setW(305);
 	public static LauncherLabel serverAddrLabel = new LauncherLabel("Адрес сервера:", 520, 100);
-	public static LauncherTextfield serverAddr = new LauncherTextfield(null, 520, 120, "").setW(305);
+	public static LauncherTextfield serverAddr = new LauncherTextfield(null, 520, 120, "", 25).setW(305);
 	public static LauncherLabel serverPortLabel = new LauncherLabel("Порт сервера:", 520, 185);
-	public static LauncherTextfield serverPort = new LauncherTextfield(null, 520, 205, "25565").setW(305);
+	public static LauncherTextfield serverPort = new LauncherTextfield(null, 520, 205, "25565", 5).setW(305);
 	public static LauncherButton addserver_cancel = new LauncherButton("Отмена", 515, 375).setW(315);
 	public static LauncherButton addserver_accept = new LauncherButton("Добавить сервер", 515, 420).setW(315);
 	// ========================================================================================
@@ -55,6 +57,8 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 		instance.add(login);
 		instance.add(password_label);
 		instance.add(password);
+		instance.add(authurl_label);
+		instance.add(authurl);
 		instance.add(login_button);
 		instance.add(offline_button);
 		instance.add(addserver_button);
@@ -99,6 +103,8 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 		instance.add(login);
 		instance.add(password_label);
 		instance.add(password);
+		instance.add(authurl_label);
+		instance.add(authurl);
 		instance.add(login_button);
 		instance.add(offline_button);
 		instance.add(serverAddrLabel);
