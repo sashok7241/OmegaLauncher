@@ -37,9 +37,10 @@ public class LauncherUtils implements LauncherConstants
 		files.add(new File(natives, "lwjgl64.dll"));
 		files.add(new File(natives, "OpenAL32.dll"));
 		files.add(new File(natives, "OpenAL64.dll"));
+		ArrayList<File> result = new ArrayList<File>();
 		for (File file : files)
-			if (file.exists()) files.remove(file);
-		return files;
+			if (!file.exists()) result.add(file);
+		return result;
 	}
 
 	public static void disableAll(JComponent comp)
