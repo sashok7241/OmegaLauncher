@@ -10,8 +10,7 @@ public class LauncherConfig implements LauncherConstants
 {
 	public static final TreeMap<String, String> table = new TreeMap<String, String>(String.CASE_INSENSITIVE_ORDER);
 	public static final File file = new File("omega.ini");
-
-	public static int getInteger(String key, int def)
+	static
 	{
 		try
 		{
@@ -19,6 +18,10 @@ public class LauncherConfig implements LauncherConstants
 		} catch (Exception e)
 		{
 		}
+	}
+
+	public static int getInteger(String key, int def)
+	{
 		if (!table.containsKey(key)) return def;
 		try
 		{
@@ -32,17 +35,11 @@ public class LauncherConfig implements LauncherConstants
 	public static String getString(String key, String def)
 	{
 		if (key == null) return def;
-		try
-		{
-			load();
-		} catch (Exception e)
-		{
-		}
 		if (!table.containsKey(key)) return def;
 		return table.get(key);
 	}
 
-	public static void load() throws Exception
+	public static synchronized void load() throws Exception
 	{
 		if (!file.exists()) return;
 		table.clear();
@@ -57,7 +54,7 @@ public class LauncherConfig implements LauncherConstants
 		reader.close();
 	}
 
-	public static void save() throws Exception
+	public static synchronized void save() throws Exception
 	{
 		PrintWriter writer = new PrintWriter(file);
 		for (String key : table.keySet())

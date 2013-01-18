@@ -20,7 +20,7 @@ public class LauncherTextfield extends JTextField implements LauncherConstants, 
 
 	public LauncherTextfield(String param, int x, int y, String def)
 	{
-		super(LauncherConfig.getString(param, def), 16);
+		super();
 		setOpaque(false);
 		setBounds(x, y, IMG_TEXTFIELD_DEF.getWidth(), IMG_TEXTFIELD_DEF.getHeight());
 		setBackground(Color.BLACK);
@@ -30,6 +30,7 @@ public class LauncherTextfield extends JTextField implements LauncherConstants, 
 		setFont(FONT_MC.deriveFont(16F));
 		setDocument(new LauncherDocument());
 		getDocument().addDocumentListener(this);
+		setText(LauncherConfig.getString(param, def));
 		addFocusListener(this);
 		name = param;
 	}
@@ -67,6 +68,9 @@ public class LauncherTextfield extends JTextField implements LauncherConstants, 
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		if (focused) g.drawImage(IMG_TEXTFIELD_SEL, 0, 0, getWidth(), getHeight(), null);
 		else g.drawImage(IMG_TEXTFIELD_DEF, 0, 0, getWidth(), getHeight(), null);
+		g.setFont(getFont());
+		g.setColor(SHADOW);
+		g.drawString(getText(), 12, 29);
 		g.dispose();
 		super.paintComponent(maing);
 	}

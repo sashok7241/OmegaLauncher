@@ -20,7 +20,7 @@ public class LauncherPassfield extends JPasswordField implements LauncherConstan
 
 	public LauncherPassfield(String param, int x, int y)
 	{
-		super(LauncherConfig.getString(param, ""), 16);
+		super();
 		setOpaque(false);
 		setBounds(x, y, IMG_TEXTFIELD_DEF.getWidth(), IMG_TEXTFIELD_DEF.getHeight());
 		setBackground(Color.BLACK);
@@ -31,6 +31,7 @@ public class LauncherPassfield extends JPasswordField implements LauncherConstan
 		setFont(FONT_MC.deriveFont(16F));
 		setDocument(new LauncherDocument());
 		getDocument().addDocumentListener(this);
+		setText(LauncherConfig.getString(param, ""));
 		addFocusListener(this);
 		validate();
 		name = param;
