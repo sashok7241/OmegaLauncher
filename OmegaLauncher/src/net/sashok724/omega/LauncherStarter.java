@@ -13,7 +13,7 @@ public class LauncherStarter implements LauncherConstants
 	{
 		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		frame.setIconImage(IMG_FAVICON);
-		frame.setContentPane(new LauncherContentPane());
+		frame.setContentPane(new LauncherPanel());
 		frame.setBackground(Color.BLACK);
 		frame.setForeground(Color.WHITE);
 		frame.setResizable(false);

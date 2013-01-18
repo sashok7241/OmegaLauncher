@@ -31,9 +31,9 @@ public class LauncherServer extends JComponent implements LauncherConstants, Act
 	public void actionPerformed(ActionEvent e)
 	{
 		thread.interrupt();
-		LauncherContentPane.servers.remove(this);
-		LauncherContentPane.saveServers();
-		LauncherContentPane.addLoginElements();
+		LauncherPanel.servers.remove(this);
+		LauncherPanel.saveServers();
+		LauncherPanel.addLoginElements();
 	}
 
 	@Override

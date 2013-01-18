@@ -21,36 +21,36 @@ public class LauncherActionListener implements ActionListener, LauncherConstants
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if (e.getSource() == LauncherContentPane.login_button)
+		if (e.getSource() == LauncherPanel.login_button)
 		{
 			// TODO
-		} else if (e.getSource() == LauncherContentPane.offline_button) LauncherContentPane.addModManagerComponents();
-		else if (e.getSource() == LauncherContentPane.addserver_button) LauncherContentPane.addServerAdderElements();
-		else if (e.getSource() == LauncherContentPane.addserver_accept)
+		} else if (e.getSource() == LauncherPanel.offline_button) LauncherPanel.addModManagerComponents();
+		else if (e.getSource() == LauncherPanel.addserver_button) LauncherPanel.addServerAdderElements();
+		else if (e.getSource() == LauncherPanel.addserver_accept)
 		{
-			String addr = LauncherContentPane.serverAddr.getText();
-			String port = LauncherContentPane.serverPort.getText();
-			String name = LauncherContentPane.serverName.getText();
+			String addr = LauncherPanel.serverAddr.getText();
+			String port = LauncherPanel.serverPort.getText();
+			String name = LauncherPanel.serverName.getText();
 			if (!checkInteger(port) || Integer.parseInt(port) > 65535 || Integer.parseInt(port) < 0)
 			{
-				LauncherContentPane.serverPort.setForeground(Color.RED);
+				LauncherPanel.serverPort.setForeground(Color.RED);
 				return;
 			}
 			if (name.length() < 3)
 			{
-				LauncherContentPane.serverName.setForeground(Color.RED);
+				LauncherPanel.serverName.setForeground(Color.RED);
 				return;
 			}
 			if (addr.length() < 4)
 			{
-				LauncherContentPane.serverAddr.setForeground(Color.RED);
+				LauncherPanel.serverAddr.setForeground(Color.RED);
 				return;
 			}
-			LauncherContentPane.servers.add(new LauncherServer(name, addr, Integer.parseInt(port)));
-			LauncherContentPane.saveServers();
-			LauncherContentPane.addLoginElements();
-		} else if (e.getSource() == LauncherContentPane.addserver_cancel) LauncherContentPane.addLoginElements();
-		else if (e.getSource() == LauncherContentPane.download_cancel) LauncherContentPane.addLoginElements();
-		else if (e.getSource() == LauncherContentPane.download_accept) LauncherContentPane.addDownloadElements();
+			LauncherPanel.servers.add(new LauncherServer(name, addr, Integer.parseInt(port)));
+			LauncherPanel.saveServers();
+			LauncherPanel.addLoginElements();
+		} else if (e.getSource() == LauncherPanel.addserver_cancel) LauncherPanel.addLoginElements();
+		else if (e.getSource() == LauncherPanel.download_cancel) LauncherPanel.addLoginElements();
+		else if (e.getSource() == LauncherPanel.download_accept) LauncherPanel.addDownloadElements();
 	}
 }

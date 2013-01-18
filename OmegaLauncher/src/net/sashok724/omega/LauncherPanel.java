@@ -11,12 +11,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
-public class LauncherContentPane extends JPanel implements LauncherConstants
+public class LauncherPanel extends JPanel implements LauncherConstants
 {
 	public static final long serialVersionUID = 1L;
 	public static ArrayList<File> requiredFiles;
 	public static int mode = 0;
-	public static LauncherContentPane instance;
+	public static LauncherPanel instance;
 	public static JScrollPane serverlist = new JScrollPane();
 	public static LauncherLabel login_label = new LauncherLabel("Логин:", 15, 10);
 	public static LauncherTextfield login = new LauncherTextfield("login", 10, 30, "", 16);
@@ -151,7 +151,7 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 		LauncherConfig.set("servers", toSettings.substring(exdel.length()));
 	}
 
-	public LauncherContentPane()
+	public LauncherPanel()
 	{
 		instance = this;
 		setDoubleBuffered(true);

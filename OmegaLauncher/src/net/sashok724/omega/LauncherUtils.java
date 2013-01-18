@@ -43,8 +43,8 @@ public class LauncherUtils implements LauncherConstants
 	public static void drawBackground(Graphics2D g)
 	{
 		int backgroundWidth = IMG_BACKGROUND.getWidth(), backgroundHeight = IMG_BACKGROUND.getHeight();
-		for (int x = 0; x < LauncherContentPane.instance.getWidth(); x += backgroundWidth)
-			for (int y = 0; y < LauncherContentPane.instance.getHeight(); y += backgroundHeight)
+		for (int x = 0; x < LauncherPanel.instance.getWidth(); x += backgroundWidth)
+			for (int y = 0; y < LauncherPanel.instance.getHeight(); y += backgroundHeight)
 				g.drawImage(IMG_BACKGROUND, x, y, null);
 	}
 
