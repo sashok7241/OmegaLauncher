@@ -16,9 +16,9 @@ public class LauncherTextfield extends JTextField implements LauncherConstants, 
 {
 	public static final long serialVersionUID = 1L;
 	public String name;
-	public boolean focused = false, drawShadow = true;
+	public boolean focused = false;
 
-	public LauncherTextfield(String param, int x, int y, String def, int maxlen)
+	public LauncherTextfield(String param, int x, int y, String def, boolean notlimit)
 	{
 		super();
 		setOpaque(false);
@@ -30,8 +30,7 @@ public class LauncherTextfield extends JTextField implements LauncherConstants, 
 		setFont(FONT_MC.deriveFont(16F));
 		setDocument(new LauncherDocument());
 		getDocument().addDocumentListener(this);
-		((LauncherDocument) getDocument()).maxlen = maxlen;
-		if (maxlen > 20) drawShadow = false;
+		((LauncherDocument) getDocument()).maxlen = notlimit ? 100 : 25;
 		setText(LauncherConfig.getString(param, def));
 		addFocusListener(this);
 		name = param;
@@ -70,12 +69,6 @@ public class LauncherTextfield extends JTextField implements LauncherConstants, 
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		if (focused) g.drawImage(IMG_TEXTFIELD_SEL, 0, 0, getWidth(), getHeight(), null);
 		else g.drawImage(IMG_TEXTFIELD_DEF, 0, 0, getWidth(), getHeight(), null);
-		if (drawShadow)
-		{
-			g.setFont(getFont());
-			g.setColor(SHADOW);
-			g.drawString(getText(), 12, 29);
-		}
 		g.dispose();
 		super.paintComponent(maing);
 	}

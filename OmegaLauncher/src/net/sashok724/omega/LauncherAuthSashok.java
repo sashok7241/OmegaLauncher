@@ -11,8 +11,17 @@ public class LauncherAuthSashok extends Thread
 		start();
 	}
 
+	public String doRun()
+	{
+		String answer = LauncherUtils.executePost(LauncherPanel.authurl.getText(), "");
+		if (answer == null) return "Ошибка подключения к серверу";
+		return null;
+	}
+
 	@Override
 	public void run()
 	{
+		String result = doRun();
+		if (result == null) return;
 	}
 }

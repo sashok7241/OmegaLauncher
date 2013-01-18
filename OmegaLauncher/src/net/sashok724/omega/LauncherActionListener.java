@@ -67,7 +67,7 @@ public class LauncherActionListener implements ActionListener, LauncherConstants
 			}
 			LauncherUtils.disableAll(LauncherPanel.instance);
 			LauncherPanel.authext.setForeground(Color.WHITE);
-		} else if (e.getSource() == LauncherPanel.offline_button) LauncherPanel.addModManagerComponents();
+		} else if (e.getSource() == LauncherPanel.offline_button) LauncherPanel.addModManagerComponents(LauncherPanel.login.getText(), "123456");
 		else if (e.getSource() == LauncherPanel.addserver_button) LauncherPanel.addServerAdderElements();
 		else if (e.getSource() == LauncherPanel.addserver_accept)
 		{

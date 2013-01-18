@@ -5,12 +5,16 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.URL;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
@@ -91,6 +95,43 @@ public class LauncherUtils implements LauncherConstants
 	{
 		for (Component current : comp.getComponents())
 			current.setEnabled(true);
+	}
+
+	public static String executePost(String url, String request)
+	{
+		HttpURLConnection connection = null;
+		try
+		{
+			connection = (HttpURLConnection) new URL(url).openConnection();
+			connection.setRequestMethod("POST");
+			connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+			connection.setRequestProperty("Content-Length", "" + Integer.toString(request.getBytes().length));
+			connection.setRequestProperty("Content-Language", "ru-RU");
+			connection.setUseCaches(false);
+			connection.setDoInput(true);
+			connection.setDoOutput(true);
+			connection.connect();
+			DataOutputStream outstream = new DataOutputStream(connection.getOutputStream());
+			outstream.writeBytes(request);
+			outstream.flush();
+			outstream.close();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+			StringBuffer buffer = new StringBuffer();
+			String line;
+			while ((line = reader.readLine()) != null)
+			{
+				buffer.append(line);
+				buffer.append('\r');
+			}
+			reader.close();
+			return buffer.toString();
+		} catch (Exception e)
+		{
+			return null;
+		} finally
+		{
+			if (connection != null) connection.disconnect();
+		}
 	}
 
 	public static File getMinecraftDir()
