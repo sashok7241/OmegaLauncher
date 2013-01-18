@@ -70,6 +70,9 @@ public class LauncherPassfield extends JPasswordField implements LauncherConstan
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		if (focused) g.drawImage(IMG_TEXTFIELD_SEL, 0, 0, getWidth(), getHeight(), null);
 		else g.drawImage(IMG_TEXTFIELD_DEF, 0, 0, getWidth(), getHeight(), null);
+		g.setFont(getFont());
+		g.setColor(SHADOW);
+		g.drawString(new String(getPassword()).replaceAll(".", String.valueOf(getEchoChar())), 12, 29);
 		g.dispose();
 		super.paintComponent(maing);
 	}
