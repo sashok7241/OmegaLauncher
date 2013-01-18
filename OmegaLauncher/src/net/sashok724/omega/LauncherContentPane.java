@@ -23,7 +23,9 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 	public static LauncherLabel password_label = new LauncherLabel("Пароль:", 15, 90);
 	public static LauncherPassfield password = new LauncherPassfield("password", 10, 110);
 	public static LauncherLabel authurl_label = new LauncherLabel("Ссылка авторизации:", 15, 170);
-	public static LauncherTextfield authurl = new LauncherTextfield("authurl", 10, 190, "http://session.minecraft.net/", 100);
+	public static LauncherTextfield authurl = new LauncherTextfield("authurl", 10, 190, "http://login.minecraft.net/", 100);
+	public static LauncherLabel authext_label = new LauncherLabel("Тип лаунчера:", 15, 250);
+	public static LauncherTextfield authext = new LauncherTextfield("authext", 10, 270, "notch:13", 25);
 	public static LauncherButton login_button = new LauncherButton("Войти в аккаунт", 10, 415);
 	public static LauncherButton offline_button = new LauncherButton("Играть оффлайн", 10, 370);
 	public static LauncherButton addserver_button = new LauncherButton("Добавить сервер", 515, 420).setW(315);
@@ -59,6 +61,8 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 		instance.add(password);
 		instance.add(authurl_label);
 		instance.add(authurl);
+		instance.add(authext_label);
+		instance.add(authext);
 		instance.add(login_button);
 		instance.add(offline_button);
 		instance.add(addserver_button);
@@ -105,6 +109,8 @@ public class LauncherContentPane extends JPanel implements LauncherConstants
 		instance.add(password);
 		instance.add(authurl_label);
 		instance.add(authurl);
+		instance.add(authext_label);
+		instance.add(authext);
 		instance.add(login_button);
 		instance.add(offline_button);
 		instance.add(serverAddrLabel);
