@@ -28,7 +28,6 @@ public class LauncherAuthNotch extends Thread
 		String result = doRun();
 		if (result == null) return;
 		JOptionPane.showMessageDialog(LauncherStarter.frame, result, "Ошибка авторизации", JOptionPane.ERROR_MESSAGE);
-		LauncherUtils.enableAll(LauncherPanel.instance);
 		LauncherPanel.addLoginElements();
 	}
 }

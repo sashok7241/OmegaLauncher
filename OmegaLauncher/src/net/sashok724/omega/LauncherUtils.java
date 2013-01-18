@@ -183,7 +183,7 @@ public class LauncherUtils implements LauncherConstants
 		InputStream is = new BufferedInputStream(new URL("http://s3.amazonaws.com/MinecraftDownload/" + url).openStream());
 		FileOutputStream fos = new FileOutputStream(saveto);
 		int bs = 0;
-		byte[] buffer = new byte[65536];
+		byte[] buffer = new byte[65535];
 		while ((bs = is.read(buffer, 0, buffer.length)) != -1)
 		{
 			LauncherPanel.currentByte += bs;

@@ -81,6 +81,7 @@ public class LauncherPanel extends JPanel implements LauncherConstants
 			server.setBounds(5, i * 105 + 5, serverlist.getWidth() - 10, 100);
 			serverlist.add(server);
 		}
+		LauncherUtils.enableAll(instance);
 		mode = MODE_LOGIN;
 		instance.validate();
 		instance.repaint();
