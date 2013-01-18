@@ -29,6 +29,7 @@ public class LauncherPassfield extends JPasswordField implements LauncherConstan
 		setEchoChar('*');
 		setBorder(new EmptyBorder(10, 10, 10, 10));
 		setFont(FONT_MC.deriveFont(16F));
+		setDocument(new LauncherDocument());
 		getDocument().addDocumentListener(this);
 		addFocusListener(this);
 		validate();

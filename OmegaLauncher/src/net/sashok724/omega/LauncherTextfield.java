@@ -28,6 +28,7 @@ public class LauncherTextfield extends JTextField implements LauncherConstants, 
 		setCaretColor(Color.WHITE);
 		setBorder(new EmptyBorder(10, 10, 10, 10));
 		setFont(FONT_MC.deriveFont(16F));
+		setDocument(new LauncherDocument());
 		getDocument().addDocumentListener(this);
 		addFocusListener(this);
 		name = param;
