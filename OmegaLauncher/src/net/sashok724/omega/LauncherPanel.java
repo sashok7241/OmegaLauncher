@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -14,8 +13,9 @@ import javax.swing.ScrollPaneConstants;
 public class LauncherPanel extends JPanel implements LauncherConstants
 {
 	public static final long serialVersionUID = 1L;
-	public static ArrayList<File> requiredFiles;
-	public static int mode = 0;
+	public static ArrayList<String> requiredFiles;
+	public static String currentFile = "<Unknown>", currentStat = "<Unknown>";
+	public static int mode = 0, currentSize = 0, currentByte = 0;
 	public static LauncherPanel instance;
 	public static JScrollPane serverlist = new JScrollPane();
 	public static LauncherLabel login_label = new LauncherLabel("Логин:", 15, 10);
@@ -47,6 +47,7 @@ public class LauncherPanel extends JPanel implements LauncherConstants
 	public static void addDownloadElements()
 	{
 		instance.removeAll();
+		new LauncherMinecraftUpdater();
 		mode = MODE_DOWNLOAD_BEGIN;
 		instance.validate();
 		instance.repaint();
@@ -182,12 +183,13 @@ public class LauncherPanel extends JPanel implements LauncherConstants
 				break;
 			case MODE_DOWNLOAD_BEGIN:
 				LauncherUtils.drawText(g2d, 100, 100, "Клиент закачивается...", Color.WHITE, 48);
-				LauncherUtils.drawText(g2d, 100, 135, "Текущий файл: jigurda.zip", Color.GRAY, 16);
-				LauncherUtils.drawText(g2d, 100, 155, "Размер файлов: 9999mb", Color.GRAY, 16);
-				LauncherUtils.drawText(g2d, 100, 175, "Осталось: 2tb", Color.GRAY, 16);
-				LauncherUtils.drawText(g2d, 100, 195, "Скорость: 100500kb/s", Color.GRAY, 16);
+				LauncherUtils.drawText(g2d, 100, 135, "Текущий файл: " + currentFile, Color.GRAY, 16);
+				LauncherUtils.drawText(g2d, 100, 155, "Размер файла: " + currentSize + " байт", Color.GRAY, 16);
+				LauncherUtils.drawText(g2d, 100, 175, "Закачано: " + currentByte + " байт", Color.GRAY, 16);
+				LauncherUtils.drawText(g2d, 100, 195, "Состояние: " + currentStat, Color.GRAY, 16);
 				LauncherUtils.drawTransparentRect(g2d, 100, 350, 650, 35);
-				LauncherUtils.drawProgressBar(g2d, 105, 355, 640, 25);
+				if(currentByte == 0 || currentSize == 0) break;
+				LauncherUtils.drawProgressBar(g2d, 105, 355, currentByte * 640 / currentSize, 25);
 				break;
 		}
 	}

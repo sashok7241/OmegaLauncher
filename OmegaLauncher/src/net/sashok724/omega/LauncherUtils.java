@@ -5,16 +5,20 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
@@ -24,11 +28,11 @@ public class LauncherUtils implements LauncherConstants
 {
 	public static final File minecraftDir = getMinecraftDir();
 
-	public static ArrayList<File> checkClient()
+	public static ArrayList<String> checkClient()
 	{
 		ArrayList<File> files = new ArrayList<File>();
-		File bin = new File(minecraftDir, "bin");
-		File natives = new File(bin, "natives");
+		File bin = new File(minecraftDir, "bin/");
+		File natives = new File(bin, "natives/");
 		files.add(new File(bin, "lwjgl.jar"));
 		files.add(new File(bin, "lwjgl_util.jar"));
 		files.add(new File(bin, "jinput.jar"));
@@ -41,9 +45,9 @@ public class LauncherUtils implements LauncherConstants
 		files.add(new File(natives, "lwjgl64.dll"));
 		files.add(new File(natives, "OpenAL32.dll"));
 		files.add(new File(natives, "OpenAL64.dll"));
-		ArrayList<File> result = new ArrayList<File>();
+		ArrayList<String> result = new ArrayList<String>();
 		for (File file : files)
-			if (!file.exists()) result.add(file);
+			if (!file.exists()) result.add(file.getName());
 		return result;
 	}
 
@@ -68,9 +72,9 @@ public class LauncherUtils implements LauncherConstants
 
 	public static void drawProgressBar(Graphics2D g2d, int x, int y, int w, int h)
 	{
-		g2d.setColor(Color.BLUE);
+		g2d.setColor(new Color(0, 120, 0));
 		g2d.fillRect(x, y, w, h);
-		g2d.setColor(Color.CYAN);
+		g2d.setColor(new Color(0, 200, 0));
 		g2d.fillRect(x, y, w, 2);
 	}
 
@@ -134,6 +138,19 @@ public class LauncherUtils implements LauncherConstants
 		}
 	}
 
+	public static int getFileSize(String name)
+	{
+		try
+		{
+			URLConnection urlconnection = new URL("http://s3.amazonaws.com/MinecraftDownload/" + name).openConnection();
+			urlconnection.setDefaultUseCaches(false);
+			return urlconnection.getContentLength();
+		} catch (Exception e)
+		{
+			return -1;
+		}
+	}
+
 	public static File getMinecraftDir()
 	{
 		String home = System.getProperty("user.home", "");
@@ -157,6 +174,25 @@ public class LauncherUtils implements LauncherConstants
 		if (osName.contains("win")) return 0;
 		if (osName.contains("mac")) return 1;
 		return 2;
+	}
+
+	public static void loadFile(String url, File saveto) throws IOException
+	{
+		if (saveto.isDirectory()) saveto.delete();
+		if (saveto.isDirectory() && saveto.exists()) throw new IOException();
+		InputStream is = new BufferedInputStream(new URL("http://s3.amazonaws.com/MinecraftDownload/" + url).openStream());
+		FileOutputStream fos = new FileOutputStream(saveto);
+		int bs = 0;
+		byte[] buffer = new byte[65536];
+		while ((bs = is.read(buffer, 0, buffer.length)) != -1)
+		{
+			LauncherPanel.currentByte += bs;
+			fos.write(buffer, 0, bs);
+			LauncherPanel.instance.repaint();
+		}
+		is.close();
+		fos.close();
+		LauncherPanel.currentByte = 0;
 	}
 
 	public static Font loadFont(String name)
