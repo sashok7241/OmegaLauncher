@@ -189,7 +189,7 @@ public class LauncherPanel extends JPanel implements LauncherConstants
 				LauncherUtils.drawText(g2d, 100, 175, "Закачано: " + currentByte + " байт", Color.GRAY, 16);
 				LauncherUtils.drawText(g2d, 100, 195, "Состояние: " + currentStat, Color.GRAY, 16);
 				LauncherUtils.drawTransparentRect(g2d, 100, 350, 650, 35);
-				if(currentByte == 0 || currentSize == 0) break;
+				if (currentByte == 0 || currentSize == 0) break;
 				LauncherUtils.drawProgressBar(g2d, 105, 355, currentByte * 640 / currentSize, 25);
 				break;
 		}
