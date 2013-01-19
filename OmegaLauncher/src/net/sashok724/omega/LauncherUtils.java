@@ -20,6 +20,8 @@ import java.net.Socket;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
@@ -288,22 +290,14 @@ public class LauncherUtils implements LauncherConstants
 
 	public static void updateNatives() throws Exception
 	{
-		File natives = new File(minecraftDir, "bin/natives");
+		File natives = new File(minecraftDir, "bin" + File.separator + "natives");
 		natives.mkdirs();
-		ArrayList<File> files = new ArrayList<File>();
-		files.add(new File(natives, "jinput-dx8.dll"));
-		files.add(new File(natives, "jinput-dx8_64.dll"));
-		files.add(new File(natives, "jinput-raw.dll"));
-		files.add(new File(natives, "jinput-raw_64.dll"));
-		files.add(new File(natives, "lwjgl.dll"));
-		files.add(new File(natives, "lwjgl64.dll"));
-		files.add(new File(natives, "OpenAL32.dll"));
-		files.add(new File(natives, "OpenAL64.dll"));
-		for (File current : files)
+		List<String> files = Arrays.asList("jinput-dx8.dll", "jinput-dx8_64.dll", "jinput-raw.dll", "jinput-raw_64.dll", "lwjgl.dll", "lwjgl64.dll", "OpenAL32", "OpenAL64");
+		for (String current : files)
 		{
-			if (current.exists()) continue;
+			if (new File(natives, current).exists()) continue;
 			FileOutputStream outstream = new FileOutputStream(current);
-			InputStream instream = LauncherUtils.class.getResourceAsStream("/net/sashok724/natives/" + current.getName());
+			InputStream instream = LauncherUtils.class.getResourceAsStream("/net/sashok724/natives/" + current);
 			int buffer;
 			while ((buffer = instream.read()) != -1)
 				outstream.write(buffer);

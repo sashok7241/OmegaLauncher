@@ -202,6 +202,9 @@ public class LauncherPanel extends JPanel implements LauncherConstants
 				if (currentByte == 0 || currentSize == 0) break;
 				LauncherUtils.drawProgressBar(g2d, 105, 355, currentByte * 640 / currentSize, 25);
 				break;
+			case MODE_MODMM:
+				LauncherUtils.drawText(g2d, 5, 20, "Версия клиента: some...", Color.WHITE, 16);
+				break;
 		}
 	}
 }
