@@ -41,33 +41,6 @@ public class LauncherUtils implements LauncherConstants
 			if (!file.exists()) result.add(file.getName());
 		return result;
 	}
-	
-	public static void updateNatives() throws Exception
-	{
-		File natives = new File(minecraftDir, "bin/natives");
-		natives.mkdirs();
-		ArrayList<File> files = new ArrayList<File>();
-		files.add(new File(natives, "jinput-dx8.dll"));
-		files.add(new File(natives, "jinput-dx8_64.dll"));
-		files.add(new File(natives, "jinput-raw.dll"));
-		files.add(new File(natives, "jinput-raw_64.dll"));
-		files.add(new File(natives, "lwjgl.dll"));
-		files.add(new File(natives, "lwjgl64.dll"));
-		files.add(new File(natives, "OpenAL32.dll"));
-		files.add(new File(natives, "OpenAL64.dll"));
-		for(File current : files)
-		{
-			if(current.exists()) continue;
-			FileOutputStream outstream = new FileOutputStream(current);
-			InputStream instream = LauncherUtils.class.getResourceAsStream("/net/sashok724/natives/" + current.getName());
-			int buffer;
-			while((buffer = instream.read()) != -1)
-			{
-				outstream.write(buffer);
-			}
-			outstream.close();
-		}
-	}
 
 	public static void disableAll(JComponent comp)
 	{
@@ -311,5 +284,30 @@ public class LauncherUtils implements LauncherConstants
 		for (int i = 0; i < word; i++)
 			res.append(is.readChar());
 		return res.toString();
+	}
+
+	public static void updateNatives() throws Exception
+	{
+		File natives = new File(minecraftDir, "bin/natives");
+		natives.mkdirs();
+		ArrayList<File> files = new ArrayList<File>();
+		files.add(new File(natives, "jinput-dx8.dll"));
+		files.add(new File(natives, "jinput-dx8_64.dll"));
+		files.add(new File(natives, "jinput-raw.dll"));
+		files.add(new File(natives, "jinput-raw_64.dll"));
+		files.add(new File(natives, "lwjgl.dll"));
+		files.add(new File(natives, "lwjgl64.dll"));
+		files.add(new File(natives, "OpenAL32.dll"));
+		files.add(new File(natives, "OpenAL64.dll"));
+		for (File current : files)
+		{
+			if (current.exists()) continue;
+			FileOutputStream outstream = new FileOutputStream(current);
+			InputStream instream = LauncherUtils.class.getResourceAsStream("/net/sashok724/natives/" + current.getName());
+			int buffer;
+			while ((buffer = instream.read()) != -1)
+				outstream.write(buffer);
+			outstream.close();
+		}
 	}
 }

@@ -98,7 +98,9 @@ public class LauncherPanel extends JPanel implements LauncherConstants
 			try
 			{
 				LauncherUtils.updateNatives();
-			} catch (Exception e) {}
+			} catch (Exception e)
+			{
+			}
 			mode = MODE_MODMM;
 		} else
 		{
