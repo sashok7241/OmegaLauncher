@@ -295,8 +295,9 @@ public class LauncherUtils implements LauncherConstants
 		List<String> files = Arrays.asList("jinput-dx8.dll", "jinput-dx8_64.dll", "jinput-raw.dll", "jinput-raw_64.dll", "lwjgl.dll", "lwjgl64.dll", "OpenAL32", "OpenAL64");
 		for (String current : files)
 		{
-			if (new File(natives, current).exists()) continue;
-			FileOutputStream outstream = new FileOutputStream(current);
+			File file = new File(natives, current);
+			if (file.exists()) continue;
+			FileOutputStream outstream = new FileOutputStream(file);
 			InputStream instream = LauncherUtils.class.getResourceAsStream("/net/sashok724/natives/" + current);
 			int buffer;
 			while ((buffer = instream.read()) != -1)
