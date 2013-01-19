@@ -16,7 +16,6 @@ public class LauncherMinecraftUpdater extends Thread
 		File bin = new File(LauncherUtils.minecraftDir, "bin");
 		for (String file : LauncherPanel.requiredFiles)
 		{
-			System.out.println(file);
 			LauncherPanel.currentStat = "Загрузка файлов";
 			LauncherPanel.currentFile = file;
 			LauncherPanel.currentSize = LauncherUtils.getFileSize(file);
@@ -39,5 +38,6 @@ public class LauncherMinecraftUpdater extends Thread
 			}
 			LauncherPanel.currentSize = 0;
 		}
+		LauncherPanel.addModManagerComponents(LauncherPanel.username, LauncherPanel.session);
 	}
 }

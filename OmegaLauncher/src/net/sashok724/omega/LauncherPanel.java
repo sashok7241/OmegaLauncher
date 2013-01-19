@@ -14,7 +14,7 @@ public class LauncherPanel extends JPanel implements LauncherConstants
 {
 	public static final long serialVersionUID = 1L;
 	public static ArrayList<String> requiredFiles;
-	public static String currentFile = "<Unknown>", currentStat = "<Unknown>";
+	public static String currentFile = "<Unknown>", currentStat = "<Unknown>", username, session;
 	public static int mode = 0, currentSize = 0, currentByte = 0;
 	public static LauncherPanel instance;
 	public static JScrollPane serverlist = new JScrollPane();
@@ -87,12 +87,20 @@ public class LauncherPanel extends JPanel implements LauncherConstants
 		instance.repaint();
 	}
 
-	public static void addModManagerComponents(String login, String session)
+	public static void addModManagerComponents(String login, String _session)
 	{
+		username = login;
+		session = _session;
 		instance.removeAll();
 		requiredFiles = LauncherUtils.checkClient();
-		if (requiredFiles.size() == 0) mode = MODE_MODMM;
-		else
+		if (requiredFiles.size() == 0)
+		{
+			try
+			{
+				LauncherUtils.updateNatives();
+			} catch (Exception e) {}
+			mode = MODE_MODMM;
+		} else
 		{
 			mode = MODE_DOWNLOAD_REQUEST;
 			instance.add(download_accept);

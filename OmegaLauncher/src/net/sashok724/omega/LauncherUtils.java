@@ -32,11 +32,21 @@ public class LauncherUtils implements LauncherConstants
 	{
 		ArrayList<File> files = new ArrayList<File>();
 		File bin = new File(minecraftDir, "bin/");
-		File natives = new File(bin, "natives/");
 		files.add(new File(bin, "lwjgl.jar"));
 		files.add(new File(bin, "lwjgl_util.jar"));
 		files.add(new File(bin, "jinput.jar"));
 		files.add(new File(bin, "minecraft.jar"));
+		ArrayList<String> result = new ArrayList<String>();
+		for (File file : files)
+			if (!file.exists()) result.add(file.getName());
+		return result;
+	}
+	
+	public static void updateNatives() throws Exception
+	{
+		File natives = new File(minecraftDir, "bin/natives");
+		natives.mkdirs();
+		ArrayList<File> files = new ArrayList<File>();
 		files.add(new File(natives, "jinput-dx8.dll"));
 		files.add(new File(natives, "jinput-dx8_64.dll"));
 		files.add(new File(natives, "jinput-raw.dll"));
@@ -45,10 +55,18 @@ public class LauncherUtils implements LauncherConstants
 		files.add(new File(natives, "lwjgl64.dll"));
 		files.add(new File(natives, "OpenAL32.dll"));
 		files.add(new File(natives, "OpenAL64.dll"));
-		ArrayList<String> result = new ArrayList<String>();
-		for (File file : files)
-			if (!file.exists()) result.add(file.getName());
-		return result;
+		for(File current : files)
+		{
+			if(current.exists()) continue;
+			FileOutputStream outstream = new FileOutputStream(current);
+			InputStream instream = LauncherUtils.class.getResourceAsStream("/net/sashok724/natives/" + current.getName());
+			int buffer;
+			while((buffer = instream.read()) != -1)
+			{
+				outstream.write(buffer);
+			}
+			outstream.close();
+		}
 	}
 
 	public static void disableAll(JComponent comp)
