@@ -1,5 +1,6 @@
 package net.sashok724.omega;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -9,6 +10,8 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+
+import net.minecraft.LauncherFrame;
 
 public class LauncherPanel extends JPanel implements LauncherConstants
 {
@@ -97,9 +100,11 @@ public class LauncherPanel extends JPanel implements LauncherConstants
 		{
 			try
 			{
-				LauncherUtils.updateNatives();
+			//	LauncherUtils.updateNatives();
+				addMinecraftElements();
 			} catch (Exception e)
 			{
+				e.printStackTrace();
 			}
 			mode = MODE_MODMM;
 		} else
@@ -110,6 +115,14 @@ public class LauncherPanel extends JPanel implements LauncherConstants
 		}
 		instance.validate();
 		instance.repaint();
+	}
+	
+	public static void addMinecraftElements() throws Exception
+	{
+		instance.removeAll();
+		instance.setLayout(new BorderLayout());
+		LauncherStarter.frame.setVisible(false);
+		new LauncherFrame();
 	}
 
 	public static void addServerAdderElements()

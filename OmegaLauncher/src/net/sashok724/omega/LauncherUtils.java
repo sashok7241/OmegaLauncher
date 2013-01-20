@@ -292,7 +292,7 @@ public class LauncherUtils implements LauncherConstants
 	{
 		File natives = new File(minecraftDir, "bin" + File.separator + "natives");
 		natives.mkdirs();
-		List<String> files = Arrays.asList("jinput-dx8.dll", "jinput-dx8_64.dll", "jinput-raw.dll", "jinput-raw_64.dll", "lwjgl.dll", "lwjgl64.dll", "OpenAL32", "OpenAL64");
+		List<String> files = Arrays.asList("jinput-dx8.dll", "jinput-dx8_64.dll", "jinput-raw.dll", "jinput-raw_64.dll", "lwjgl.dll", "lwjgl64.dll", "OpenAL32.dll", "OpenAL64.dll");
 		for (String current : files)
 		{
 			File file = new File(natives, current);
