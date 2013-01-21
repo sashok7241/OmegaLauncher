@@ -18,7 +18,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
-import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.URL;
 import java.net.URLConnection;
@@ -149,6 +148,13 @@ public final class LauncherUtils implements LauncherConstants
 		}
 	}
 
+	public static Graphics2D getG2D(Graphics g)
+	{
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		return g2d;
+	}
+
 	public static File getMinecraftDir()
 	{
 		String home = System.getProperty("user.home", "");
@@ -228,7 +234,7 @@ public final class LauncherUtils implements LauncherConstants
 			soc.setSoTimeout(3000);
 			soc.setTcpNoDelay(true);
 			soc.setTrafficClass(18);
-			soc.connect(new InetSocketAddress(server.address, server.port), 3000);
+			soc.connect(server.address, 3000);
 			dis = new DataInputStream(soc.getInputStream());
 			dos = new DataOutputStream(soc.getOutputStream());
 			dos.write(254);
@@ -294,6 +300,22 @@ public final class LauncherUtils implements LauncherConstants
 		return res.toString();
 	}
 
+	public static void throwException(Exception e)
+	{
+		e.printStackTrace();
+		JOptionPane.showMessageDialog(LauncherStarter.frame, "Ошибка в работе лаунчера: " + e.toString(), "Ошибка (сохранено в файл)", JOptionPane.ERROR_MESSAGE);
+		try
+		{
+			PrintWriter writer = new PrintWriter("error-" + new Random().nextInt(1000) + ".txt", "UTF-8");
+			writer.println("Пожалуйста сообщите всю информацию разработчику лаунчера.");
+			e.printStackTrace(writer);
+			writer.close();
+		} catch (Exception e1)
+		{
+		}
+		System.exit(1);
+	}
+
 	public static void updateNatives() throws Exception
 	{
 		File natives = new File(minecraftDir, "bin" + File.separator + "natives");
@@ -310,26 +332,5 @@ public final class LauncherUtils implements LauncherConstants
 				outstream.write(buffer);
 			outstream.close();
 		}
-	}
-
-	public static void throwException(Exception e)
-	{
-		e.printStackTrace();
-		JOptionPane.showMessageDialog(LauncherStarter.frame, "Ошибка в работе лаунчера: " + e.toString(), "Ошибка (сохранено в файл)", JOptionPane.ERROR_MESSAGE);
-		try
-		{
-			PrintWriter writer = new PrintWriter("error-" + new Random().nextInt(1000) + ".txt", "UTF-8");
-			writer.println("Пожалуйста сообщите всю информацию разработчику лаунчера.");
-			e.printStackTrace(writer);
-			writer.close();
-		} catch(Exception e1) {}
-		System.exit(1);
-	}
-
-	public static Graphics2D getG2D(Graphics g)
-	{
-		Graphics2D g2d = (Graphics2D) g;
-		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		return g2d;
 	}
 }

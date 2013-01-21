@@ -16,14 +16,14 @@ public final class LauncherPanel extends JPanel
 	public static String currentStat = "<Unknown>", currentFile = "<Unknown>", username, session;
 	public static ArrayList<String> requiredFiles;
 	public static ArrayList<? extends JComponent> loginElements;
-	public static ArrayList<? extends ServerEntry> serverList;
-	
+
 	public LauncherPanel()
 	{
 		setLayout(null);
 		instance = this;
 	}
-	
+
+	@Override
 	public void paintComponent(Graphics g)
 	{
 		Graphics2D g2d = LauncherUtils.getG2D(g);

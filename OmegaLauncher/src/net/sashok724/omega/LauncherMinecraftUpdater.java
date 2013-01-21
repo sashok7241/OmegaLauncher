@@ -37,6 +37,6 @@ public final class LauncherMinecraftUpdater extends Thread
 			}
 			LauncherPanel.currentSize = 0;
 		}
-	//	LauncherPanel.addModManagerComponents(LauncherPanel.username, LauncherPanel.session); TODO
+		// LauncherPanel.addModManagerComponents(LauncherPanel.username, LauncherPanel.session); TODO
 	}
 }
