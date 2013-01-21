@@ -90,6 +90,14 @@ public final class LauncherPanel extends JPanel implements LauncherConstants
 		instance.repaint();
 	}
 
+	public static void addMinecraftElements() throws Exception
+	{
+		instance.removeAll();
+		instance.setLayout(new BorderLayout());
+		LauncherStarter.frame.setVisible(false);
+		new LauncherFrame();
+	}
+
 	public static void addModManagerComponents(String login, String _session)
 	{
 		username = login;
@@ -100,7 +108,7 @@ public final class LauncherPanel extends JPanel implements LauncherConstants
 		{
 			try
 			{
-			//	LauncherUtils.updateNatives();
+				// LauncherUtils.updateNatives();
 				addMinecraftElements();
 			} catch (Exception e)
 			{
@@ -115,14 +123,6 @@ public final class LauncherPanel extends JPanel implements LauncherConstants
 		}
 		instance.validate();
 		instance.repaint();
-	}
-	
-	public static void addMinecraftElements() throws Exception
-	{
-		instance.removeAll();
-		instance.setLayout(new BorderLayout());
-		LauncherStarter.frame.setVisible(false);
-		new LauncherFrame();
 	}
 
 	public static void addServerAdderElements()

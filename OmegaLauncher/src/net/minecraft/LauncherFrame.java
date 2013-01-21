@@ -9,7 +9,7 @@ import java.io.File;
 import java.net.URL;
 
 import javax.swing.JFrame;
-import net.minecraft.Launcher;
+
 import net.sashok724.omega.LauncherConstants;
 import net.sashok724.omega.LauncherPanel;
 import net.sashok724.omega.LauncherUtils;
@@ -18,27 +18,51 @@ public final class LauncherFrame extends JFrame implements LauncherConstants
 {
 	private static final long serialVersionUID = 1L;
 	public static Launcher mcapplet;
-	
+
 	public LauncherFrame()
 	{
 		try
 		{
 			addWindowListener(new WindowListener()
 			{
-				public void windowOpened(WindowEvent e) {}
-				public void windowIconified(WindowEvent e) {}
-				public void windowDeiconified(WindowEvent e) {}
-				public void windowDeactivated(WindowEvent e) {}
-				public void windowClosed(WindowEvent e) {}
-				public void windowActivated(WindowEvent e) {}
+				@Override
+				public void windowActivated(WindowEvent e)
+				{
+				}
+
+				@Override
+				public void windowClosed(WindowEvent e)
+				{
+				}
+
+				@Override
 				public void windowClosing(WindowEvent e)
 				{
 					mcapplet.stop();
 					mcapplet.destroy();
 					System.exit(0);
 				}
+
+				@Override
+				public void windowDeactivated(WindowEvent e)
+				{
+				}
+
+				@Override
+				public void windowDeiconified(WindowEvent e)
+				{
+				}
+
+				@Override
+				public void windowIconified(WindowEvent e)
+				{
+				}
+
+				@Override
+				public void windowOpened(WindowEvent e)
+				{
+				}
 			});
-			
 			String bin = LauncherUtils.minecraftDir.toString() + File.separator + "bin" + File.separator;
 			setForeground(Color.BLACK);
 			setBackground(Color.BLACK);
@@ -47,7 +71,6 @@ public final class LauncherFrame extends JFrame implements LauncherConstants
 			urls[1] = new File(bin, "lwjgl.jar").toURI().toURL();
 			urls[2] = new File(bin, "jinput.jar").toURI().toURL();
 			urls[3] = new File(bin, "lwjgl_util.jar").toURI().toURL();
-			
 			mcapplet = new Launcher(bin, urls);
 			mcapplet.customParameters.put("username", LauncherPanel.username);
 			mcapplet.customParameters.put("sessionid", LauncherPanel.session);
@@ -65,7 +88,7 @@ public final class LauncherFrame extends JFrame implements LauncherConstants
 			setVisible(true);
 			mcapplet.init();
 			mcapplet.start();
-		} catch(Exception e)
+		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}
