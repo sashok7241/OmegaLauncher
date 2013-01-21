@@ -31,13 +31,12 @@ public final class LauncherMinecraftUpdater extends Thread
 				LauncherUtils.loadFile(file, new File(bin, file));
 			} catch (IOException e)
 			{
-				e.printStackTrace();
-				LauncherPanel.currentStat = "Ошибка получения файла";
+				LauncherPanel.currentStat = "Ошибка получения файла (" + e.toString() + ")";
 				LauncherPanel.instance.repaint();
 				return;
 			}
 			LauncherPanel.currentSize = 0;
 		}
-		LauncherPanel.addModManagerComponents(LauncherPanel.username, LauncherPanel.session);
+	//	LauncherPanel.addModManagerComponents(LauncherPanel.username, LauncherPanel.session); TODO
 	}
 }
