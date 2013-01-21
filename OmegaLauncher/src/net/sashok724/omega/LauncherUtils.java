@@ -198,7 +198,7 @@ public final class LauncherUtils implements LauncherConstants
 			return Font.createFont(Font.TRUETYPE_FONT, LauncherUtils.class.getResourceAsStream(name + ".ttf"));
 		} catch (Exception e)
 		{
-			e.printStackTrace();
+			throwException(e);
 			return null;
 		}
 	}
@@ -210,6 +210,7 @@ public final class LauncherUtils implements LauncherConstants
 			return ImageIO.read(LauncherUtils.class.getResourceAsStream(name + ".png"));
 		} catch (Exception e)
 		{
+			throwException(e);
 			return new BufferedImage(64, 64, 2);
 		}
 	}

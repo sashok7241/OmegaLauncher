@@ -109,7 +109,6 @@ public final class LauncherPanel extends JPanel implements LauncherConstants
 			{
 				LauncherUtils.updateNatives();
 				addMinecraftElements();
-				throw new Exception();
 			} catch (Exception e)
 			{
 				LauncherUtils.throwException(e);
