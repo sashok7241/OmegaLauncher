@@ -3,7 +3,9 @@ package net.sashok724.omega;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -322,5 +324,12 @@ public final class LauncherUtils implements LauncherConstants
 			writer.close();
 		} catch(Exception e1) {}
 		System.exit(1);
+	}
+
+	public static Graphics2D getG2D(Graphics g)
+	{
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		return g2d;
 	}
 }

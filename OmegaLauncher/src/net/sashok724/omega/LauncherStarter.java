@@ -3,7 +3,7 @@ package net.sashok724.omega;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
-public class LauncherStarter implements LauncherConstants
+public final class LauncherStarter implements LauncherConstants
 {
 	public static JFrame frame;
 	
