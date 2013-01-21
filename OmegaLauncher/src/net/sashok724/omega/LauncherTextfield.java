@@ -3,7 +3,6 @@ package net.sashok724.omega;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
@@ -65,8 +64,7 @@ public final class LauncherTextfield extends JTextField implements LauncherConst
 	@Override
 	public void paintComponent(Graphics maing)
 	{
-		Graphics2D g = (Graphics2D) maing.create();
-		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		Graphics2D g = LauncherUtils.getG2D(maing);
 		if (focused) g.drawImage(IMG_TEXTFIELD_SEL, 0, 0, getWidth(), getHeight(), null);
 		else g.drawImage(IMG_TEXTFIELD_DEF, 0, 0, getWidth(), getHeight(), null);
 		g.dispose();

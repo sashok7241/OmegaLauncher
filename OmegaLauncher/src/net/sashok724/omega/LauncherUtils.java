@@ -217,7 +217,7 @@ public final class LauncherUtils implements LauncherConstants
 		}
 	}
 
-	public static synchronized void pollServer(LauncherServer server)
+	public static synchronized void pollServer(ServerEntry server)
 	{
 		Socket soc = null;
 		DataInputStream dis = null;

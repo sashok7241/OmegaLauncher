@@ -33,7 +33,7 @@ public final class LauncherButton extends JButton implements LauncherConstants
 	public void paintComponent(Graphics g1)
 	{
 		ButtonModel buttonModel = getModel();
-		Graphics2D g = (Graphics2D) g1.create();
+		Graphics2D g = LauncherUtils.getG2D(g1);
 		int width = getFontMetrics(getFont()).stringWidth(getText());
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		int w = getWidth(), h = getHeight();
