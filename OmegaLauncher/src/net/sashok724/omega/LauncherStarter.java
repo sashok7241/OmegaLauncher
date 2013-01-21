@@ -10,7 +10,7 @@ public class LauncherStarter implements LauncherConstants
 	public static void main(String[] args) throws Exception
 	{
 		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		frame = new JFrame("OmegaLauncher v" + VERSION + " - the cheat launcher");
+		frame = new JFrame("OmegaLauncher v" + VERSION + " - The Cheat Minecraft Launcher");
 		frame.setSize(850, 500);
 		frame.setLocationRelativeTo(null);
 		frame.setContentPane(new LauncherPanel());
