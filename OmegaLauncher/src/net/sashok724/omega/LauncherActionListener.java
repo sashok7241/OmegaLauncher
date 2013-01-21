@@ -63,7 +63,7 @@ public class LauncherActionListener implements ActionListener, LauncherConstants
 					LauncherPanel.authext.setForeground(Color.RED);
 					return;
 				}
-				new LauncherAuthSashok(splitted[1], splitted[2]);
+				new LauncherAuthSashok(splitted[2], splitted[1].replaceAll(" ", "").toLowerCase());
 			}
 			LauncherUtils.disableAll(LauncherPanel.instance);
 			LauncherPanel.authext.setForeground(Color.WHITE);

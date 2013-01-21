@@ -101,9 +101,9 @@ public class LauncherUtils implements LauncherConstants
 		{
 			connection = (HttpURLConnection) new URL(url).openConnection();
 			connection.setRequestMethod("POST");
+			connection.setRequestProperty("Accept-Charset", "UTF-8");
 			connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 			connection.setRequestProperty("Content-Length", "" + Integer.toString(request.getBytes().length));
-			connection.setRequestProperty("Content-Language", "ru-RU");
 			connection.setUseCaches(false);
 			connection.setDoInput(true);
 			connection.setDoOutput(true);
