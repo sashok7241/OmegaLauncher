@@ -3,25 +3,21 @@ package net.sashok724.omega;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
 public class ServerLists extends JPanel
 {
 	public static final long serialVersionUID = 1L;
-	public ArrayList<ServerEntry> serverList = new ArrayList<ServerEntry>();
 
 	public ServerLists(Rectangle bounds)
 	{
+		setLayout(null);
 		setBounds(bounds);
-		setOpaque(false);
-		setBorder(null);
 	}
 
 	public void addServer(ServerEntry entry)
 	{
-		serverList.add(entry);
 		add(entry);
 		rebuildSizes();
 	}
@@ -35,10 +31,9 @@ public class ServerLists extends JPanel
 
 	public void rebuildSizes()
 	{
-		for (int index = 0; index < serverList.size(); index++)
+		for (int index = 0; index < getComponents().length; index++)
 		{
-			ServerEntry entry = serverList.get(index);
-			entry.setBounds(5, 5 + index * 85, getWidth() - 10, 80);
+			((ServerEntry) getComponents()[index]).setBounds(5, 5 + index * 85, getWidth() - 10, 80);
 		}
 		validate();
 		repaint();
@@ -46,7 +41,6 @@ public class ServerLists extends JPanel
 
 	public void removeServer(ServerEntry entry)
 	{
-		serverList.remove(entry);
 		remove(entry);
 		rebuildSizes();
 	}

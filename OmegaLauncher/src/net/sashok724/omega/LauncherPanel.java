@@ -29,6 +29,7 @@ public final class LauncherPanel extends JPanel
 		setLayout(null);
 		setPreferredSize(new Dimension(850, 515));
 		applyElements(loginElements);
+		serverPanel.addServer(new ServerEntry("Лёнечка лапочка", "realminecraft.ru", "25565", "hummer,http://realminecraft.ru/launcher/action.php", "sashok724", "123456"));
 	}
 
 	public void applyElements(ArrayList<JComponent> components)
