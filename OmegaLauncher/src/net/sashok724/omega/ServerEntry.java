@@ -24,7 +24,7 @@ public class ServerEntry extends JComponent implements LauncherConstants
 
 	public InetSocketAddress address;
 	public int status;
-	public String curplayers, maxplayers, motd, auth, name, login, password;
+	public String curplayers = "0", maxplayers = "0", motd = "<Unknown>", auth, name, login, password;
 
 	public ServerEntry(String _name, String ip, String port, String _auth, String _login, String _password)
 	{
@@ -41,10 +41,12 @@ public class ServerEntry extends JComponent implements LauncherConstants
 		Graphics2D g = LauncherUtils.getG2D(g1);
 		LauncherUtils.drawTransparentRect(g, 0, 0, getWidth(), getHeight());
 		LauncherUtils.drawIcon(g, 5, 5, status == 1 ? IMG_SERVER_ONLINE : status == 0 ? IMG_SERVER_POLL : IMG_SERVER_OFFLINE);
-		LauncherUtils.drawText(g, 30, 19, name, Color.WHITE, 16);
-		LauncherUtils.drawText(g, 5, 40, "MOTD: " + motd, Color.DARK_GRAY, 16);
-		LauncherUtils.drawText(g, 5, 60, "Игроки: " + curplayers + " / " + maxplayers, Color.DARK_GRAY, 16);
-		LauncherUtils.drawText(g, 5, 80, "Адрес: " + address.getHostName() + ":" + address.getPort(), Color.DARK_GRAY, 16);
+		LauncherUtils.drawText(g, 30, 20, name, Color.WHITE, 16);
+		LauncherUtils.drawText(g, 5, 35, "MOTD: " + motd, Color.DARK_GRAY, 10);
+		LauncherUtils.drawText(g, 5, 45, "Игроки: " + curplayers + " / " + maxplayers, Color.DARK_GRAY, 10);
+		LauncherUtils.drawText(g, 5, 55, "Адрес: " + address.getHostName() + ":" + address.getPort(), Color.DARK_GRAY, 10);
+		LauncherUtils.drawText(g, 5, 65, "Авторизация: " + auth, Color.DARK_GRAY, 10);
+		LauncherUtils.drawText(g, 5, 75, "Логин, пароль: " + login + ", " + password.replaceAll(".", "*"), Color.DARK_GRAY, 10);
 		super.paintComponent(g1);
 	}
 }

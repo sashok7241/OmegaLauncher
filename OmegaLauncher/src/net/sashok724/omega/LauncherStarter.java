@@ -11,10 +11,10 @@ public final class LauncherStarter implements LauncherConstants
 	{
 		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		frame = new JFrame("OmegaLauncher v" + VERSION + " - The Cheat Minecraft Launcher");
-		frame.setSize(850, 500);
-		frame.setLocationRelativeTo(null);
 		frame.setContentPane(new LauncherPanel());
+		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
 		frame.setIconImage(IMG_FAVICON);
 		frame.setResizable(false);
 		frame.setVisible(true);
