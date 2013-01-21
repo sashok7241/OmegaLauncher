@@ -14,6 +14,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -22,9 +23,11 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 
 public final class LauncherUtils implements LauncherConstants
 {
@@ -304,5 +307,19 @@ public final class LauncherUtils implements LauncherConstants
 				outstream.write(buffer);
 			outstream.close();
 		}
+	}
+
+	public static void throwException(Exception e)
+	{
+		e.printStackTrace();
+		JOptionPane.showMessageDialog(LauncherStarter.frame, "Ошибка в работе лаунчера: " + e.toString(), "Ошибка (сохранено в файл)", JOptionPane.ERROR_MESSAGE);
+		try
+		{
+			PrintWriter writer = new PrintWriter("error-" + new Random().nextInt(1000) + ".txt", "UTF-8");
+			writer.println("Пожалуйста сообщите всю информацию разработчику лаунчера.");
+			e.printStackTrace(writer);
+			writer.close();
+		} catch(Exception e1) {}
+		System.exit(1);
 	}
 }

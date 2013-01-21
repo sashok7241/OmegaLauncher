@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.util.ArrayList;
-
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
@@ -108,11 +107,12 @@ public final class LauncherPanel extends JPanel implements LauncherConstants
 		{
 			try
 			{
-				// LauncherUtils.updateNatives();
+				LauncherUtils.updateNatives();
 				addMinecraftElements();
+				throw new Exception();
 			} catch (Exception e)
 			{
-				e.printStackTrace();
+				LauncherUtils.throwException(e);
 			}
 			mode = MODE_MODMM;
 		} else
