@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JComponent;
 
-public class LauncherServer extends JComponent implements LauncherConstants, ActionListener
+public final class LauncherServer extends JComponent implements LauncherConstants, ActionListener
 {
 	public static final long serialVersionUID = 1L;
 	public String address, name, motd = "???", maxplayers = "???", curplayers = "???";

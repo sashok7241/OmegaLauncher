@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LauncherActionListener implements ActionListener, LauncherConstants
+public final class LauncherActionListener implements ActionListener, LauncherConstants
 {
 	public static boolean checkInteger(String text)
 	{

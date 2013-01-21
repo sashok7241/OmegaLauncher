@@ -2,7 +2,7 @@ package net.sashok724.omega;
 
 import javax.swing.JOptionPane;
 
-public class LauncherAuthNotch extends Thread
+public final class LauncherAuthNotch extends Thread
 {
 	public String version;
 

@@ -3,11 +3,11 @@ package net.sashok724.omega;
 import java.io.File;
 import java.io.FileInputStream;
 
-public class JShrinkDecoder
+public final class JShrinkDecoder
 {
-	static byte[] byteArray;
-	static String[] cache = new String[256];
-	static int[] keys = new int[256];
+	public static byte[] byteArray;
+	public static String[] cache = new String[256];
+	public static int[] keys = new int[256];
 
 	public static String decode(int id)
 	{

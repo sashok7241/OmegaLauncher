@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 import javax.swing.JLabel;
 
-public class LauncherLabel extends JLabel implements LauncherConstants
+public final class LauncherLabel extends JLabel implements LauncherConstants
 {
 	public static final long serialVersionUID = 1L;
 

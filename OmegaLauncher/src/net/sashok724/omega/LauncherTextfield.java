@@ -12,7 +12,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-public class LauncherTextfield extends JTextField implements LauncherConstants, DocumentListener, FocusListener
+public final class LauncherTextfield extends JTextField implements LauncherConstants, DocumentListener, FocusListener
 {
 	public static final long serialVersionUID = 1L;
 	public String name;

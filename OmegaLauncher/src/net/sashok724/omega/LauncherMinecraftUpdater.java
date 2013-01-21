@@ -3,7 +3,7 @@ package net.sashok724.omega;
 import java.io.File;
 import java.io.IOException;
 
-public class LauncherMinecraftUpdater extends Thread
+public final class LauncherMinecraftUpdater extends Thread
 {
 	public LauncherMinecraftUpdater()
 	{

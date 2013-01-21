@@ -5,7 +5,7 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
-public class LauncherStarter implements LauncherConstants
+public final class LauncherStarter implements LauncherConstants
 {
 	public static final JFrame frame = new JFrame("OmegaLauncher v" + VERSION);
 

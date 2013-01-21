@@ -9,7 +9,7 @@ import java.net.URLClassLoader;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Launcher extends Applet implements AppletStub
+public final class Launcher extends Applet implements AppletStub
 {
 	private static final long serialVersionUID = 1L;
 	private Applet mcApplet = null;

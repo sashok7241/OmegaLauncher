@@ -26,7 +26,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
-public class LauncherUtils implements LauncherConstants
+public final class LauncherUtils implements LauncherConstants
 {
 	public static final File minecraftDir = getMinecraftDir();
 

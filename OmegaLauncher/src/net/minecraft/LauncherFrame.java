@@ -14,7 +14,7 @@ import net.sashok724.omega.LauncherConstants;
 import net.sashok724.omega.LauncherPanel;
 import net.sashok724.omega.LauncherUtils;
 
-public class LauncherFrame extends JFrame implements LauncherConstants
+public final class LauncherFrame extends JFrame implements LauncherConstants
 {
 	private static final long serialVersionUID = 1L;
 	public static Launcher mcapplet;

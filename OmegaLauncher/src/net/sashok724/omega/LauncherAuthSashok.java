@@ -2,7 +2,7 @@ package net.sashok724.omega;
 
 import javax.swing.JOptionPane;
 
-public class LauncherAuthSashok extends Thread
+public final class LauncherAuthSashok extends Thread
 {
 	public String key, client;
 

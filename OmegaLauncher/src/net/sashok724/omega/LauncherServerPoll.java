@@ -1,6 +1,6 @@
 package net.sashok724.omega;
 
-public class LauncherServerPoll extends Thread implements LauncherConstants
+public final class LauncherServerPoll extends Thread implements LauncherConstants
 {
 	public LauncherServer server;
 

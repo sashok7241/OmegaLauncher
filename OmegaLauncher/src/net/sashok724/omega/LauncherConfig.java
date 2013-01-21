@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.TreeMap;
 
-public class LauncherConfig implements LauncherConstants
+public final class LauncherConfig implements LauncherConstants
 {
 	public static final TreeMap<String, String> table = new TreeMap<String, String>(String.CASE_INSENSITIVE_ORDER);
 	public static final File file = new File("omega.ini");

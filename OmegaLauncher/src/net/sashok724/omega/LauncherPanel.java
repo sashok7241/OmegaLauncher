@@ -13,7 +13,7 @@ import javax.swing.ScrollPaneConstants;
 
 import net.minecraft.LauncherFrame;
 
-public class LauncherPanel extends JPanel implements LauncherConstants
+public final class LauncherPanel extends JPanel implements LauncherConstants
 {
 	public static final long serialVersionUID = 1L;
 	public static ArrayList<String> requiredFiles;

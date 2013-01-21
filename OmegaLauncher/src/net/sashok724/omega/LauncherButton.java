@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.ButtonModel;
 import javax.swing.JButton;
 
-public class LauncherButton extends JButton implements LauncherConstants
+public final class LauncherButton extends JButton implements LauncherConstants
 {
 	public static final long serialVersionUID = 1L;
 	public BufferedImage texture_def = LauncherConstants.IMG_BUTTON_DEF, texture_sel = LauncherConstants.IMG_BUTTON_SEL;
