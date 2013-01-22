@@ -2,7 +2,6 @@ package net.minecraft;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
@@ -11,7 +10,7 @@ import java.net.URL;
 import javax.swing.JFrame;
 
 import net.sashok724.omega.LauncherConstants;
-import net.sashok724.omega.LauncherPanel;
+import net.sashok724.omega.LauncherStarter;
 import net.sashok724.omega.LauncherUtils;
 
 public final class LauncherFrame extends JFrame implements LauncherConstants
@@ -19,7 +18,7 @@ public final class LauncherFrame extends JFrame implements LauncherConstants
 	private static final long serialVersionUID = 1L;
 	public static Launcher mcapplet;
 
-	public LauncherFrame()
+	public LauncherFrame(String login, String session, String serverip, String serverport)
 	{
 		try
 		{
@@ -72,19 +71,21 @@ public final class LauncherFrame extends JFrame implements LauncherConstants
 			urls[2] = new File(bin, "jinput.jar").toURI().toURL();
 			urls[3] = new File(bin, "lwjgl_util.jar").toURI().toURL();
 			mcapplet = new Launcher(bin, urls);
-			mcapplet.customParameters.put("username", LauncherPanel.username);
-			mcapplet.customParameters.put("sessionid", LauncherPanel.session);
+			if(login != null) mcapplet.customParameters.put("username", login);
+			if(session != null) mcapplet.customParameters.put("sessionid", session);
+			if(serverip != null) mcapplet.customParameters.put("server", serverip);
+			if(serverport != null) mcapplet.customParameters.put("port", serverport);
 			mcapplet.customParameters.put("stand-alone", "true");
 			setTitle("Minecraft");
-			setSize(850, 480);
-			setMinimumSize(new Dimension(850, 480));
-			setLocationRelativeTo(null);
+			setMinimumSize(LauncherStarter.frame.getMinimumSize());
 			mcapplet.setForeground(Color.BLACK);
 			mcapplet.setBackground(Color.BLACK);
 			setLayout(new BorderLayout());
+			setBounds(LauncherStarter.frame.getBounds());
 			add(mcapplet, BorderLayout.CENTER);
 			validate();
 			setIconImage(IMG_FAVICON);
+			LauncherStarter.frame.setVisible(false);
 			setVisible(true);
 			mcapplet.init();
 			mcapplet.start();

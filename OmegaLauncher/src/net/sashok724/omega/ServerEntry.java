@@ -3,12 +3,14 @@ package net.sashok724.omega;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.net.InetSocketAddress;
 
 import javax.swing.JComponent;
 
-public class ServerEntry extends JComponent implements LauncherConstants
+public class ServerEntry extends JComponent implements LauncherConstants, ActionListener
 {
 	public static final long serialVersionUID = 1L;
 	public LauncherButton remove = new LauncherButton("", 570, 5).setTextures(IMG_DELETE_DEF, IMG_DELETE_SEL);
@@ -27,7 +29,9 @@ public class ServerEntry extends JComponent implements LauncherConstants
 		password = _password;
 		setLayout(null);
 		add(remove);
+		remove.addActionListener(this);
 		add(enter);
+		enter.addActionListener(this);
 		new ServerPoller(this);
 	}
 
@@ -59,6 +63,15 @@ public class ServerEntry extends JComponent implements LauncherConstants
 		} catch (Exception e)
 		{
 			return 25565;
+		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+		if(e.getSource() == remove)
+		{
+			LauncherPanel.serverPanel.removeServer(this);
 		}
 	}
 }

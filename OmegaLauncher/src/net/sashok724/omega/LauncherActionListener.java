@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFileChooser;
 
+import net.minecraft.LauncherFrame;
+
 public final class LauncherActionListener implements ActionListener, LauncherConstants
 {
 	@Override
@@ -50,6 +52,8 @@ public final class LauncherActionListener implements ActionListener, LauncherCon
 				LauncherPanel.serverPanel.addServer(new ServerEntry(servername, serveraddr, serverdir, serverauth, serverlogn, serverpass));
 				LauncherPanel.instance.applyElements(LauncherPanel.loginElements);
 			}
-		}
+		} else if (e.getSource() == LauncherPanel.offline) LauncherPanel.instance.applyElements(LauncherPanel.offlineElements);
+		else if (e.getSource() == LauncherPanel.offline_cancel) LauncherPanel.instance.applyElements(LauncherPanel.loginElements);
+		else if (e.getSource() == LauncherPanel.offline_accept) new LauncherFrame(LauncherPanel.offline_login.getText(), LauncherPanel.offline_session.getText(), null, null);
 	}
 }

@@ -21,6 +21,7 @@ public final class LauncherPanel extends JPanel
 	public static String currentStat = "<Unknown>", currentFile = "<Unknown>", username, session;
 	public static ArrayList<String> requiredFiles;
 	public static ArrayList<JComponent> loginElements = new ArrayList<JComponent>();
+	public static ArrayList<JComponent> offlineElements = new ArrayList<JComponent>();
 	public static ArrayList<JComponent> analyzeElements = new ArrayList<JComponent>();
 	public static ArrayList<JComponent> addserverElements = new ArrayList<JComponent>();
 	// ========================= LOGIN ELEMENTS ===========================================
@@ -48,7 +49,14 @@ public final class LauncherPanel extends JPanel
 	public static LauncherLabel addserver_dir_title = new LauncherLabel("Папка:", 30, 35 + 50 * 3);
 	public static LauncherLabel addserver_logn_title = new LauncherLabel("Логин:", 30, 35 + 50 * 4);
 	public static LauncherLabel addserver_pass_title = new LauncherLabel("Пароль:", 30, 35 + 50 * 5);
-	// ========================= SOME OTHER STUFF =========================================
+	// ========================= OFFLINE MODE ELEMENTS ====================================
+	public static LauncherButton offline_cancel = new LauncherButton("Вернуться", 250, 425);
+	public static LauncherButton offline_accept = new LauncherButton("Играть оффлайн!", 250, 475);
+	public static LauncherTextfield offline_login = new LauncherTextfield("login", 250, 170, "", false);
+	public static LauncherTextfield offline_session = new LauncherTextfield(null, 250, 250, "123456", false);
+	public static LauncherLabel offline_login_title = new LauncherLabel("Логин:", 255, 145);
+	public static LauncherLabel offline_session_title = new LauncherLabel("Сессия:", 255, 225);
+	
 	static
 	{
 		loginElements.add(serverPanel);
@@ -60,6 +68,12 @@ public final class LauncherPanel extends JPanel
 		analyzePane.setBackground(Color.BLACK);
 		analyzePane.setForeground(Color.GREEN);
 		analyzeScroller.setBounds(10, 10, 840, 450);
+		offlineElements.add(offline_accept);
+		offlineElements.add(offline_cancel);
+		offlineElements.add(offline_login_title);
+		offlineElements.add(offline_login);
+		offlineElements.add(offline_session_title);
+		offlineElements.add(offline_session);
 		analyzeElements.add(analyzeScroller);
 		analyzeElements.add(analyzeClose);
 		addserverElements.add(addserver_accept);
@@ -84,8 +98,6 @@ public final class LauncherPanel extends JPanel
 		setLayout(null);
 		setPreferredSize(new Dimension(850, 515));
 		applyElements(loginElements);
-		serverPanel.addServer(new ServerEntry("Лёнечка лапочка", "realminecraft.ru:25565", "rmc", "hummer,http://realminecraft.ru/launcher/action.php", "sashok724", "123456"));
-		serverPanel.addServer(new ServerEntry("Minecraft-Москва Free 3", "game.minecraft-moscow.ru:25503", "moscow", "notch,http://minecraft-moscow.ru/prox/auth/auth.php", "sashok724", "someotherpassword"));
 	}
 
 	public void applyElements(ArrayList<JComponent> components)
@@ -93,6 +105,7 @@ public final class LauncherPanel extends JPanel
 		instance.removeAll();
 		for (JComponent current : components)
 			instance.add(current);
+		addserver.setEnabled(serverPanel.getComponents().length < 6);
 		instance.repaint();
 	}
 
