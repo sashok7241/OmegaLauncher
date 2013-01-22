@@ -21,7 +21,6 @@ public final class LauncherPanel extends JPanel
 	public static ServerLists serverPanel = new ServerLists(new Rectangle(5, 5, 600, 515));
 	public static LauncherButton offline = new LauncherButton("Оффлайн", 610, 435).setW(245);
 	public static LauncherButton custom = new LauncherButton("Кастом вход", 610, 480).setW(245);
-	
 	static
 	{
 		loginElements.add(serverPanel);

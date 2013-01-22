@@ -84,6 +84,15 @@ public final class LauncherUtils implements LauncherConstants
 		g.drawString(text, x, y);
 	}
 
+	public static void drawTextNormal(Graphics2D g, int x, int y, String text, Color c, int i)
+	{
+		g.setFont(new Font(null, 0, i));
+		g.setColor(DARK_SHADOW);
+		g.drawString(text, x + 2, y + 2);
+		g.setColor(c);
+		g.drawString(text, x, y);
+	}
+
 	public static void drawTransparentRect(Graphics2D g, int x, int y, int w, int h)
 	{
 		g.setColor(new Color(0, 0, 0, 0.5F));
@@ -330,14 +339,5 @@ public final class LauncherUtils implements LauncherConstants
 				outstream.write(buffer);
 			outstream.close();
 		}
-	}
-
-	public static void drawTextNormal(Graphics2D g, int x, int y, String text, Color c, int i)
-	{
-		g.setFont(new Font(null, 0, i));
-		g.setColor(DARK_SHADOW);
-		g.drawString(text, x + 2, y + 2);
-		g.setColor(c);
-		g.drawString(text, x, y);
 	}
 }

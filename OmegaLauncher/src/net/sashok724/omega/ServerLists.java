@@ -32,9 +32,7 @@ public class ServerLists extends JPanel
 	public void rebuildSizes()
 	{
 		for (int index = 0; index < getComponents().length; index++)
-		{
 			((ServerEntry) getComponents()[index]).setBounds(5, 5 + index * 85, getWidth() - 10, 80);
-		}
 		validate();
 		repaint();
 	}

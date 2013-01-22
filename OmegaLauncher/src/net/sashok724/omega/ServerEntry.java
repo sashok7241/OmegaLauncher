@@ -10,11 +10,6 @@ import javax.swing.JComponent;
 public class ServerEntry extends JComponent implements LauncherConstants
 {
 	public static final long serialVersionUID = 1L;
-	public LauncherButton remove = new LauncherButton("", 570, 5).setTextures(IMG_DELETE_DEF, IMG_DELETE_SEL);
-	public LauncherButton enter = new LauncherButton("", 570, 25).setTextures(IMG_ENTER_DEF, IMG_ENTER_SEL);
-	public InetSocketAddress address;
-	public int status;
-	public String curplayers = "0", maxplayers = "0", motd = "<Unknown>", auth, name, login, password;
 
 	public static final int getPort(String port)
 	{
@@ -26,6 +21,12 @@ public class ServerEntry extends JComponent implements LauncherConstants
 			return 25565;
 		}
 	}
+
+	public LauncherButton remove = new LauncherButton("", 570, 5).setTextures(IMG_DELETE_DEF, IMG_DELETE_SEL);
+	public LauncherButton enter = new LauncherButton("", 570, 25).setTextures(IMG_ENTER_DEF, IMG_ENTER_SEL);
+	public InetSocketAddress address;
+	public int status;
+	public String curplayers = "0", maxplayers = "0", motd = "<Unknown>", auth, name, login, password;
 
 	public ServerEntry(String _name, String ip, String port, String _auth, String _login, String _password)
 	{
