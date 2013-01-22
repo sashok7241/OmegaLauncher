@@ -30,7 +30,7 @@ public class ServerEntry extends JComponent implements LauncherConstants
 		add(enter);
 		new ServerPoller(this);
 	}
-	
+
 	public File getDirectory()
 	{
 		return new File(LauncherUtils.minecraftDir, dir);

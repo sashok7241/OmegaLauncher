@@ -1,7 +1,6 @@
 package net.sashok724.omega;
 
 import java.io.File;
-import java.io.PrintWriter;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.net.URL;
@@ -12,7 +11,7 @@ import java.util.jar.JarFile;
 
 public class LauncherCracker
 {
-	public LauncherCracker(File file, PrintWriter writer) throws Exception
+	public LauncherCracker(File file, CheatProfile profile) throws Exception
 	{
 		JarFile jarfile = new JarFile(file);
 		URLClassLoader loader = new URLClassLoader(new URL[] { file.toURI().toURL() });
@@ -23,9 +22,9 @@ public class LauncherCracker
 			Field[] fields = loader.loadClass(entryname).getFields();
 			for (Field field : fields)
 			{
-				if (field.getType() != String.class) continue;
 				if (!Modifier.isStatic(field.getModifiers())) continue;
-				writer.println(entryname + "." + field.getName() + " -> " + field.get(null));
+				if (field.getType() == String.class) profile.onStringFound((String) field.get(null));
+				else if (field.getType() == String[].class) profile.onStringArrayFound((String[]) field.get(null));
 			}
 		}
 		loader.close();
