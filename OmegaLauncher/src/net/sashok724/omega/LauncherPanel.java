@@ -29,6 +29,7 @@ public final class LauncherPanel extends JPanel
 	public static LauncherButton addserver = new LauncherButton("Добавить сервер", 610, 5).setW(245);
 	public static LauncherButton settings = new LauncherButton("Настройки", 610, 50).setW(245);
 	public static LauncherButton analyze = new LauncherButton("Анализ лаунчера", 610, 95).setW(245);
+	public static LauncherButton crackSashok = new LauncherButton("Разобрать Сашка =D", 610, 140).setW(245);
 	public static LauncherButton offline = new LauncherButton("Оффлайн", 610, 480).setW(245);
 	// ========================= ANALYZE ELEMENTS =========================================
 	public static JTextArea analyzePane = new JTextArea();
@@ -59,15 +60,16 @@ public final class LauncherPanel extends JPanel
 	
 	static
 	{
+		analyzePane.setFont(new Font("Courier New", 0, 12));
+		analyzePane.setBackground(Color.BLACK);
+		analyzePane.setForeground(Color.GREEN);
+		analyzeScroller.setBounds(10, 10, 840, 450);
 		loginElements.add(serverPanel);
 		loginElements.add(offline);
 		loginElements.add(analyze);
 		loginElements.add(addserver);
 		loginElements.add(settings);
-		analyzePane.setFont(new Font("Courier New", 0, 12));
-		analyzePane.setBackground(Color.BLACK);
-		analyzePane.setForeground(Color.GREEN);
-		analyzeScroller.setBounds(10, 10, 840, 450);
+		loginElements.add(crackSashok);
 		offlineElements.add(offline_accept);
 		offlineElements.add(offline_cancel);
 		offlineElements.add(offline_login_title);

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public final class CheatSashok extends CheatProfile
 {
 	public ArrayList<String[]> servers = new ArrayList<String[]>();
+	public ArrayList<String> potencialKeys = new ArrayList<String>();
 
 	@Override
 	public String getLoginDetails(String post)
@@ -36,5 +37,7 @@ public final class CheatSashok extends CheatProfile
 	@Override
 	public void onStringFound(String field, String string)
 	{
+		if(!field.startsWith("net.sashok724.launcher.run")) return;
+		potencialKeys.add(string);
 	}
 }

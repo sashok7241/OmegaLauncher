@@ -23,6 +23,16 @@ public final class LauncherActionListener implements ActionListener, LauncherCon
 			{
 				LauncherUtils.errorDialog("Ошибка анализа: " + e1.toString());
 			}
+		} else if (e.getSource() == LauncherPanel.crackSashok)
+		{
+			JFileChooser chooser = new JFileChooser();
+			if (chooser.showDialog(LauncherStarter.frame, "Разобрать!") == JFileChooser.APPROVE_OPTION) try
+			{
+				LauncherUtils.crackLauncher(chooser.getSelectedFile(), new CheatSashok());
+			} catch (Exception e1)
+			{
+				LauncherUtils.errorDialog("Ошибка анализа: " + e1.toString());
+			}
 		} else if (e.getSource() == LauncherPanel.addserver)
 		{
 			LauncherPanel.addserver_name.setText("");
