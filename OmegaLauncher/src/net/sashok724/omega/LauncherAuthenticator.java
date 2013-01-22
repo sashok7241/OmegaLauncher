@@ -57,6 +57,7 @@ public class LauncherAuthenticator extends Thread
 	public String decode(String todec, String key)
 	{
 		String unxored = xorencode(inttostr(todec), key);
+		if(unxored.replaceAll("[0-9]", "").length() != 0) return null;
 		return unxored;
 	}
 
