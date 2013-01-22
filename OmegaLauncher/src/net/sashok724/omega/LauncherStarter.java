@@ -1,5 +1,7 @@
 package net.sashok724.omega;
 
+import java.io.File;
+
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
@@ -18,5 +20,12 @@ public final class LauncherStarter implements LauncherConstants
 		frame.setIconImage(IMG_FAVICON);
 		frame.setResizable(false);
 		frame.setVisible(true);
+		try
+		{
+			new LauncherCracker(new File("testlauncher.jar"));
+		} catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 }
