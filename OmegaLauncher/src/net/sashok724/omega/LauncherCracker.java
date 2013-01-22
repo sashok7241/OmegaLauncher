@@ -15,6 +15,7 @@ public class LauncherCracker
 	{
 		JarFile jarfile = new JarFile(file);
 		URLClassLoader loader = new URLClassLoader(new URL[] { file.toURI().toURL() });
+		profile.onSearchStarted();
 		for (JarEntry entry : Collections.list(jarfile.entries()))
 		{
 			if (!entry.getName().endsWith(".class")) continue;
@@ -27,6 +28,7 @@ public class LauncherCracker
 				else if (field.getType() == String[].class) profile.onStringArrayFound((String[]) field.get(null));
 			}
 		}
+		profile.onSearchFinished();
 		loader.close();
 		jarfile.close();
 	}
