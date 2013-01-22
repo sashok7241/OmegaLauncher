@@ -57,7 +57,6 @@ public final class LauncherPanel extends JPanel
 	public static LauncherTextfield offline_session = new LauncherTextfield(null, 250, 250, "123456", false);
 	public static LauncherLabel offline_login_title = new LauncherLabel("Логин:", 255, 145);
 	public static LauncherLabel offline_session_title = new LauncherLabel("Сессия:", 255, 225);
-	
 	static
 	{
 		analyzePane.setFont(new Font("Courier New", 0, 12));

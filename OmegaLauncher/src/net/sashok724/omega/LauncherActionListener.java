@@ -52,14 +52,14 @@ public final class LauncherActionListener implements ActionListener, LauncherCon
 			String serverlogn = LauncherPanel.addserver_logn.getText();
 			String serverpass = new String(LauncherPanel.addserver_pass.getPassword());
 			if (servername.length() < 3) LauncherUtils.errorDialog("Слишком короткое имя сервера.");
-			else if (serveraddr.split(":").length != 2) LauncherUtils.errorDialog("В адресе нужно указать порт. (например localhost:25565)");
+			else if (serveraddr.length() < 3) LauncherUtils.errorDialog("В адресе нужно указать порт. (например localhost:25565)");
 			else if (serverdir.length() < 3) LauncherUtils.errorDialog("Слишком короткое имя папки.");
 			else if (serverlogn.length() < 3) LauncherUtils.errorDialog("Слишком короткий логин.");
 			else if (serverpass.length() < 3) LauncherUtils.errorDialog("Слишком короткий пароль.");
 			else if (!serverauth.startsWith("sashok,") && !serverauth.startsWith("notch,") && !serverauth.startsWith("hummer,")) LauncherUtils.errorDialog("Неизвестный тип авторизации");
 			else
 			{
-				LauncherPanel.serverPanel.addServer(new ServerEntry(servername, serveraddr, serverdir, serverauth, serverlogn, serverpass));
+				LauncherPanel.serverPanel.addServer(new ServerEntry(servername, serveraddr, serverdir, serverauth, serverlogn, serverpass), true);
 				LauncherPanel.instance.applyElements(LauncherPanel.loginElements);
 			}
 		} else if (e.getSource() == LauncherPanel.offline) LauncherPanel.instance.applyElements(LauncherPanel.offlineElements);

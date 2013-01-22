@@ -12,18 +12,6 @@ public class LauncherAuthenticator extends Thread
 		start();
 	}
 
-	public void run()
-	{
-		LauncherUtils.disableAll(LauncherPanel.instance);
-		String result = authenticate();
-		if (result != null)
-		{
-			LauncherUtils.errorDialog(result);
-			LauncherUtils.enableAll(LauncherPanel.instance);
-			LauncherPanel.instance.applyElements(LauncherPanel.loginElements);
-		}
-	}
-
 	public String authenticate()
 	{
 		String[] splitted = server.auth.trim().split(",");
@@ -31,18 +19,16 @@ public class LauncherAuthenticator extends Thread
 		switch (splitted[0])
 		{
 			case "sashok":
-				if (splitted.length != 4) return "Не все параметры указаны (sashok:url:client:key)";
-				String answer0 = LauncherUtils.executePost(splitted[1], "action=auth&login=" + server.login + "&password=" + server.password + "&client=" + splitted[2]);
-				String[] splitted1 = answer0.split("<br>");
-				if (splitted1.length != 3) return answer0;
-				String[] splitted2 = splitted1[1].split("<:>");
-				if (splitted2.length != 2) return answer0;
+				if (splitted.length != 4) return "Не все параметры указаны (sashok,url,client,key)";
+				String answer0 = LauncherUtils.executePost(splitted[1], "action=auth&login=" + server.login + "&password=" + server.password + "&client=" + splitted[2].replaceAll(" ", "").toLowerCase());
+				String[] splitted1 = answer0.split("<br>"), splitted2 = splitted1[1].split("<:>");
+				if (splitted1.length != 3 || splitted2.length != 2) return answer0;
 				String session = decode(splitted2[1], splitted[3]);
 				if (session == null) return "Ключ шифрации указан неверно.";
 				new LauncherFrame(server.login, session, server.address.getHostName(), String.valueOf(server.address.getPort()));
 				return null;
 			case "notch":
-				if(splitted.length != 3) return "Не все параметры указаны (notch:url:version)";
+				if (splitted.length != 3) return "Не все параметры указаны (notch,url,version)";
 				String answer1 = LauncherUtils.executePost(splitted[1], "user=" + server.login + "&password=" + server.password + "&version=" + splitted[2]);
 				if (answer1 == null) return "Ошибка подключения к серверу";
 				String[] splitted3 = answer1.split(":");
@@ -57,27 +43,20 @@ public class LauncherAuthenticator extends Thread
 	public String decode(String todec, String key)
 	{
 		String unxored = xorencode(inttostr(todec), key);
-		if(unxored.replaceAll("[0-9]", "").length() != 0) return null;
+		if (unxored.replaceAll("[-0-9]", "").length() != 0) return null;
 		return unxored;
 	}
 
-	public static String inttostr(String text)
+	@Override
+	public void run()
 	{
-		String res = "";
-		for (int i = 0; i < text.split("-").length; i++)
-			res += (char) Integer.parseInt(text.split("-")[i]);
-		return res;
-	}
-
-	public boolean notInteger(String str)
-	{
-		try
+		LauncherUtils.disableAll(LauncherPanel.instance);
+		String result = authenticate();
+		if (result != null)
 		{
-			Integer.parseInt(str);
-			return false;
-		} catch (Exception e)
-		{
-			return true;
+			LauncherUtils.errorDialog(result);
+			LauncherUtils.enableAll(LauncherPanel.instance);
+			LauncherPanel.instance.applyElements(LauncherPanel.loginElements);
 		}
 	}
 
@@ -91,6 +70,14 @@ public class LauncherAuthenticator extends Thread
 			j++;
 			if (j == key.length()) j = 0;
 		}
+		return res;
+	}
+
+	public static String inttostr(String text)
+	{
+		String res = "";
+		for (int i = 0; i < text.split("-").length; i++)
+			res += (char) Integer.parseInt(text.split("-")[i]);
 		return res;
 	}
 }

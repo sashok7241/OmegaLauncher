@@ -63,6 +63,7 @@ public final class LauncherFrame extends JFrame implements LauncherConstants
 				}
 			});
 			System.out.println("Login: " + login + ", Session: " + session);
+			LauncherUtils.updateNatives();
 			String bin = LauncherUtils.minecraftDir.toString() + File.separator + "bin" + File.separator;
 			setForeground(Color.BLACK);
 			setBackground(Color.BLACK);
@@ -72,10 +73,10 @@ public final class LauncherFrame extends JFrame implements LauncherConstants
 			urls[2] = new File(bin, "jinput.jar").toURI().toURL();
 			urls[3] = new File(bin, "lwjgl_util.jar").toURI().toURL();
 			mcapplet = new Launcher(bin, urls);
-			if(login != null) mcapplet.customParameters.put("username", login);
-			if(session != null) mcapplet.customParameters.put("sessionid", session);
-			if(serverip != null) mcapplet.customParameters.put("server", serverip);
-			if(serverport != null) mcapplet.customParameters.put("port", serverport);
+			if (login != null) mcapplet.customParameters.put("username", login);
+			if (session != null) mcapplet.customParameters.put("sessionid", session);
+			if (serverip != null) mcapplet.customParameters.put("server", serverip);
+			if (serverport != null) mcapplet.customParameters.put("port", serverport);
 			mcapplet.customParameters.put("stand-alone", "true");
 			setTitle("Minecraft");
 			setMinimumSize(LauncherStarter.frame.getMinimumSize());
