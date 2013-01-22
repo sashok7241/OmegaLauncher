@@ -90,7 +90,7 @@ public final class LauncherFrame extends JFrame implements LauncherConstants
 			mcapplet.start();
 		} catch (Exception e)
 		{
-			e.printStackTrace();
+			LauncherUtils.throwException(e);
 		}
 	}
 }

@@ -26,6 +26,4 @@ public interface LauncherConstants
 	// Шрифты
 	public static final Font FONT_MC = LauncherUtils.loadFont("textfield");
 	public static final Color SHADOW = Color.DARK_GRAY, DARK_SHADOW = new Color(0x151515);
-	// Режимы
-	public static final int MODE_LOGIN = 0, MODE_DOWNLOAD_REQUEST = 1, MODE_DOWNLOAD_BEGIN = 2, MODE_MODMM = 3;
 }

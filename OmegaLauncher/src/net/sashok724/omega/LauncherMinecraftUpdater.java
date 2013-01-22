@@ -21,7 +21,7 @@ public final class LauncherMinecraftUpdater extends Thread
 			LauncherPanel.currentSize = LauncherUtils.getFileSize(file);
 			if (LauncherPanel.currentSize == -1)
 			{
-				LauncherPanel.currentStat = "Ошибка получения файла";
+				LauncherPanel.currentStat = "Ошибка получения файла (Размер не был получен)";
 				LauncherPanel.instance.repaint();
 				return;
 			}

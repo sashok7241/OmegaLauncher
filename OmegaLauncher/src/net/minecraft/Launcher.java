@@ -9,6 +9,8 @@ import java.net.URLClassLoader;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.sashok724.omega.LauncherUtils;
+
 public final class Launcher extends Applet implements AppletStub
 {
 	private static final long serialVersionUID = 1L;
@@ -99,7 +101,7 @@ public final class Launcher extends Applet implements AppletStub
 			validate();
 		} catch (Exception e)
 		{
-			e.printStackTrace();
+			LauncherUtils.throwException(e);
 		}
 	}
 
