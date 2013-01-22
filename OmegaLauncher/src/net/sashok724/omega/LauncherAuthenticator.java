@@ -21,7 +21,8 @@ public class LauncherAuthenticator extends Thread
 			case "sashok":
 				if (splitted.length != 4) return "Не все параметры указаны (sashok,url,client,key)";
 				String answer0 = LauncherUtils.executePost(splitted[1], "action=auth&login=" + server.login + "&password=" + server.password + "&client=" + splitted[2].replaceAll(" ", "").toLowerCase());
-				String[] splitted1 = answer0.split("<br>"), splitted2 = splitted1[1].split("<:>");
+				String[] splitted1 = answer0.split("<br>"),
+				splitted2 = splitted1[1].split("<:>");
 				if (splitted1.length != 3 || splitted2.length != 2) return answer0;
 				String session = decode(splitted2[1], splitted[3]);
 				if (session == null) return "Ключ шифрации указан неверно.";
