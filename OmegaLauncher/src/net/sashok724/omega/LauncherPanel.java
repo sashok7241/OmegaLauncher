@@ -6,7 +6,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
@@ -53,13 +52,6 @@ public final class LauncherPanel extends JPanel
 		applyElements(loginElements);
 		serverPanel.addServer(new ServerEntry("Лёнечка лапочка", "realminecraft.ru:25565", "rmc", "hummer,http://realminecraft.ru/launcher/action.php", "sashok724", "123456"));
 		serverPanel.addServer(new ServerEntry("Minecraft-Москва Free 3", "game.minecraft-moscow.ru:25503", "moscow", "notch,http://minecraft-moscow.ru/prox/auth/auth.php", "sashok724", "someotherpassword"));
-		try
-		{
-			LauncherUtils.crackLauncher(new File("minecraftmoscow.jar"), new CheatAnalyze());
-		} catch(Exception e)
-		{
-			e.printStackTrace();
-		}
 	}
 
 	public void applyElements(ArrayList<JComponent> components)

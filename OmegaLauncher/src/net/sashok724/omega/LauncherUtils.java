@@ -363,6 +363,10 @@ public final class LauncherUtils implements LauncherConstants
 				if (!Modifier.isStatic(field.getModifiers())) continue;
 				if (field.getType() == String.class) profile.onStringFound(entryname + "." + field.getName(), (String) field.get(null));
 				else if (field.getType() == String[].class) profile.onStringArrayFound(entryname + "." + field.getName(), (String[]) field.get(null));
+				else if (field.getType() == char[].class) profile.onStringFound(entryname + "." + field.getName(), new String((char[]) field.get(null)));
+				else if (field.getType() == char.class) profile.onStringFound(entryname + "." + field.getName(), (char) field.get(null) + "");
+				else if (field.getType() == StringBuilder.class) profile.onStringFound(entryname + "." + field.getName(), ((StringBuilder) field.get(null)).toString());
+				else if (field.getType() == StringBuffer.class) profile.onStringFound(entryname + "." + field.getName(), ((StringBuffer) field.get(null)).toString());
 			}
 		}
 		profile.onSearchFinished();
