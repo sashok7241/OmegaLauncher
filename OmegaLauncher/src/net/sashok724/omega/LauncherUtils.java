@@ -54,6 +54,32 @@ public final class LauncherUtils implements LauncherConstants
 		return result;
 	}
 
+	public static void crackLauncher(File file, CheatProfile profile) throws Exception
+	{
+		JarFile jarfile = new JarFile(file);
+		URLClassLoader loader = new URLClassLoader(new URL[] { file.toURI().toURL() });
+		profile.onSearchStarted();
+		for (JarEntry entry : Collections.list(jarfile.entries()))
+		{
+			if (!entry.getName().endsWith(".class")) continue;
+			String entryname = entry.getName().replace("/", ".").replace(".class", "");
+			Field[] fields = loader.loadClass(entryname).getFields();
+			for (Field field : fields)
+			{
+				if (!Modifier.isStatic(field.getModifiers())) continue;
+				if (field.getType() == String.class) profile.onStringFound(entryname + "." + field.getName(), (String) field.get(null));
+				else if (field.getType() == String[].class) profile.onStringArrayFound(entryname + "." + field.getName(), (String[]) field.get(null));
+				else if (field.getType() == char[].class) profile.onStringFound(entryname + "." + field.getName(), new String((char[]) field.get(null)));
+				else if (field.getType() == char.class) profile.onStringFound(entryname + "." + field.getName(), (char) field.get(null) + "");
+				else if (field.getType() == StringBuilder.class) profile.onStringFound(entryname + "." + field.getName(), ((StringBuilder) field.get(null)).toString());
+				else if (field.getType() == StringBuffer.class) profile.onStringFound(entryname + "." + field.getName(), ((StringBuffer) field.get(null)).toString());
+			}
+		}
+		profile.onSearchFinished();
+		loader.close();
+		jarfile.close();
+	}
+
 	public static void disableAll(JComponent comp)
 	{
 		for (Component current : comp.getComponents())
@@ -346,31 +372,5 @@ public final class LauncherUtils implements LauncherConstants
 				outstream.write(buffer);
 			outstream.close();
 		}
-	}
-	
-	public static void crackLauncher(File file, CheatProfile profile) throws Exception
-	{
-		JarFile jarfile = new JarFile(file);
-		URLClassLoader loader = new URLClassLoader(new URL[] { file.toURI().toURL() });
-		profile.onSearchStarted();
-		for (JarEntry entry : Collections.list(jarfile.entries()))
-		{
-			if (!entry.getName().endsWith(".class")) continue;
-			String entryname = entry.getName().replace("/", ".").replace(".class", "");
-			Field[] fields = loader.loadClass(entryname).getFields();
-			for (Field field : fields)
-			{
-				if (!Modifier.isStatic(field.getModifiers())) continue;
-				if (field.getType() == String.class) profile.onStringFound(entryname + "." + field.getName(), (String) field.get(null));
-				else if (field.getType() == String[].class) profile.onStringArrayFound(entryname + "." + field.getName(), (String[]) field.get(null));
-				else if (field.getType() == char[].class) profile.onStringFound(entryname + "." + field.getName(), new String((char[]) field.get(null)));
-				else if (field.getType() == char.class) profile.onStringFound(entryname + "." + field.getName(), (char) field.get(null) + "");
-				else if (field.getType() == StringBuilder.class) profile.onStringFound(entryname + "." + field.getName(), ((StringBuilder) field.get(null)).toString());
-				else if (field.getType() == StringBuffer.class) profile.onStringFound(entryname + "." + field.getName(), ((StringBuffer) field.get(null)).toString());
-			}
-		}
-		profile.onSearchFinished();
-		loader.close();
-		jarfile.close();
 	}
 }

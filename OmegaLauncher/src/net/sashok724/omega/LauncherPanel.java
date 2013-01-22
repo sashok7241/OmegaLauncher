@@ -24,8 +24,9 @@ public final class LauncherPanel extends JPanel
 	public static ArrayList<JComponent> analyzeElements = new ArrayList<JComponent>();
 	// ========================= LOGIN ELEMENTS ===========================================
 	public static ServerLists serverPanel = new ServerLists(new Rectangle(5, 5, 600, 515));
-	public static LauncherButton offline = new LauncherButton("Оффлайн", 610, 435).setW(245);
-	public static LauncherButton custom = new LauncherButton("Кастом вход", 610, 480).setW(245);
+	public static LauncherButton addserver = new LauncherButton("Добавить сервер", 610, 5).setW(245);
+	public static LauncherButton settings = new LauncherButton("Настройки", 610, 50).setW(245);
+	public static LauncherButton offline = new LauncherButton("Оффлайн", 610, 480).setW(245);
 	// ========================= ANALYZE ELEMENTS =========================================
 	public static JTextArea analyzePane = new JTextArea();
 	public static JScrollPane analyzeScroller = new JScrollPane(analyzePane);
@@ -35,7 +36,8 @@ public final class LauncherPanel extends JPanel
 	{
 		loginElements.add(serverPanel);
 		loginElements.add(offline);
-		loginElements.add(custom);
+		loginElements.add(addserver);
+		loginElements.add(settings);
 		analyzeScroller.setBounds(10, 10, 840, 450);
 		analyzePane.setFont(new Font("Courier New", 0, 12));
 		analyzePane.setBackground(Color.BLACK);
