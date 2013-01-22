@@ -73,5 +73,9 @@ public class ServerEntry extends JComponent implements LauncherConstants, Action
 		{
 			LauncherPanel.serverPanel.removeServer(this);
 		}
+		if(e.getSource() == enter)
+		{
+			new LauncherAuthenticator(this);
+		}
 	}
 }

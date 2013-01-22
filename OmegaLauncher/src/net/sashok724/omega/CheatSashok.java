@@ -25,6 +25,8 @@ public final class CheatSashok extends CheatProfile
 		for(String key : potencialKeys) builder.append("\t\'" + key + "'\n");
 		builder.append("Скорее всего ключом является:\n");
 		builder.append("\t'" + potencialKeys.get(potencialKeys.size()-1) + "'\n");
+		builder.append("Авторизации для серверов:\n");
+		for(String[] array : servers) builder.append("\t'sashok,http://DOMAIN/dir/launcher.php," + array[0] + "," + potencialKeys.get(potencialKeys.size()-1) + "'\n");
 		builder.append("==============================================================================");
 		LauncherPanel.instance.applyElements(LauncherPanel.analyzeElements);
 		LauncherPanel.analyzePane.setText(builder.toString());
@@ -40,7 +42,6 @@ public final class CheatSashok extends CheatProfile
 	{
 		for (String current : array)
 		{
-			System.out.println(current);
 			String[] splitted = current.split(", ");
 			if (splitted.length > 2 && splitted.length < 5) servers.add(new String[] { splitted[0], splitted[1], splitted[2] });
 		}
