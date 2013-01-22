@@ -3,6 +3,7 @@ package net.sashok724.omega;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.io.File;
 import java.net.InetSocketAddress;
 
 import javax.swing.JComponent;
@@ -14,11 +15,12 @@ public class ServerEntry extends JComponent implements LauncherConstants
 	public LauncherButton enter = new LauncherButton("", 570, 25).setTextures(IMG_ENTER_DEF, IMG_ENTER_SEL);
 	public InetSocketAddress address;
 	public int status;
-	public String curplayers = "0", maxplayers = "0", motd = "<Unknown>", auth, name, login, password;
+	public String curplayers = "0", maxplayers = "0", motd = "<Unknown>", dir, auth, name, login, password;
 
-	public ServerEntry(String _name, String ip, String port, String _auth, String _login, String _password)
+	public ServerEntry(String _name, String ip, String _dir, String _auth, String _login, String _password)
 	{
-		address = new InetSocketAddress(ip, getPort(port));
+		address = new InetSocketAddress(ip.split(":")[0], getPort(ip.split(":")[1]));
+		dir = _dir;
 		name = _name;
 		auth = _auth;
 		login = _login;
@@ -27,6 +29,11 @@ public class ServerEntry extends JComponent implements LauncherConstants
 		add(remove);
 		add(enter);
 		new ServerPoller(this);
+	}
+	
+	public File getDirectory()
+	{
+		return new File(LauncherUtils.minecraftDir, dir);
 	}
 
 	@Override
@@ -39,8 +46,8 @@ public class ServerEntry extends JComponent implements LauncherConstants
 		LauncherUtils.drawTextNormal(g, 5, 32, "MOTD: " + motd, Color.DARK_GRAY, 10);
 		LauncherUtils.drawTextNormal(g, 5, 42, "Игроки: " + curplayers + " / " + maxplayers, Color.DARK_GRAY, 10);
 		LauncherUtils.drawTextNormal(g, 5, 52, "Адрес: " + address.getHostName() + ":" + address.getPort(), Color.DARK_GRAY, 10);
-		LauncherUtils.drawTextNormal(g, 5, 62, "Авторизация: " + auth, Color.DARK_GRAY, 10);
-		LauncherUtils.drawTextNormal(g, 5, 72, "Логин, пароль: " + login + ", " + password.replaceAll(".", "*"), Color.DARK_GRAY, 10);
+		LauncherUtils.drawTextNormal(g, 5, 62, "Авторизация: " + auth + ", " + login + ", " + password.replaceAll(".", "*"), Color.DARK_GRAY, 10);
+		LauncherUtils.drawTextNormal(g, 5, 72, "Папка: " + getDirectory().getAbsolutePath(), Color.DARK_GRAY, 10);
 		super.paintComponent(g1);
 	}
 
