@@ -77,4 +77,10 @@ public final class LauncherPassfield extends JPasswordField implements LauncherC
 	{
 		LauncherConfig.set(name, new String(getPassword()));
 	}
+
+	public LauncherPassfield setW(int i)
+	{
+		setSize(i, getHeight());
+		return this;
+	}
 }

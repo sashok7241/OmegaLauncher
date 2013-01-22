@@ -137,6 +137,11 @@ public final class LauncherUtils implements LauncherConstants
 			current.setEnabled(true);
 	}
 
+	public static void errorDialog(String string)
+	{
+		JOptionPane.showMessageDialog(LauncherStarter.frame, string, "Ошибка", JOptionPane.ERROR_MESSAGE);
+	}
+
 	public static String executePost(String url, String request)
 	{
 		HttpURLConnection connection = null;
@@ -372,10 +377,5 @@ public final class LauncherUtils implements LauncherConstants
 				outstream.write(buffer);
 			outstream.close();
 		}
-	}
-
-	public static void errorDialog(String string)
-	{
-		JOptionPane.showMessageDialog(LauncherStarter.frame, string, "Ошибка", JOptionPane.ERROR_MESSAGE);
 	}
 }

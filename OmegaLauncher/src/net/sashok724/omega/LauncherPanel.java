@@ -22,6 +22,7 @@ public final class LauncherPanel extends JPanel
 	public static ArrayList<String> requiredFiles;
 	public static ArrayList<JComponent> loginElements = new ArrayList<JComponent>();
 	public static ArrayList<JComponent> analyzeElements = new ArrayList<JComponent>();
+	public static ArrayList<JComponent> addserverElements = new ArrayList<JComponent>();
 	// ========================= LOGIN ELEMENTS ===========================================
 	public static ServerLists serverPanel = new ServerLists(new Rectangle(5, 5, 600, 515));
 	public static LauncherButton addserver = new LauncherButton("Добавить сервер", 610, 5).setW(245);
@@ -32,7 +33,22 @@ public final class LauncherPanel extends JPanel
 	public static JTextArea analyzePane = new JTextArea();
 	public static JScrollPane analyzeScroller = new JScrollPane(analyzePane);
 	public static LauncherButton analyzeClose = new LauncherButton("Закрыть результаты", 250, 475);
-	// ====================================================================================
+	// ========================= ADDSERVER ELEMENTS =======================================
+	public static LauncherButton addserver_cancel = new LauncherButton("Вернуться", 250, 425);
+	public static LauncherButton addserver_accept = new LauncherButton("Добавить сервер", 250, 475);
+	public static LauncherTextfield addserver_name = new LauncherTextfield(null, 200, 10, "", false).setW(650);
+	public static LauncherTextfield addserver_addr = new LauncherTextfield(null, 200, 60, "", true).setW(650);
+	public static LauncherTextfield addserver_auth = new LauncherTextfield(null, 200, 110, "", true).setW(650);
+	public static LauncherTextfield addserver_dir = new LauncherTextfield(null, 200, 160, "", false).setW(650);
+	public static LauncherTextfield addserver_logn = new LauncherTextfield(null, 200, 210, "", false).setW(650);
+	public static LauncherPassfield addserver_pass = new LauncherPassfield(null, 200, 260).setW(650);
+	public static LauncherLabel addserver_name_title = new LauncherLabel("Имя сервера:", 30, 35);
+	public static LauncherLabel addserver_addr_title = new LauncherLabel("Адрес сервера:", 30, 35 + 50);
+	public static LauncherLabel addserver_auth_title = new LauncherLabel("Параметры auth:", 30, 35 + 50 * 2);
+	public static LauncherLabel addserver_dir_title = new LauncherLabel("Папка:", 30, 35 + 50 * 3);
+	public static LauncherLabel addserver_logn_title = new LauncherLabel("Логин:", 30, 35 + 50 * 4);
+	public static LauncherLabel addserver_pass_title = new LauncherLabel("Пароль:", 30, 35 + 50 * 5);
+	// ========================= SOME OTHER STUFF =========================================
 	static
 	{
 		loginElements.add(serverPanel);
@@ -46,6 +62,20 @@ public final class LauncherPanel extends JPanel
 		analyzeScroller.setBounds(10, 10, 840, 450);
 		analyzeElements.add(analyzeScroller);
 		analyzeElements.add(analyzeClose);
+		addserverElements.add(addserver_accept);
+		addserverElements.add(addserver_cancel);
+		addserverElements.add(addserver_name_title);
+		addserverElements.add(addserver_name);
+		addserverElements.add(addserver_addr_title);
+		addserverElements.add(addserver_addr);
+		addserverElements.add(addserver_auth_title);
+		addserverElements.add(addserver_auth);
+		addserverElements.add(addserver_dir_title);
+		addserverElements.add(addserver_dir);
+		addserverElements.add(addserver_logn_title);
+		addserverElements.add(addserver_logn);
+		addserverElements.add(addserver_pass_title);
+		addserverElements.add(addserver_pass);
 	}
 
 	public LauncherPanel()

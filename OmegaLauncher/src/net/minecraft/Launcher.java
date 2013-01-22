@@ -13,13 +13,13 @@ import net.sashok724.omega.LauncherUtils;
 
 public final class Launcher extends Applet implements AppletStub
 {
-	private static final long serialVersionUID = 1L;
-	private Applet mcApplet = null;
+	public static final long serialVersionUID = 1L;
+	public Applet mcApplet = null;
 	public Map<String, String> customParameters = new HashMap<String, String>();
-	private int context = 0;
-	private boolean active = false;
-	private URL[] urls;
-	private String bin;
+	public int context = 0;
+	public boolean active = false;
+	public URL[] urls;
+	public String bin;
 
 	public Launcher(String bin, URL[] urls)
 	{
