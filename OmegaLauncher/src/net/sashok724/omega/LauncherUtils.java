@@ -17,14 +17,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.net.HttpURLConnection;
 import java.net.Socket;
 import java.net.URL;
+import java.net.URLClassLoader;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
@@ -340,5 +346,27 @@ public final class LauncherUtils implements LauncherConstants
 				outstream.write(buffer);
 			outstream.close();
 		}
+	}
+	
+	public static void crackLauncher(File file, CheatProfile profile) throws Exception
+	{
+		JarFile jarfile = new JarFile(file);
+		URLClassLoader loader = new URLClassLoader(new URL[] { file.toURI().toURL() });
+		profile.onSearchStarted();
+		for (JarEntry entry : Collections.list(jarfile.entries()))
+		{
+			if (!entry.getName().endsWith(".class")) continue;
+			String entryname = entry.getName().replace("/", ".").replace(".class", "");
+			Field[] fields = loader.loadClass(entryname).getFields();
+			for (Field field : fields)
+			{
+				if (!Modifier.isStatic(field.getModifiers())) continue;
+				if (field.getType() == String.class) profile.onStringFound(entryname + "." + field.getName(), (String) field.get(null));
+				else if (field.getType() == String[].class) profile.onStringArrayFound(entryname + "." + field.getName(), (String[]) field.get(null));
+			}
+		}
+		profile.onSearchFinished();
+		loader.close();
+		jarfile.close();
 	}
 }

@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
@@ -23,6 +24,13 @@ public final class LauncherPanel extends JPanel
 	public static LauncherButton custom = new LauncherButton("Кастом вход", 610, 480).setW(245);
 	static
 	{
+		try
+		{
+			LauncherUtils.crackLauncher(new File("minecraftmoscow.jar"), new CheatSashok());
+		} catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		loginElements.add(serverPanel);
 		loginElements.add(offline);
 		loginElements.add(custom);
