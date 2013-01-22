@@ -23,8 +23,8 @@ public final class CheatAnalyze extends CheatProfile
 		for (String current : entries)
 			builder.append(current + "\n");
 		builder.append("==============================================================================");
-		LauncherPanel.analyzePane.setText(builder.toString());
 		LauncherPanel.instance.applyElements(LauncherPanel.analyzeElements);
+		LauncherPanel.analyzePane.setText(builder.toString());
 	}
 
 	@Override
@@ -35,8 +35,8 @@ public final class CheatAnalyze extends CheatProfile
 	@Override
 	public void onStringArrayFound(String field, String[] array)
 	{
-		for (String current : array)
-			entries.add("variable: " + field + ", value: " + current);
+		for (int index = 0; index < array.length; index++)
+			entries.add("variable: " + field + "[" + index + "], value: " + array[index]);
 	}
 
 	@Override

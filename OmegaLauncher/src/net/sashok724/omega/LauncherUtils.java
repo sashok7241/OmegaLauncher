@@ -373,4 +373,9 @@ public final class LauncherUtils implements LauncherConstants
 			outstream.close();
 		}
 	}
+
+	public static void errorDialog(String string)
+	{
+		JOptionPane.showMessageDialog(LauncherStarter.frame, string, "Ошибка", JOptionPane.ERROR_MESSAGE);
+	}
 }
