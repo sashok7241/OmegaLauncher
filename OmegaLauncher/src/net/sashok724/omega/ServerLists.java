@@ -13,6 +13,7 @@ public class ServerLists extends JPanel
 	public ServerLists(Rectangle bounds)
 	{
 		setLayout(null);
+		setOpaque(false);
 		setBounds(bounds);
 	}
 
@@ -27,6 +28,7 @@ public class ServerLists extends JPanel
 	{
 		Graphics2D g2d = LauncherUtils.getG2D(g);
 		LauncherUtils.drawTransparentRect(g2d, 0, 0, getWidth(), getHeight());
+		super.paintComponent(g);
 	}
 
 	public void rebuildSizes()

@@ -88,7 +88,7 @@ public final class LauncherUtils implements LauncherConstants
 	{
 		g.setFont(new Font(null, 0, i));
 		g.setColor(DARK_SHADOW);
-		g.drawString(text, x + 2, y + 2);
+		g.drawString(text, x + 1, y + 1);
 		g.setColor(c);
 		g.drawString(text, x, y);
 	}
@@ -294,6 +294,7 @@ public final class LauncherUtils implements LauncherConstants
 			{
 			}
 		}
+		server.repaint();
 	}
 
 	public static String readString(DataInputStream is, int d) throws IOException
