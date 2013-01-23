@@ -43,7 +43,7 @@ public class ServerLists extends JPanel implements LauncherConstants
 		for (int index = 0; index < getComponents().length; index++)
 			((ServerEntry) getComponents()[index]).setBounds(5, 5 + index * 85, getWidth() - 10, 80);
 		StringBuilder builder = new StringBuilder();
-		if (save)
+		if (save && getComponents().length > 0)
 		{
 			for (Component current : getComponents())
 			{

@@ -8,12 +8,6 @@ public final class CheatSashok extends CheatProfile
 	public ArrayList<String> potencialKeys = new ArrayList<String>();
 
 	@Override
-	public String getLoginDetails(String post)
-	{
-		return null;
-	}
-
-	@Override
 	public void onSearchFinished()
 	{
 		StringBuilder builder = new StringBuilder();
@@ -46,7 +40,7 @@ public final class CheatSashok extends CheatProfile
 		for (String current : array)
 		{
 			String[] splitted = current.split(", ");
-			if (splitted.length > 2 && splitted.length < 5) servers.add(new String[] { splitted[0], splitted[1], splitted[2] });
+			if (splitted.length > 2) servers.add(new String[] { splitted[0], splitted[1], splitted[2] });
 		}
 	}
 

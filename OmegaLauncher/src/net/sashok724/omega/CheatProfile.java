@@ -2,8 +2,6 @@ package net.sashok724.omega;
 
 public abstract class CheatProfile implements LauncherConstants
 {
-	public abstract String getLoginDetails(String post);
-
 	public abstract void onSearchFinished();
 
 	public abstract void onSearchStarted();

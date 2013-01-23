@@ -62,6 +62,7 @@ public final class LauncherFrame extends JFrame implements LauncherConstants
 				{
 				}
 			});
+			LauncherStarter.frame.setVisible(false);
 			System.out.println("Login: " + login + ", Session: " + session);
 			LauncherUtils.updateNatives();
 			String bin = LauncherUtils.minecraftDir.toString() + File.separator + "bin" + File.separator;
@@ -78,17 +79,16 @@ public final class LauncherFrame extends JFrame implements LauncherConstants
 			if (serverip != null) mcapplet.customParameters.put("server", serverip);
 			if (serverport != null) mcapplet.customParameters.put("port", serverport);
 			mcapplet.customParameters.put("stand-alone", "true");
-			setTitle("Minecraft");
-			setMinimumSize(LauncherStarter.frame.getMinimumSize());
 			mcapplet.setForeground(Color.BLACK);
 			mcapplet.setBackground(Color.BLACK);
+			setTitle("Minecraft");
+			setMinimumSize(LauncherStarter.frame.getMinimumSize());
 			setLayout(new BorderLayout());
 			setBounds(LauncherStarter.frame.getBounds());
+			setIconImage(IMG_FAVICON);
+			setVisible(true);
 			add(mcapplet, BorderLayout.CENTER);
 			validate();
-			setIconImage(IMG_FAVICON);
-			LauncherStarter.frame.setVisible(false);
-			setVisible(true);
 			mcapplet.init();
 			mcapplet.start();
 		} catch (Exception e)

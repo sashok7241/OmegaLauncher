@@ -9,12 +9,6 @@ public final class CheatAnalyze extends CheatProfile
 	public String launcherTrivia = "<Unknown>";
 
 	@Override
-	public String getLoginDetails(String post)
-	{
-		return null;
-	}
-
-	@Override
 	public void onSearchFinished()
 	{
 		StringBuilder builder = new StringBuilder();
@@ -48,7 +42,7 @@ public final class CheatAnalyze extends CheatProfile
 	{
 		if (field.contains("net.sashok724"))
 		{
-			launcherTrivia = "Внимание! Ключ ищите в net.sashok724.run!";
+			launcherTrivia = "Внимание! Ключ ищите в net.sashok724.run! Так же можно использовать автопоиск.";
 			launcherType = "sashok724's launcher";
 		}
 		if (field.contains("TransparentPanel"))

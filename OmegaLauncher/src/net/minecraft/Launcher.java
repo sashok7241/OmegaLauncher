@@ -16,15 +16,13 @@ public final class Launcher extends Applet implements AppletStub
 	public static final long serialVersionUID = 1L;
 	public Applet mcApplet = null;
 	public Map<String, String> customParameters = new HashMap<String, String>();
-	public int context = 0;
-	public boolean active = false;
 	public URL[] urls;
 	public String bin;
 
-	public Launcher(String bin, URL[] urls)
+	public Launcher(String _bin, URL[] _urls)
 	{
-		this.bin = bin;
-		this.urls = urls;
+		bin = _bin;
+		urls = _urls;
 	}
 
 	@Override
@@ -35,11 +33,7 @@ public final class Launcher extends Applet implements AppletStub
 	@Override
 	public void destroy()
 	{
-		if (mcApplet != null)
-		{
-			mcApplet.destroy();
-			return;
-		}
+		if (mcApplet != null) mcApplet.destroy();
 	}
 
 	@Override
@@ -50,9 +44,8 @@ public final class Launcher extends Applet implements AppletStub
 			return new URL("http://www.minecraft.net/game/");
 		} catch (MalformedURLException e)
 		{
-			e.printStackTrace();
+			return null;
 		}
-		return null;
 	}
 
 	@Override
@@ -73,16 +66,6 @@ public final class Launcher extends Applet implements AppletStub
 	@Override
 	public void init()
 	{
-		if (mcApplet != null)
-		{
-			mcApplet.init();
-			return;
-		}
-		init(0);
-	}
-
-	public void init(int i)
-	{
 		@SuppressWarnings("resource")
 		URLClassLoader cl = new URLClassLoader(urls);
 		System.setProperty("org.lwjgl.librarypath", bin + "natives");
@@ -97,7 +80,6 @@ public final class Launcher extends Applet implements AppletStub
 			setLayout(new BorderLayout());
 			add(applet, "Center");
 			applet.init();
-			active = true;
 			validate();
 		} catch (Exception e)
 		{
@@ -108,17 +90,6 @@ public final class Launcher extends Applet implements AppletStub
 	@Override
 	public boolean isActive()
 	{
-		if (context == 0)
-		{
-			context = -1;
-			try
-			{
-				if (getAppletContext() != null) context = 1;
-			} catch (Exception e)
-			{
-			}
-		}
-		if (context == -1) return active;
 		return super.isActive();
 	}
 
@@ -130,7 +101,6 @@ public final class Launcher extends Applet implements AppletStub
 		setLayout(new BorderLayout());
 		add(applet, "Center");
 		applet.init();
-		active = true;
 		applet.start();
 		validate();
 	}
@@ -138,21 +108,12 @@ public final class Launcher extends Applet implements AppletStub
 	@Override
 	public void start()
 	{
-		if (mcApplet != null)
-		{
-			mcApplet.start();
-			return;
-		}
+		if (mcApplet != null) mcApplet.start();
 	}
 
 	@Override
 	public void stop()
 	{
-		if (mcApplet != null)
-		{
-			active = false;
-			mcApplet.stop();
-			return;
-		}
+		if (mcApplet != null) mcApplet.stop();
 	}
 }
