@@ -65,5 +65,6 @@ public final class LauncherActionListener implements ActionListener, LauncherCon
 		} else if (e.getSource() == LauncherPanel.offline) LauncherPanel.instance.applyElements(LauncherPanel.offlineElements);
 		else if (e.getSource() == LauncherPanel.offline_cancel) LauncherPanel.instance.applyElements(LauncherPanel.loginElements);
 		else if (e.getSource() == LauncherPanel.offline_accept) new LauncherFrame(LauncherPanel.offline_login.getText(), LauncherPanel.offline_session.getText(), null, null);
+		else if (e.getSource() == LauncherPanel.addserver_notch) LauncherPanel.addserver_auth.setText("notch,http://login.minecraft.net/,13");
 	}
 }

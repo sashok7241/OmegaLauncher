@@ -36,8 +36,9 @@ public final class LauncherPanel extends JPanel
 	public static JScrollPane analyzeScroller = new JScrollPane(analyzePane);
 	public static LauncherButton analyzeClose = new LauncherButton("Закрыть результаты", 250, 475);
 	// ========================= ADDSERVER ELEMENTS =======================================
-	public static LauncherButton addserver_cancel = new LauncherButton("Вернуться", 250, 425);
 	public static LauncherButton addserver_accept = new LauncherButton("Добавить сервер", 250, 475);
+	public static LauncherButton addserver_cancel = new LauncherButton("Вернуться", 250, 430);
+	public static LauncherButton addserver_notch = new LauncherButton("Авторизация нотча", 250, 385);
 	public static LauncherTextfield addserver_name = new LauncherTextfield(null, 200, 10, "", false).setW(650);
 	public static LauncherTextfield addserver_addr = new LauncherTextfield(null, 200, 60, "", true).setW(650);
 	public static LauncherTextfield addserver_auth = new LauncherTextfield(null, 200, 110, "", true).setW(650);
@@ -78,6 +79,7 @@ public final class LauncherPanel extends JPanel
 		analyzeElements.add(analyzeScroller);
 		analyzeElements.add(analyzeClose);
 		addserverElements.add(addserver_accept);
+		addserverElements.add(addserver_notch);
 		addserverElements.add(addserver_cancel);
 		addserverElements.add(addserver_name_title);
 		addserverElements.add(addserver_name);
