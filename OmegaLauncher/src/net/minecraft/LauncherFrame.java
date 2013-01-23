@@ -64,7 +64,6 @@ public final class LauncherFrame extends JFrame implements LauncherConstants
 			});
 			LauncherStarter.frame.setVisible(false);
 			System.out.println("Login: " + login + ", Session: " + session);
-			LauncherUtils.updateNatives();
 			String bin = LauncherUtils.minecraftDir.toString() + File.separator + "bin" + File.separator;
 			setForeground(Color.BLACK);
 			setBackground(Color.BLACK);

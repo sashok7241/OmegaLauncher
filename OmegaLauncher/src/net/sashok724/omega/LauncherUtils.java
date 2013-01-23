@@ -24,10 +24,7 @@ import java.net.Socket;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
@@ -39,20 +36,6 @@ import javax.swing.JOptionPane;
 public final class LauncherUtils implements LauncherConstants
 {
 	public static final File minecraftDir = getMinecraftDir();
-
-	public static ArrayList<String> checkClient()
-	{
-		ArrayList<File> files = new ArrayList<File>();
-		File bin = new File(minecraftDir, "bin/");
-		files.add(new File(bin, "lwjgl.jar"));
-		files.add(new File(bin, "lwjgl_util.jar"));
-		files.add(new File(bin, "jinput.jar"));
-		files.add(new File(bin, "minecraft.jar"));
-		ArrayList<String> result = new ArrayList<String>();
-		for (File file : files)
-			if (!file.exists()) result.add(file.getName());
-		return result;
-	}
 
 	public static void crackLauncher(File file, CheatProfile profile) throws Exception
 	{
@@ -359,23 +342,5 @@ public final class LauncherUtils implements LauncherConstants
 		{
 		}
 		System.exit(1);
-	}
-
-	public static void updateNatives() throws Exception
-	{
-		File natives = new File(minecraftDir, "bin" + File.separator + "natives");
-		natives.mkdirs();
-		List<String> files = Arrays.asList("jinput-dx8.dll", "jinput-dx8_64.dll", "jinput-raw.dll", "jinput-raw_64.dll", "lwjgl.dll", "lwjgl64.dll", "OpenAL32.dll", "OpenAL64.dll");
-		for (String current : files)
-		{
-			File file = new File(natives, current);
-			if (file.exists()) continue;
-			FileOutputStream outstream = new FileOutputStream(file);
-			InputStream instream = LauncherUtils.class.getResourceAsStream("/net/sashok724/natives/" + current);
-			int buffer;
-			while ((buffer = instream.read()) != -1)
-				outstream.write(buffer);
-			outstream.close();
-		}
 	}
 }
