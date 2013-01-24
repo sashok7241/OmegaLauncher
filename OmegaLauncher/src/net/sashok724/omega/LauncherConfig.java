@@ -19,7 +19,7 @@ public final class LauncherConfig implements LauncherConstants
 		{
 		}
 	}
-
+	
 	public static int getInteger(String key, int def)
 	{
 		if (!table.containsKey(key)) return def;
@@ -31,14 +31,14 @@ public final class LauncherConfig implements LauncherConstants
 			return def;
 		}
 	}
-
+	
 	public static String getString(String key, String def)
 	{
 		if (key == null) return def;
 		if (!table.containsKey(key)) return def;
 		return table.get(key);
 	}
-
+	
 	public static synchronized void load() throws Exception
 	{
 		if (!file.exists()) return;
@@ -53,7 +53,7 @@ public final class LauncherConfig implements LauncherConstants
 		}
 		reader.close();
 	}
-
+	
 	public static synchronized void save() throws Exception
 	{
 		PrintWriter writer = new PrintWriter(file);
@@ -61,7 +61,7 @@ public final class LauncherConfig implements LauncherConstants
 			writer.println(key + ": " + table.get(key));
 		writer.close();
 	}
-
+	
 	public static void set(String key, Object value)
 	{
 		if (key == null) return;

@@ -18,7 +18,7 @@ public class ServerEntry extends JComponent implements LauncherConstants, Action
 	public InetSocketAddress address;
 	public int status;
 	public String curplayers = "0", maxplayers = "0", motd = "<Unknown>", dir, auth, name, login, password;
-
+	
 	public ServerEntry(String _name, String ip, String _dir, String _auth, String _login, String _password)
 	{
 		if (ip.split(":").length < 2) ip += ":25565";
@@ -35,19 +35,19 @@ public class ServerEntry extends JComponent implements LauncherConstants, Action
 		enter.addActionListener(this);
 		new ServerPoller(this);
 	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
 		if (e.getSource() == remove) LauncherPanel.serverPanel.removeServer(this);
 		if (e.getSource() == enter) new LauncherAuthenticator(this);
 	}
-
+	
 	public File getDirectory()
 	{
 		return new File(LauncherUtils.minecraftDir, dir);
 	}
-
+	
 	@Override
 	public void paintComponent(Graphics g1)
 	{
@@ -62,7 +62,7 @@ public class ServerEntry extends JComponent implements LauncherConstants, Action
 		LauncherUtils.drawTextNormal(g, 5, 72, "Папка: " + getDirectory().getAbsolutePath(), Color.DARK_GRAY, 10);
 		super.paintComponent(g1);
 	}
-
+	
 	public static final int getPort(String port)
 	{
 		try

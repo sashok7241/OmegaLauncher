@@ -16,7 +16,7 @@ public final class LauncherPassfield extends JPasswordField implements LauncherC
 	public static final long serialVersionUID = 1L;
 	public String name;
 	public boolean focused = false;
-
+	
 	public LauncherPassfield(String param, int x, int y)
 	{
 		super();
@@ -35,33 +35,33 @@ public final class LauncherPassfield extends JPasswordField implements LauncherC
 		validate();
 		name = param;
 	}
-
+	
 	@Override
 	public void changedUpdate(DocumentEvent e)
 	{
 		LauncherConfig.set(name, new String(getPassword()));
 	}
-
+	
 	@Override
 	public void focusGained(FocusEvent e)
 	{
 		focused = true;
 		repaint();
 	}
-
+	
 	@Override
 	public void focusLost(FocusEvent e)
 	{
 		focused = false;
 		repaint();
 	}
-
+	
 	@Override
 	public void insertUpdate(DocumentEvent e)
 	{
 		LauncherConfig.set(name, new String(getPassword()));
 	}
-
+	
 	@Override
 	public void paintComponent(Graphics maing)
 	{
@@ -71,13 +71,13 @@ public final class LauncherPassfield extends JPasswordField implements LauncherC
 		g.dispose();
 		super.paintComponent(maing);
 	}
-
+	
 	@Override
 	public void removeUpdate(DocumentEvent e)
 	{
 		LauncherConfig.set(name, new String(getPassword()));
 	}
-
+	
 	public LauncherPassfield setW(int i)
 	{
 		setSize(i, getHeight());

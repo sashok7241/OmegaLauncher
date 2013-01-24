@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 public class ServerLists extends JPanel implements LauncherConstants
 {
 	public static final long serialVersionUID = 1L;
-
+	
 	public ServerLists(Rectangle bounds)
 	{
 		setLayout(null);
@@ -23,13 +23,13 @@ public class ServerLists extends JPanel implements LauncherConstants
 			addServer(new ServerEntry(splitted[0], splitted[1], splitted[3], splitted[2], splitted[4], splitted[5]), false);
 		}
 	}
-
+	
 	public void addServer(ServerEntry entry, boolean save)
 	{
 		add(entry);
 		rebuildSizes(save);
 	}
-
+	
 	@Override
 	public void paintComponent(Graphics g)
 	{
@@ -37,7 +37,7 @@ public class ServerLists extends JPanel implements LauncherConstants
 		LauncherUtils.drawTransparentRect(g2d, 0, 0, getWidth(), getHeight());
 		super.paintComponent(g);
 	}
-
+	
 	public void rebuildSizes(boolean save)
 	{
 		for (int index = 0; index < getComponents().length; index++)
@@ -55,7 +55,7 @@ public class ServerLists extends JPanel implements LauncherConstants
 		validate();
 		repaint();
 	}
-
+	
 	public void removeServer(ServerEntry entry)
 	{
 		remove(entry);

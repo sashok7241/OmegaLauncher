@@ -36,7 +36,7 @@ import javax.swing.JOptionPane;
 public final class LauncherUtils implements LauncherConstants
 {
 	public static final File minecraftDir = getMinecraftDir();
-
+	
 	public static void crackLauncher(File file, CheatProfile profile) throws Exception
 	{
 		JarFile jarfile = new JarFile(file);
@@ -62,13 +62,13 @@ public final class LauncherUtils implements LauncherConstants
 		loader.close();
 		jarfile.close();
 	}
-
+	
 	public static void disableAll(JComponent comp)
 	{
 		for (Component current : comp.getComponents())
 			current.setEnabled(false);
 	}
-
+	
 	public static void drawBackground(Graphics2D g)
 	{
 		int backgroundWidth = IMG_BACKGROUND.getWidth(), backgroundHeight = IMG_BACKGROUND.getHeight();
@@ -76,12 +76,12 @@ public final class LauncherUtils implements LauncherConstants
 			for (int y = 0; y < LauncherPanel.instance.getHeight(); y += backgroundHeight)
 				g.drawImage(IMG_BACKGROUND, x, y, null);
 	}
-
+	
 	public static void drawIcon(Graphics2D g, int x, int y, BufferedImage img)
 	{
 		g.drawImage(img, x, y, null);
 	}
-
+	
 	public static void drawProgressBar(Graphics2D g2d, int x, int y, int w, int h)
 	{
 		g2d.setColor(new Color(0, 120, 0));
@@ -89,7 +89,7 @@ public final class LauncherUtils implements LauncherConstants
 		g2d.setColor(new Color(0, 200, 0));
 		g2d.fillRect(x, y, w, 2);
 	}
-
+	
 	public static void drawText(Graphics2D g, int x, int y, String text, Color c, int i)
 	{
 		g.setFont(FONT_MC.deriveFont(Float.valueOf(i)));
@@ -98,7 +98,7 @@ public final class LauncherUtils implements LauncherConstants
 		g.setColor(c);
 		g.drawString(text, x, y);
 	}
-
+	
 	public static void drawTextNormal(Graphics2D g, int x, int y, String text, Color c, int i)
 	{
 		g.setFont(new Font(null, 0, i));
@@ -107,24 +107,24 @@ public final class LauncherUtils implements LauncherConstants
 		g.setColor(c);
 		g.drawString(text, x, y);
 	}
-
+	
 	public static void drawTransparentRect(Graphics2D g, int x, int y, int w, int h)
 	{
 		g.setColor(new Color(0, 0, 0, 0.5F));
 		g.fillRect(x, y, w, h);
 	}
-
+	
 	public static void enableAll(JComponent comp)
 	{
 		for (Component current : comp.getComponents())
 			current.setEnabled(true);
 	}
-
+	
 	public static void errorDialog(String string)
 	{
 		JOptionPane.showMessageDialog(LauncherStarter.frame, string, "Ошибка", JOptionPane.ERROR_MESSAGE);
 	}
-
+	
 	public static String executePost(String url, String request)
 	{
 		HttpURLConnection connection = null;
@@ -161,7 +161,7 @@ public final class LauncherUtils implements LauncherConstants
 			if (connection != null) connection.disconnect();
 		}
 	}
-
+	
 	public static int getFileSize(String name)
 	{
 		try
@@ -174,14 +174,14 @@ public final class LauncherUtils implements LauncherConstants
 			return -1;
 		}
 	}
-
+	
 	public static Graphics2D getG2D(Graphics g)
 	{
 		Graphics2D g2d = (Graphics2D) g.create();
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		return g2d;
 	}
-
+	
 	public static File getMinecraftDir()
 	{
 		String home = System.getProperty("user.home", "");
@@ -198,7 +198,7 @@ public final class LauncherUtils implements LauncherConstants
 				return new File(home + File.separator + path);
 		}
 	}
-
+	
 	public static int getPlatform()
 	{
 		String osName = System.getProperty("os.name").toLowerCase();
@@ -206,7 +206,7 @@ public final class LauncherUtils implements LauncherConstants
 		if (osName.contains("mac")) return 1;
 		return 2;
 	}
-
+	
 	public static void loadFile(String url, File saveto) throws IOException
 	{
 		if (saveto.isDirectory()) saveto.delete();
@@ -225,7 +225,7 @@ public final class LauncherUtils implements LauncherConstants
 		fos.close();
 		LauncherPanel.currentByte = 0;
 	}
-
+	
 	public static Font loadFont(String name)
 	{
 		try
@@ -237,7 +237,7 @@ public final class LauncherUtils implements LauncherConstants
 			return null;
 		}
 	}
-
+	
 	public static BufferedImage loadImage(String name)
 	{
 		try
@@ -249,7 +249,7 @@ public final class LauncherUtils implements LauncherConstants
 			return new BufferedImage(64, 64, 2);
 		}
 	}
-
+	
 	public static synchronized void pollServer(ServerEntry server)
 	{
 		Socket soc = null;
@@ -316,7 +316,7 @@ public final class LauncherUtils implements LauncherConstants
 		}
 		server.repaint();
 	}
-
+	
 	public static String readString(DataInputStream is, int d) throws IOException
 	{
 		short word = is.readShort();
@@ -327,7 +327,7 @@ public final class LauncherUtils implements LauncherConstants
 			res.append(is.readChar());
 		return res.toString();
 	}
-
+	
 	public static void throwException(Exception e)
 	{
 		e.printStackTrace();

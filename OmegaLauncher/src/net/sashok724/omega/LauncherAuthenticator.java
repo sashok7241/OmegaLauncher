@@ -5,13 +5,13 @@ import net.minecraft.LauncherFrame;
 public class LauncherAuthenticator extends Thread
 {
 	public ServerEntry server;
-
+	
 	public LauncherAuthenticator(ServerEntry entry)
 	{
 		server = entry;
 		start();
 	}
-
+	
 	public String authenticate()
 	{
 		String[] splitted = server.auth.trim().split(",");
@@ -41,14 +41,14 @@ public class LauncherAuthenticator extends Thread
 				return "Неизвестный тип авторизации: " + splitted[0];
 		}
 	}
-
+	
 	public String decode(String todec, String key)
 	{
 		String unxored = xorencode(inttostr(todec), key);
 		if (unxored.replaceAll("[-0-9]", "").length() != 0) return null;
 		return unxored;
 	}
-
+	
 	@Override
 	public void run()
 	{
@@ -61,7 +61,7 @@ public class LauncherAuthenticator extends Thread
 			LauncherPanel.instance.applyElements(LauncherPanel.loginElements);
 		}
 	}
-
+	
 	public String xorencode(String text, String key)
 	{
 		String res = "";
@@ -74,7 +74,7 @@ public class LauncherAuthenticator extends Thread
 		}
 		return res;
 	}
-
+	
 	public static String inttostr(String text)
 	{
 		String res = "";

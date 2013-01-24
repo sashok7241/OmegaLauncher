@@ -16,7 +16,7 @@ public final class LauncherTextfield extends JTextField implements LauncherConst
 	public static final long serialVersionUID = 1L;
 	public String name;
 	public boolean focused = false;
-
+	
 	public LauncherTextfield(String param, int x, int y, String def, boolean notlimit)
 	{
 		super();
@@ -34,33 +34,33 @@ public final class LauncherTextfield extends JTextField implements LauncherConst
 		addFocusListener(this);
 		name = param;
 	}
-
+	
 	@Override
 	public void changedUpdate(DocumentEvent e)
 	{
 		LauncherConfig.set(name, getText());
 	}
-
+	
 	@Override
 	public void focusGained(FocusEvent e)
 	{
 		focused = true;
 		repaint();
 	}
-
+	
 	@Override
 	public void focusLost(FocusEvent e)
 	{
 		focused = false;
 		repaint();
 	}
-
+	
 	@Override
 	public void insertUpdate(DocumentEvent e)
 	{
 		LauncherConfig.set(name, getText());
 	}
-
+	
 	@Override
 	public void paintComponent(Graphics maing)
 	{
@@ -70,19 +70,19 @@ public final class LauncherTextfield extends JTextField implements LauncherConst
 		g.dispose();
 		super.paintComponent(maing);
 	}
-
+	
 	@Override
 	public void removeUpdate(DocumentEvent e)
 	{
 		LauncherConfig.set(name, getText());
 	}
-
+	
 	public LauncherTextfield resetC()
 	{
 		setForeground(Color.WHITE);
 		return this;
 	}
-
+	
 	public LauncherTextfield setW(int i)
 	{
 		setSize(i, getHeight());

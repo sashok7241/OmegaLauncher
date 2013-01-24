@@ -94,7 +94,7 @@ public final class LauncherPanel extends JPanel
 		addserverElements.add(addserver_pass_title);
 		addserverElements.add(addserver_pass);
 	}
-
+	
 	public LauncherPanel()
 	{
 		instance = this;
@@ -102,7 +102,7 @@ public final class LauncherPanel extends JPanel
 		setPreferredSize(new Dimension(850, 515));
 		applyElements(loginElements);
 	}
-
+	
 	public void applyElements(ArrayList<JComponent> components)
 	{
 		instance.removeAll();
@@ -111,7 +111,7 @@ public final class LauncherPanel extends JPanel
 		addserver.setEnabled(serverPanel.getComponents().length < 6);
 		instance.repaint();
 	}
-
+	
 	@Override
 	public void paintComponent(Graphics g)
 	{

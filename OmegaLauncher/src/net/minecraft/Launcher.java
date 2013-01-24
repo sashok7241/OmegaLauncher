@@ -18,24 +18,24 @@ public final class Launcher extends Applet implements AppletStub
 	public Map<String, String> customParameters = new HashMap<String, String>();
 	public URL[] urls;
 	public String bin;
-
+	
 	public Launcher(String _bin, URL[] _urls)
 	{
 		bin = _bin;
 		urls = _urls;
 	}
-
+	
 	@Override
 	public void appletResize(int w, int h)
 	{
 	}
-
+	
 	@Override
 	public void destroy()
 	{
 		if (mcApplet != null) mcApplet.destroy();
 	}
-
+	
 	@Override
 	public URL getDocumentBase()
 	{
@@ -47,7 +47,7 @@ public final class Launcher extends Applet implements AppletStub
 			return null;
 		}
 	}
-
+	
 	@Override
 	public String getParameter(String name)
 	{
@@ -62,7 +62,7 @@ public final class Launcher extends Applet implements AppletStub
 		}
 		return null;
 	}
-
+	
 	@Override
 	public void init()
 	{
@@ -86,13 +86,13 @@ public final class Launcher extends Applet implements AppletStub
 			LauncherUtils.throwException(e);
 		}
 	}
-
+	
 	@Override
 	public boolean isActive()
 	{
 		return super.isActive();
 	}
-
+	
 	public void replace(Applet applet)
 	{
 		mcApplet = applet;
@@ -104,13 +104,13 @@ public final class Launcher extends Applet implements AppletStub
 		applet.start();
 		validate();
 	}
-
+	
 	@Override
 	public void start()
 	{
 		if (mcApplet != null) mcApplet.start();
 	}
-
+	
 	@Override
 	public void stop()
 	{

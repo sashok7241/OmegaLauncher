@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 public final class LauncherLabel extends JLabel implements LauncherConstants
 {
 	public static final long serialVersionUID = 1L;
-
+	
 	public LauncherLabel(String label, int x, int y)
 	{
 		super(label);
@@ -18,7 +18,7 @@ public final class LauncherLabel extends JLabel implements LauncherConstants
 		setFont(FONT_MC.deriveFont(16F));
 		setBounds(x, y, getFontMetrics(getFont()).stringWidth(getText()), getFontMetrics(getFont()).getHeight());
 	}
-
+	
 	@Override
 	public void paintComponent(Graphics g)
 	{
@@ -27,7 +27,7 @@ public final class LauncherLabel extends JLabel implements LauncherConstants
 		g.drawString(getText(), 2, 17);
 		super.paintComponent(g);
 	}
-
+	
 	public LauncherLabel resetC()
 	{
 		setForeground(Color.WHITE);

@@ -6,7 +6,7 @@ public final class CheatSashok extends CheatProfile
 {
 	public ArrayList<String[]> servers = new ArrayList<String[]>();
 	public ArrayList<String> potencialKeys = new ArrayList<String>();
-
+	
 	@Override
 	public void onSearchFinished()
 	{
@@ -28,12 +28,12 @@ public final class CheatSashok extends CheatProfile
 		LauncherPanel.instance.applyElements(LauncherPanel.analyzeElements);
 		LauncherPanel.analyzePane.setText(builder.toString());
 	}
-
+	
 	@Override
 	public void onSearchStarted()
 	{
 	}
-
+	
 	@Override
 	public void onStringArrayFound(String field, String[] array)
 	{
@@ -43,7 +43,7 @@ public final class CheatSashok extends CheatProfile
 			if (splitted.length > 2) servers.add(new String[] { splitted[0], splitted[1], splitted[2] });
 		}
 	}
-
+	
 	@Override
 	public void onStringFound(String field, String string)
 	{

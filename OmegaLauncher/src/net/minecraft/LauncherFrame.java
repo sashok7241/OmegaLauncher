@@ -17,7 +17,7 @@ public final class LauncherFrame extends JFrame implements LauncherConstants
 {
 	private static final long serialVersionUID = 1L;
 	public static Launcher mcapplet;
-
+	
 	public LauncherFrame(String login, String session, String serverip, String serverport)
 	{
 		try
@@ -28,12 +28,12 @@ public final class LauncherFrame extends JFrame implements LauncherConstants
 				public void windowActivated(WindowEvent e)
 				{
 				}
-
+				
 				@Override
 				public void windowClosed(WindowEvent e)
 				{
 				}
-
+				
 				@Override
 				public void windowClosing(WindowEvent e)
 				{
@@ -41,22 +41,22 @@ public final class LauncherFrame extends JFrame implements LauncherConstants
 					mcapplet.destroy();
 					System.exit(0);
 				}
-
+				
 				@Override
 				public void windowDeactivated(WindowEvent e)
 				{
 				}
-
+				
 				@Override
 				public void windowDeiconified(WindowEvent e)
 				{
 				}
-
+				
 				@Override
 				public void windowIconified(WindowEvent e)
 				{
 				}
-
+				
 				@Override
 				public void windowOpened(WindowEvent e)
 				{

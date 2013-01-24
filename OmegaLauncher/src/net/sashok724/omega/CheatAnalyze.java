@@ -7,7 +7,7 @@ public final class CheatAnalyze extends CheatProfile
 	public ArrayList<String> entries = new ArrayList<String>();
 	public String launcherType = "<Unknown>";
 	public String launcherTrivia = "<Unknown>";
-
+	
 	@Override
 	public void onSearchFinished()
 	{
@@ -24,19 +24,19 @@ public final class CheatAnalyze extends CheatProfile
 		LauncherPanel.instance.applyElements(LauncherPanel.analyzeElements);
 		LauncherPanel.analyzePane.setText(builder.toString());
 	}
-
+	
 	@Override
 	public void onSearchStarted()
 	{
 	}
-
+	
 	@Override
 	public void onStringArrayFound(String field, String[] array)
 	{
 		for (int index = 0; index < array.length; index++)
 			entries.add("variable: " + field + "[" + index + "], value: " + array[index]);
 	}
-
+	
 	@Override
 	public void onStringFound(String field, String string)
 	{

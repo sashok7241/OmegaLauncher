@@ -8,7 +8,7 @@ public final class LauncherDocument extends PlainDocument
 {
 	public static final long serialVersionUID = 1L;
 	public int maxlen = 16;
-
+	
 	@Override
 	public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException
 	{

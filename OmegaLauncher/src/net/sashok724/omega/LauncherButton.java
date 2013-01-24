@@ -13,7 +13,7 @@ public final class LauncherButton extends JButton implements LauncherConstants
 {
 	public static final long serialVersionUID = 1L;
 	public BufferedImage texture_def = LauncherConstants.IMG_BUTTON_DEF, texture_sel = LauncherConstants.IMG_BUTTON_SEL;
-
+	
 	public LauncherButton(String name, int x, int y)
 	{
 		super(name);
@@ -28,7 +28,7 @@ public final class LauncherButton extends JButton implements LauncherConstants
 		setForeground(Color.WHITE);
 		addActionListener(new LauncherActionListener());
 	}
-
+	
 	@Override
 	public void paintComponent(Graphics g1)
 	{
@@ -46,7 +46,7 @@ public final class LauncherButton extends JButton implements LauncherConstants
 		g.dispose();
 		super.paintComponent(g1);
 	}
-
+	
 	public LauncherButton setTextures(BufferedImage def, BufferedImage sel)
 	{
 		texture_def = def;
@@ -54,7 +54,7 @@ public final class LauncherButton extends JButton implements LauncherConstants
 		setSize(def.getWidth(), def.getHeight());
 		return this;
 	}
-
+	
 	public LauncherButton setW(int i)
 	{
 		setSize(i, getHeight());
