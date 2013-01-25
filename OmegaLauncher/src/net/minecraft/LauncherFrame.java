@@ -64,14 +64,14 @@ public final class LauncherFrame extends JFrame implements LauncherConstants
 			});
 			LauncherStarter.frame.setVisible(false);
 			System.out.println("Login: " + login + ", Session: " + session);
-			String bin = LauncherUtils.minecraftDir.getAbsolutePath() + File.separator + "bin" + File.separator;
+			File bin = new File(LauncherUtils.minecraftDir, "bin");
 			setForeground(Color.BLACK);
 			setBackground(Color.BLACK);
 			URL[] urls = new URL[4];
 			urls[0] = new File(bin, "minecraft.jar").toURI().toURL();
+			urls[3] = new File(bin, "lwjgl_util.jar").toURI().toURL();
 			urls[1] = new File(bin, "lwjgl.jar").toURI().toURL();
 			urls[2] = new File(bin, "jinput.jar").toURI().toURL();
-			urls[3] = new File(bin, "lwjgl_util.jar").toURI().toURL();
 			mcapplet = new Launcher(bin, urls);
 			if (login != null) mcapplet.customParameters.put("username", login);
 			if (session != null) mcapplet.customParameters.put("sessionid", session);

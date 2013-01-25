@@ -3,6 +3,7 @@ package net.minecraft;
 import java.applet.Applet;
 import java.applet.AppletStub;
 import java.awt.BorderLayout;
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -17,11 +18,11 @@ public final class Launcher extends Applet implements AppletStub
 	public Applet mcApplet = null;
 	public Map<String, String> customParameters = new HashMap<String, String>();
 	public URL[] urls;
-	public String bin;
+	public File bin;
 	
-	public Launcher(String _bin, URL[] _urls)
+	public Launcher(File bin2, URL[] _urls)
 	{
-		bin = _bin;
+		bin = bin2;
 		urls = _urls;
 	}
 	
