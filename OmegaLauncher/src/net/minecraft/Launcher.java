@@ -91,7 +91,7 @@ public final class Launcher extends Applet implements AppletStub
 	@Override
 	public boolean isActive()
 	{
-		return super.isActive();
+		return mcApplet != null;
 	}
 	
 	public void replace(Applet applet)
