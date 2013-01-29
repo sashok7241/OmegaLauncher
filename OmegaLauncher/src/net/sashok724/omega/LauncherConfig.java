@@ -15,18 +15,18 @@ public final class LauncherConfig implements LauncherConstants
 		try
 		{
 			load();
-		} catch (Exception e)
+		} catch(Exception e)
 		{
 		}
 	}
 	
 	public static int getInteger(String key, int def)
 	{
-		if (!table.containsKey(key)) return def;
+		if(!table.containsKey(key)) return def;
 		try
 		{
 			return Integer.parseInt(table.get(key));
-		} catch (Exception e)
+		} catch(Exception e)
 		{
 			return def;
 		}
@@ -34,21 +34,21 @@ public final class LauncherConfig implements LauncherConstants
 	
 	public static String getString(String key, String def)
 	{
-		if (key == null) return def;
-		if (!table.containsKey(key)) return def;
+		if(key == null) return def;
+		if(!table.containsKey(key)) return def;
 		return table.get(key);
 	}
 	
 	public static synchronized void load() throws Exception
 	{
-		if (!file.exists()) return;
+		if(!file.exists()) return;
 		table.clear();
 		BufferedReader reader = new BufferedReader(new FileReader(file));
 		String currentLine = null;
-		while ((currentLine = reader.readLine()) != null)
+		while((currentLine = reader.readLine()) != null)
 		{
 			String[] splitted = currentLine.split(": ");
-			if (splitted.length != 2) continue;
+			if(splitted.length != 2) continue;
 			table.put(splitted[0], splitted[1]);
 		}
 		reader.close();
@@ -57,19 +57,19 @@ public final class LauncherConfig implements LauncherConstants
 	public static synchronized void save() throws Exception
 	{
 		PrintWriter writer = new PrintWriter(file);
-		for (String key : table.keySet())
+		for(String key : table.keySet())
 			writer.println(key + ": " + table.get(key));
 		writer.close();
 	}
 	
 	public static void set(String key, Object value)
 	{
-		if (key == null) return;
+		if(key == null) return;
 		table.put(key, String.valueOf(value));
 		try
 		{
 			save();
-		} catch (Exception e)
+		} catch(Exception e)
 		{
 		}
 	}

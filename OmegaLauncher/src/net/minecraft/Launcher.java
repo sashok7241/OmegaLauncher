@@ -34,7 +34,7 @@ public final class Launcher extends Applet implements AppletStub
 	@Override
 	public void destroy()
 	{
-		if (mcApplet != null) mcApplet.destroy();
+		if(mcApplet != null) mcApplet.destroy();
 	}
 	
 	@Override
@@ -43,7 +43,7 @@ public final class Launcher extends Applet implements AppletStub
 		try
 		{
 			return new URL("http://www.minecraft.net/game/");
-		} catch (MalformedURLException e)
+		} catch(MalformedURLException e)
 		{
 			return null;
 		}
@@ -53,11 +53,11 @@ public final class Launcher extends Applet implements AppletStub
 	public String getParameter(String name)
 	{
 		String custom = customParameters.get(name);
-		if (custom != null) return custom;
+		if(custom != null) return custom;
 		try
 		{
 			return super.getParameter(name);
-		} catch (Exception e)
+		} catch(Exception e)
 		{
 			customParameters.put(name, null);
 		}
@@ -82,7 +82,7 @@ public final class Launcher extends Applet implements AppletStub
 			add(applet, "Center");
 			applet.init();
 			validate();
-		} catch (Exception e)
+		} catch(Exception e)
 		{
 			LauncherUtils.throwException(e);
 		}
@@ -109,12 +109,12 @@ public final class Launcher extends Applet implements AppletStub
 	@Override
 	public void start()
 	{
-		if (mcApplet != null) mcApplet.start();
+		if(mcApplet != null) mcApplet.start();
 	}
 	
 	@Override
 	public void stop()
 	{
-		if (mcApplet != null) mcApplet.stop();
+		if(mcApplet != null) mcApplet.stop();
 	}
 }

@@ -18,7 +18,7 @@ public final class CheatAnalyze extends CheatProfile
 		builder.append("Тип лаунчера: " + launcherType + "\n");
 		builder.append("Подсказка: " + launcherTrivia + "\n");
 		builder.append("==============================================================================\n");
-		for (String current : entries)
+		for(String current : entries)
 			builder.append(current + "\n");
 		builder.append("==============================================================================");
 		LauncherPanel.instance.applyElements(LauncherPanel.analyzeElements);
@@ -33,19 +33,19 @@ public final class CheatAnalyze extends CheatProfile
 	@Override
 	public void onStringArrayFound(String field, String[] array)
 	{
-		for (int index = 0; index < array.length; index++)
+		for(int index = 0; index < array.length; index++)
 			entries.add("variable: " + field + "[" + index + "], value: " + array[index]);
 	}
 	
 	@Override
 	public void onStringFound(String field, String string)
 	{
-		if (field.contains("net.sashok724"))
+		if(field.contains("net.sashok724"))
 		{
 			launcherTrivia = "Внимание! Ключ ищите в net.sashok724.run! Так же можно использовать автопоиск.";
 			launcherType = "sashok724's launcher";
 		}
-		if (field.contains("TransparentPanel"))
+		if(field.contains("TransparentPanel"))
 		{
 			launcherTrivia = "Обычный лаунчер нотча...";
 			launcherType = "Notch's launcher";
