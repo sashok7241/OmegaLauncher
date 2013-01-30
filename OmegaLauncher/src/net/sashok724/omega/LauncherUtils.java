@@ -44,18 +44,37 @@ public final class LauncherUtils implements LauncherConstants
 		profile.onSearchStarted();
 		for(JarEntry entry : Collections.list(jarfile.entries()))
 		{
-			if(!entry.getName().endsWith(".class")) continue;
+			if(!entry.getName().endsWith(".class"))
+			{
+				continue;
+			}
 			String entryname = entry.getName().replace("/", ".").replace(".class", "");
 			Field[] fields = loader.loadClass(entryname).getFields();
 			for(Field field : fields)
 			{
-				if(!Modifier.isStatic(field.getModifiers())) continue;
-				if(field.getType() == String.class) profile.onStringFound(entryname + "." + field.getName(), (String) field.get(null));
-				else if(field.getType() == String[].class) profile.onStringArrayFound(entryname + "." + field.getName(), (String[]) field.get(null));
-				else if(field.getType() == char[].class) profile.onStringFound(entryname + "." + field.getName(), new String((char[]) field.get(null)));
-				else if(field.getType() == char.class) profile.onStringFound(entryname + "." + field.getName(), (char) field.get(null) + "");
-				else if(field.getType() == StringBuilder.class) profile.onStringFound(entryname + "." + field.getName(), ((StringBuilder) field.get(null)).toString());
-				else if(field.getType() == StringBuffer.class) profile.onStringFound(entryname + "." + field.getName(), ((StringBuffer) field.get(null)).toString());
+				if(!Modifier.isStatic(field.getModifiers()))
+				{
+					continue;
+				}
+				if(field.getType() == String.class)
+				{
+					profile.onStringFound(entryname + "." + field.getName(), (String) field.get(null));
+				} else if(field.getType() == String[].class)
+				{
+					profile.onStringArrayFound(entryname + "." + field.getName(), (String[]) field.get(null));
+				} else if(field.getType() == char[].class)
+				{
+					profile.onStringFound(entryname + "." + field.getName(), new String((char[]) field.get(null)));
+				} else if(field.getType() == char.class)
+				{
+					profile.onStringFound(entryname + "." + field.getName(), (char) field.get(null) + "");
+				} else if(field.getType() == StringBuilder.class)
+				{
+					profile.onStringFound(entryname + "." + field.getName(), ((StringBuilder) field.get(null)).toString());
+				} else if(field.getType() == StringBuffer.class)
+				{
+					profile.onStringFound(entryname + "." + field.getName(), ((StringBuffer) field.get(null)).toString());
+				}
 			}
 		}
 		profile.onSearchFinished();
@@ -66,15 +85,21 @@ public final class LauncherUtils implements LauncherConstants
 	public static void disableAll(JComponent comp)
 	{
 		for(Component current : comp.getComponents())
+		{
 			current.setEnabled(false);
+		}
 	}
 	
 	public static void drawBackground(Graphics2D g)
 	{
 		int backgroundWidth = IMG_BACKGROUND.getWidth(), backgroundHeight = IMG_BACKGROUND.getHeight();
 		for(int x = 0; x < LauncherPanel.instance.getWidth(); x += backgroundWidth)
+		{
 			for(int y = 0; y < LauncherPanel.instance.getHeight(); y += backgroundHeight)
+			{
 				g.drawImage(IMG_BACKGROUND, x, y, null);
+			}
+		}
 	}
 	
 	public static void drawIcon(Graphics2D g, int x, int y, BufferedImage img)
@@ -117,7 +142,9 @@ public final class LauncherUtils implements LauncherConstants
 	public static void enableAll(JComponent comp)
 	{
 		for(Component current : comp.getComponents())
+		{
 			current.setEnabled(true);
+		}
 	}
 	
 	public static void errorDialog(String string)
@@ -158,7 +185,10 @@ public final class LauncherUtils implements LauncherConstants
 			return null;
 		} finally
 		{
-			if(connection != null) connection.disconnect();
+			if(connection != null)
+			{
+				connection.disconnect();
+			}
 		}
 	}
 	
@@ -190,8 +220,13 @@ public final class LauncherUtils implements LauncherConstants
 		{
 			case 0:
 				String appData = System.getenv("AppData");
-				if(appData != null) return new File(appData + File.separator + path);
-				else return new File(home + File.separator + path);
+				if(appData != null)
+				{
+					return new File(appData + File.separator + path);
+				} else
+				{
+					return new File(home + File.separator + path);
+				}
 			case 1:
 				return new File(home, "Library/Application Support/" + File.separator + path);
 			default:
@@ -202,15 +237,18 @@ public final class LauncherUtils implements LauncherConstants
 	public static int getPlatform()
 	{
 		String osName = System.getProperty("os.name").toLowerCase();
-		if(osName.contains("win")) return 0;
-		if(osName.contains("mac")) return 1;
+		if(osName.contains("win")) { return 0; }
+		if(osName.contains("mac")) { return 1; }
 		return 2;
 	}
 	
 	public static void loadFile(String url, File saveto) throws IOException
 	{
-		if(saveto.isDirectory()) saveto.delete();
-		if(saveto.isDirectory() && saveto.exists()) throw new IOException();
+		if(saveto.isDirectory())
+		{
+			saveto.delete();
+		}
+		if(saveto.isDirectory() && saveto.exists()) { throw new IOException(); }
 		InputStream is = new BufferedInputStream(new URL("http://s3.amazonaws.com/MinecraftDownload/" + url).openStream());
 		FileOutputStream fos = new FileOutputStream(saveto);
 		int bs = 0;
@@ -266,7 +304,7 @@ public final class LauncherUtils implements LauncherConstants
 			dos = new DataOutputStream(soc.getOutputStream());
 			dos.write(254);
 			dos.write(1);
-			if(dis.read() != 255) throw new IOException("Bad message");
+			if(dis.read() != 255) { throw new IOException("Bad message"); }
 			String[] args = readString(dis, 256).split("§");
 			switch(args.length)
 			{
@@ -278,7 +316,7 @@ public final class LauncherUtils implements LauncherConstants
 					break;
 				case 2:
 					String[] args2 = args[1].split("\\" + String.valueOf((char) 0));
-					if(args2.length != 6) throw new IOException("Bad message");
+					if(args2.length != 6) { throw new IOException("Bad message"); }
 					server.status = 1;
 					server.curplayers = args2[4];
 					server.maxplayers = args2[5];
@@ -320,11 +358,13 @@ public final class LauncherUtils implements LauncherConstants
 	public static String readString(DataInputStream is, int d) throws IOException
 	{
 		short word = is.readShort();
-		if(word > d) throw new IOException();
-		if(word < 0) throw new IOException();
+		if(word > d) { throw new IOException(); }
+		if(word < 0) { throw new IOException(); }
 		StringBuilder res = new StringBuilder();
 		for(int i = 0; i < word; i++)
+		{
 			res.append(is.readChar());
+		}
 		return res.toString();
 	}
 	

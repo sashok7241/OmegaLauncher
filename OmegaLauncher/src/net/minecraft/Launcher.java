@@ -34,7 +34,10 @@ public final class Launcher extends Applet implements AppletStub
 	@Override
 	public void destroy()
 	{
-		if(mcApplet != null) mcApplet.destroy();
+		if(mcApplet != null)
+		{
+			mcApplet.destroy();
+		}
 	}
 	
 	@Override
@@ -53,7 +56,7 @@ public final class Launcher extends Applet implements AppletStub
 	public String getParameter(String name)
 	{
 		String custom = customParameters.get(name);
-		if(custom != null) return custom;
+		if(custom != null) { return custom; }
 		try
 		{
 			return super.getParameter(name);
@@ -109,12 +112,18 @@ public final class Launcher extends Applet implements AppletStub
 	@Override
 	public void start()
 	{
-		if(mcApplet != null) mcApplet.start();
+		if(mcApplet != null)
+		{
+			mcApplet.start();
+		}
 	}
 	
 	@Override
 	public void stop()
 	{
-		if(mcApplet != null) mcApplet.stop();
+		if(mcApplet != null)
+		{
+			mcApplet.stop();
+		}
 	}
 }

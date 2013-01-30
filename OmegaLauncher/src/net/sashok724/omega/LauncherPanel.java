@@ -107,7 +107,9 @@ public final class LauncherPanel extends JPanel
 	{
 		instance.removeAll();
 		for(JComponent current : components)
+		{
 			instance.add(current);
+		}
 		addserver.setEnabled(serverPanel.getComponents().length < 6);
 		instance.repaint();
 	}

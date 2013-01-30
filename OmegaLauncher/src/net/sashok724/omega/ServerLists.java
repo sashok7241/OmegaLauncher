@@ -19,7 +19,10 @@ public class ServerLists extends JPanel implements LauncherConstants
 		for(String current : LauncherConfig.getString("serverlists", "").split(exdel))
 		{
 			String[] splitted = current.split(delim);
-			if(splitted.length != 6) continue;
+			if(splitted.length != 6)
+			{
+				continue;
+			}
 			addServer(new ServerEntry(splitted[0], splitted[1], splitted[3], splitted[2], splitted[4], splitted[5]), false);
 		}
 	}
@@ -41,7 +44,9 @@ public class ServerLists extends JPanel implements LauncherConstants
 	public void rebuildSizes(boolean save)
 	{
 		for(int index = 0; index < getComponents().length; index++)
+		{
 			((ServerEntry) getComponents()[index]).setBounds(5, 5 + index * 85, getWidth() - 10, 80);
+		}
 		StringBuilder builder = new StringBuilder();
 		if(save && getComponents().length > 0)
 		{

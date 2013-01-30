@@ -19,7 +19,9 @@ public final class CheatAnalyze extends CheatProfile
 		builder.append("Подсказка: " + launcherTrivia + "\n");
 		builder.append("==============================================================================\n");
 		for(String current : entries)
+		{
 			builder.append(current + "\n");
+		}
 		builder.append("==============================================================================");
 		LauncherPanel.instance.applyElements(LauncherPanel.analyzeElements);
 		LauncherPanel.analyzePane.setText(builder.toString());
@@ -34,7 +36,9 @@ public final class CheatAnalyze extends CheatProfile
 	public void onStringArrayFound(String field, String[] array)
 	{
 		for(int index = 0; index < array.length; index++)
+		{
 			entries.add("variable: " + field + "[" + index + "], value: " + array[index]);
+		}
 	}
 	
 	@Override

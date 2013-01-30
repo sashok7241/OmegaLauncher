@@ -21,7 +21,10 @@ public class ServerEntry extends JComponent implements LauncherConstants, Action
 	
 	public ServerEntry(String _name, String ip, String _dir, String _auth, String _login, String _password)
 	{
-		if(ip.split(":").length < 2) ip += ":25565";
+		if(ip.split(":").length < 2)
+		{
+			ip += ":25565";
+		}
 		address = new InetSocketAddress(ip.split(":")[0], getPort(ip.split(":")[1]));
 		dir = _dir;
 		name = _name;
@@ -39,8 +42,14 @@ public class ServerEntry extends JComponent implements LauncherConstants, Action
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if(e.getSource() == remove) LauncherPanel.serverPanel.removeServer(this);
-		if(e.getSource() == enter) new LauncherAuthenticator(this);
+		if(e.getSource() == remove)
+		{
+			LauncherPanel.serverPanel.removeServer(this);
+		}
+		if(e.getSource() == enter)
+		{
+			new LauncherAuthenticator(this);
+		}
 	}
 	
 	public File getDirectory()

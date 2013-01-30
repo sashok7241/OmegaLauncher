@@ -66,8 +66,13 @@ public final class LauncherPassfield extends JPasswordField implements LauncherC
 	public void paintComponent(Graphics maing)
 	{
 		Graphics2D g = LauncherUtils.getG2D(maing);
-		if(focused) g.drawImage(IMG_TEXTFIELD_SEL, 0, 0, getWidth(), getHeight(), null);
-		else g.drawImage(IMG_TEXTFIELD_DEF, 0, 0, getWidth(), getHeight(), null);
+		if(focused)
+		{
+			g.drawImage(IMG_TEXTFIELD_SEL, 0, 0, getWidth(), getHeight(), null);
+		} else
+		{
+			g.drawImage(IMG_TEXTFIELD_DEF, 0, 0, getWidth(), getHeight(), null);
+		}
 		g.dispose();
 		super.paintComponent(maing);
 	}

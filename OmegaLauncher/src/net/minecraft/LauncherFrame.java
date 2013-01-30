@@ -73,10 +73,22 @@ public final class LauncherFrame extends JFrame implements LauncherConstants
 			urls[1] = new File(bin, "lwjgl.jar").toURI().toURL();
 			urls[2] = new File(bin, "jinput.jar").toURI().toURL();
 			mcapplet = new Launcher(bin, urls);
-			if(login != null) mcapplet.customParameters.put("username", login);
-			if(session != null) mcapplet.customParameters.put("sessionid", session);
-			if(serverip != null) mcapplet.customParameters.put("server", serverip);
-			if(serverport != null) mcapplet.customParameters.put("port", serverport);
+			if(login != null)
+			{
+				mcapplet.customParameters.put("username", login);
+			}
+			if(session != null)
+			{
+				mcapplet.customParameters.put("sessionid", session);
+			}
+			if(serverip != null)
+			{
+				mcapplet.customParameters.put("server", serverip);
+			}
+			if(serverport != null)
+			{
+				mcapplet.customParameters.put("port", serverport);
+			}
 			mcapplet.customParameters.put("stand-alone", "true");
 			mcapplet.setForeground(Color.BLACK);
 			mcapplet.setBackground(Color.BLACK);
