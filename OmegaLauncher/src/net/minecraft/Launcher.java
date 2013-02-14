@@ -72,8 +72,8 @@ public final class Launcher extends Applet implements AppletStub
 	{
 		@SuppressWarnings("resource")
 		URLClassLoader cl = new URLClassLoader(urls);
-		System.setProperty("org.lwjgl.librarypath", bin + File.separator + "natives");
-		System.setProperty("net.java.games.input.librarypath", bin + File.separator + "natives");
+		System.setProperty("org.lwjgl.librarypath", bin.getAbsolutePath() + File.separator + "natives");
+		System.setProperty("net.java.games.input.librarypath", bin.getAbsolutePath() + File.separator + "natives");
 		try
 		{
 			Class<?> Mine = cl.loadClass("net.minecraft.client.MinecraftApplet");
