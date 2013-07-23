@@ -39,8 +39,7 @@ public class ServerEntry extends JComponent implements LauncherConstants, Action
 		new ServerPoller(this);
 	}
 	
-	@Override
-	public void actionPerformed(ActionEvent e)
+	@Override public void actionPerformed(ActionEvent e)
 	{
 		if(e.getSource() == remove)
 		{
@@ -57,8 +56,7 @@ public class ServerEntry extends JComponent implements LauncherConstants, Action
 		return new File(LauncherUtils.minecraftDir, dir);
 	}
 	
-	@Override
-	public void paintComponent(Graphics g1)
+	@Override public void paintComponent(Graphics g1)
 	{
 		Graphics2D g = LauncherUtils.getG2D(g1);
 		LauncherUtils.drawTransparentRect(g, 0, 0, getWidth(), getHeight());

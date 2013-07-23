@@ -4,25 +4,17 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.PrintWriter;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 
 public final class LauncherConfig implements LauncherConstants
 {
-	public static final TreeMap<String, String> table = new TreeMap<String, String>(String.CASE_INSENSITIVE_ORDER);
+	public static final TreeMap<String, String> table = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
 	public static final File file = new File("omega.ini");
-	static
-	{
-		try
-		{
-			load();
-		} catch(Exception e)
-		{
-		}
-	}
 	
 	public static int getInteger(String key, int def)
 	{
-		if(!table.containsKey(key)) { return def; }
+		if(!table.containsKey(key)) return def;
 		try
 		{
 			return Integer.parseInt(table.get(key));
@@ -34,46 +26,57 @@ public final class LauncherConfig implements LauncherConstants
 	
 	public static String getString(String key, String def)
 	{
-		if(key == null) { return def; }
-		if(!table.containsKey(key)) { return def; }
+		if(key == null) return def;
+		if(!table.containsKey(key)) return def;
 		return table.get(key);
 	}
 	
 	public static synchronized void load() throws Exception
 	{
-		if(!file.exists()) { return; }
+		if(!file.exists()) return;
 		table.clear();
-		BufferedReader reader = new BufferedReader(new FileReader(file));
-		String currentLine = null;
-		while((currentLine = reader.readLine()) != null)
+		try(BufferedReader reader = new BufferedReader(new FileReader(file)))
 		{
-			String[] splitted = currentLine.split(": ");
-			if(splitted.length != 2)
+			for(String line = reader.readLine(); line != null; line = reader.readLine())
 			{
-				continue;
+				String[] splitted = line.split(": ");
+				if(splitted.length != 2)
+				{
+					continue;
+				}
+				table.put(splitted[0], splitted[1]);
 			}
-			table.put(splitted[0], splitted[1]);
 		}
-		reader.close();
 	}
 	
 	public static synchronized void save() throws Exception
 	{
-		PrintWriter writer = new PrintWriter(file);
-		for(String key : table.keySet())
+		try(PrintWriter writer = new PrintWriter(file))
 		{
-			writer.println(key + ": " + table.get(key));
+			for(Entry<String, String> entry : table.entrySet())
+			{
+				writer.println(entry.getKey() + ": " + entry.getValue());
+			}
 		}
-		writer.close();
 	}
 	
 	public static void set(String key, Object value)
 	{
-		if(key == null) { return; }
+		if(key == null) return;
 		table.put(key, String.valueOf(value));
 		try
 		{
 			save();
+		} catch(Exception e)
+		{
+		}
+	}
+	
+	static
+	{
+		try
+		{
+			load();
 		} catch(Exception e)
 		{
 		}

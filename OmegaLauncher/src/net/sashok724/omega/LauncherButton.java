@@ -29,8 +29,7 @@ public final class LauncherButton extends JButton implements LauncherConstants
 		addActionListener(new LauncherActionListener());
 	}
 	
-	@Override
-	public void paintComponent(Graphics g1)
+	@Override public void paintComponent(Graphics g1)
 	{
 		ButtonModel buttonModel = getModel();
 		Graphics2D g = LauncherUtils.getG2D(g1);

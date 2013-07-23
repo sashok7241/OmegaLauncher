@@ -19,8 +19,7 @@ public final class LauncherLabel extends JLabel implements LauncherConstants
 		setBounds(x, y, getFontMetrics(getFont()).stringWidth(getText()), getFontMetrics(getFont()).getHeight());
 	}
 	
-	@Override
-	public void paintComponent(Graphics g)
+	@Override public void paintComponent(Graphics g)
 	{
 		g.setFont(getFont());
 		g.setColor(SHADOW);

@@ -15,8 +15,8 @@ import net.sashok724.omega.LauncherUtils;
 public final class Launcher extends Applet implements AppletStub
 {
 	public static final long serialVersionUID = 1L;
+	public Map<String, String> customParameters = new HashMap<>();
 	public Applet mcApplet = null;
-	public Map<String, String> customParameters = new HashMap<String, String>();
 	public URL[] urls;
 	public File bin;
 	
@@ -26,13 +26,11 @@ public final class Launcher extends Applet implements AppletStub
 		urls = _urls;
 	}
 	
-	@Override
-	public void appletResize(int w, int h)
+	@Override public void appletResize(int w, int h)
 	{
 	}
 	
-	@Override
-	public void destroy()
+	@Override public void destroy()
 	{
 		if(mcApplet != null)
 		{
@@ -40,8 +38,7 @@ public final class Launcher extends Applet implements AppletStub
 		}
 	}
 	
-	@Override
-	public URL getDocumentBase()
+	@Override public URL getDocumentBase()
 	{
 		try
 		{
@@ -52,11 +49,10 @@ public final class Launcher extends Applet implements AppletStub
 		}
 	}
 	
-	@Override
-	public String getParameter(String name)
+	@Override public String getParameter(String name)
 	{
 		String custom = customParameters.get(name);
-		if(custom != null) { return custom; }
+		if(custom != null) return custom;
 		try
 		{
 			return super.getParameter(name);
@@ -67,11 +63,9 @@ public final class Launcher extends Applet implements AppletStub
 		return null;
 	}
 	
-	@Override
-	public void init()
+	@Override public void init()
 	{
-		@SuppressWarnings("resource")
-		URLClassLoader cl = new URLClassLoader(urls);
+		@SuppressWarnings("resource") URLClassLoader cl = new URLClassLoader(urls);
 		System.setProperty("org.lwjgl.librarypath", bin.getAbsolutePath() + File.separator + "natives");
 		System.setProperty("net.java.games.input.librarypath", bin.getAbsolutePath() + File.separator + "natives");
 		try
@@ -91,8 +85,7 @@ public final class Launcher extends Applet implements AppletStub
 		}
 	}
 	
-	@Override
-	public boolean isActive()
+	@Override public boolean isActive()
 	{
 		return mcApplet != null;
 	}
@@ -109,8 +102,7 @@ public final class Launcher extends Applet implements AppletStub
 		validate();
 	}
 	
-	@Override
-	public void start()
+	@Override public void start()
 	{
 		if(mcApplet != null)
 		{
@@ -118,8 +110,7 @@ public final class Launcher extends Applet implements AppletStub
 		}
 	}
 	
-	@Override
-	public void stop()
+	@Override public void stop()
 	{
 		if(mcApplet != null)
 		{

@@ -10,8 +10,7 @@ public class ServerPoller extends Thread
 		start();
 	}
 	
-	@Override
-	public void run()
+	@Override public void run()
 	{
 		while(true)
 		{

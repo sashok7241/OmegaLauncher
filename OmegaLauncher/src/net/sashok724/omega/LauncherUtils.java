@@ -16,6 +16,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -39,47 +40,46 @@ public final class LauncherUtils implements LauncherConstants
 	
 	public static void crackLauncher(File file, CheatProfile profile) throws Exception
 	{
-		JarFile jarfile = new JarFile(file);
-		URLClassLoader loader = new URLClassLoader(new URL[] { file.toURI().toURL() });
-		profile.onSearchStarted();
-		for(JarEntry entry : Collections.list(jarfile.entries()))
+		try(JarFile jarfile = new JarFile(file); URLClassLoader loader = new URLClassLoader(new URL[] { file.toURI().toURL() }))
 		{
-			if(!entry.getName().endsWith(".class"))
+			profile.onSearchStarted();
+			for(JarEntry entry : Collections.list(jarfile.entries()))
 			{
-				continue;
-			}
-			String entryname = entry.getName().replace("/", ".").replace(".class", "");
-			Field[] fields = loader.loadClass(entryname).getFields();
-			for(Field field : fields)
-			{
-				if(!Modifier.isStatic(field.getModifiers()))
+				if(!entry.getName().endsWith(".class"))
 				{
 					continue;
 				}
-				if(field.getType() == String.class)
+				String entryname = entry.getName().replace("/", ".").replace(".class", "");
+				Field[] fields = loader.loadClass(entryname).getFields();
+				for(Field field : fields)
 				{
-					profile.onStringFound(entryname + "." + field.getName(), (String) field.get(null));
-				} else if(field.getType() == String[].class)
-				{
-					profile.onStringArrayFound(entryname + "." + field.getName(), (String[]) field.get(null));
-				} else if(field.getType() == char[].class)
-				{
-					profile.onStringFound(entryname + "." + field.getName(), new String((char[]) field.get(null)));
-				} else if(field.getType() == char.class)
-				{
-					profile.onStringFound(entryname + "." + field.getName(), (char) field.get(null) + "");
-				} else if(field.getType() == StringBuilder.class)
-				{
-					profile.onStringFound(entryname + "." + field.getName(), ((StringBuilder) field.get(null)).toString());
-				} else if(field.getType() == StringBuffer.class)
-				{
-					profile.onStringFound(entryname + "." + field.getName(), ((StringBuffer) field.get(null)).toString());
+					if(!Modifier.isStatic(field.getModifiers()))
+					{
+						continue;
+					}
+					if(field.getType() == String.class)
+					{
+						profile.onStringFound(entryname + "." + field.getName(), (String) field.get(null));
+					} else if(field.getType() == String[].class)
+					{
+						profile.onStringArrayFound(entryname + "." + field.getName(), (String[]) field.get(null));
+					} else if(field.getType() == char[].class)
+					{
+						profile.onStringFound(entryname + "." + field.getName(), new String((char[]) field.get(null)));
+					} else if(field.getType() == char.class)
+					{
+						profile.onStringFound(entryname + "." + field.getName(), (char) field.get(null) + "");
+					} else if(field.getType() == StringBuilder.class)
+					{
+						profile.onStringFound(entryname + "." + field.getName(), ((StringBuilder) field.get(null)).toString());
+					} else if(field.getType() == StringBuffer.class)
+					{
+						profile.onStringFound(entryname + "." + field.getName(), ((StringBuffer) field.get(null)).toString());
+					}
 				}
 			}
+			profile.onSearchFinished();
 		}
-		profile.onSearchFinished();
-		loader.close();
-		jarfile.close();
 	}
 	
 	public static void disableAll(JComponent comp)
@@ -166,20 +166,20 @@ public final class LauncherUtils implements LauncherConstants
 			connection.setDoInput(true);
 			connection.setDoOutput(true);
 			connection.connect();
-			DataOutputStream outstream = new DataOutputStream(connection.getOutputStream());
-			outstream.writeBytes(request);
-			outstream.flush();
-			outstream.close();
-			BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-			StringBuffer buffer = new StringBuffer();
-			String line;
-			while((line = reader.readLine()) != null)
+			try(OutputStream output = connection.getOutputStream())
 			{
-				buffer.append(line);
-				buffer.append('\r');
+				output.write(request.getBytes("UTF-8"));
 			}
-			reader.close();
-			return buffer.toString();
+			try(InputStream input = connection.getInputStream())
+			{
+				StringBuilder result = new StringBuilder();
+				BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+				for(String line = reader.readLine(); line != null; line = reader.readLine())
+				{
+					result.append(line).append('\n');
+				}
+				return result.toString();
+			}
 		} catch(Exception e)
 		{
 			return null;
@@ -220,13 +220,8 @@ public final class LauncherUtils implements LauncherConstants
 		{
 			case 0:
 				String appData = System.getenv("AppData");
-				if(appData != null)
-				{
-					return new File(appData + File.separator + path);
-				} else
-				{
-					return new File(home + File.separator + path);
-				}
+				if(appData != null) return new File(appData + File.separator + path);
+				return new File(home + File.separator + path);
 			case 1:
 				return new File(home, "Library/Application Support/" + File.separator + path);
 			default:
@@ -237,8 +232,8 @@ public final class LauncherUtils implements LauncherConstants
 	public static int getPlatform()
 	{
 		String osName = System.getProperty("os.name").toLowerCase();
-		if(osName.contains("win")) { return 0; }
-		if(osName.contains("mac")) { return 1; }
+		if(osName.contains("win")) return 0;
+		if(osName.contains("mac")) return 1;
 		return 2;
 	}
 	
@@ -248,19 +243,15 @@ public final class LauncherUtils implements LauncherConstants
 		{
 			saveto.delete();
 		}
-		if(saveto.isDirectory() && saveto.exists()) { throw new IOException(); }
-		InputStream is = new BufferedInputStream(new URL("http://s3.amazonaws.com/MinecraftDownload/" + url).openStream());
-		FileOutputStream fos = new FileOutputStream(saveto);
-		int bs = 0;
-		byte[] buffer = new byte[65535];
-		while((bs = is.read(buffer, 0, buffer.length)) != -1)
+		if(saveto.isDirectory() && saveto.exists()) throw new IOException();
+		try(InputStream input = new BufferedInputStream(new URL("http://s3.amazonaws.com/MinecraftDownload/" + url).openStream()); FileOutputStream output = new FileOutputStream(saveto))
 		{
-			LauncherPanel.currentByte += bs;
-			fos.write(buffer, 0, bs);
-			LauncherPanel.instance.repaint();
+			byte[] buffer = new byte[65535];
+			for(int length = input.read(buffer); length != -1; length = input.read(buffer))
+			{
+				output.write(buffer, 0, length);
+			}
 		}
-		is.close();
-		fos.close();
 		LauncherPanel.currentByte = 0;
 	}
 	
@@ -290,22 +281,16 @@ public final class LauncherUtils implements LauncherConstants
 	
 	public static synchronized void pollServer(ServerEntry server)
 	{
-		Socket soc = null;
-		DataInputStream dis = null;
-		DataOutputStream dos = null;
-		try
+		try(Socket socket = new Socket(); DataInputStream input = new DataInputStream(socket.getInputStream()); DataOutputStream output = new DataOutputStream(socket.getOutputStream()))
 		{
-			soc = new Socket();
-			soc.setSoTimeout(3000);
-			soc.setTcpNoDelay(true);
-			soc.setTrafficClass(18);
-			soc.connect(server.address, 3000);
-			dis = new DataInputStream(soc.getInputStream());
-			dos = new DataOutputStream(soc.getOutputStream());
-			dos.write(254);
-			dos.write(1);
-			if(dis.read() != 255) { throw new IOException("Bad message"); }
-			String[] args = readString(dis, 256).split("§");
+			socket.setSoTimeout(3000);
+			socket.setTcpNoDelay(true);
+			socket.setTrafficClass(18);
+			socket.connect(server.address, 3000);
+			output.write(254);
+			output.write(1);
+			if(input.read() != 255) throw new IOException("Bad message");
+			String[] args = readString(input, 256).split("§");
 			switch(args.length)
 			{
 				case 3:
@@ -316,7 +301,7 @@ public final class LauncherUtils implements LauncherConstants
 					break;
 				case 2:
 					String[] args2 = args[1].split("\\" + String.valueOf((char) 0));
-					if(args2.length != 6) { throw new IOException("Bad message"); }
+					if(args2.length != 6) throw new IOException("Bad message");
 					server.status = 1;
 					server.curplayers = args2[4];
 					server.maxplayers = args2[5];
@@ -331,26 +316,6 @@ public final class LauncherUtils implements LauncherConstants
 			server.curplayers = "0";
 			server.maxplayers = "0";
 			server.motd = "<Недоступен>";
-		} finally
-		{
-			try
-			{
-				dis.close();
-			} catch(Exception e)
-			{
-			}
-			try
-			{
-				dos.close();
-			} catch(Exception e)
-			{
-			}
-			try
-			{
-				soc.close();
-			} catch(Exception e)
-			{
-			}
 		}
 		server.repaint();
 	}
@@ -358,8 +323,8 @@ public final class LauncherUtils implements LauncherConstants
 	public static String readString(DataInputStream is, int d) throws IOException
 	{
 		short word = is.readShort();
-		if(word > d) { throw new IOException(); }
-		if(word < 0) { throw new IOException(); }
+		if(word > d) throw new IOException();
+		if(word < 0) throw new IOException();
 		StringBuilder res = new StringBuilder();
 		for(int i = 0; i < word; i++)
 		{
@@ -374,10 +339,12 @@ public final class LauncherUtils implements LauncherConstants
 		JOptionPane.showMessageDialog(LauncherStarter.frame, "Ошибка в работе лаунчера: " + e.toString(), "Ошибка (сохранено в файл)", JOptionPane.ERROR_MESSAGE);
 		try
 		{
-			PrintWriter writer = new PrintWriter("error-" + new Random().nextInt(1000) + ".txt", "UTF-8");
-			writer.println("Пожалуйста сообщите всю информацию разработчику лаунчера.");
-			e.printStackTrace(writer);
-			writer.close();
+			try(PrintWriter writer = new PrintWriter("error-" + new Random().nextInt(1000) + ".txt", "UTF-8"))
+			{
+				writer.println("Пожалуйста сообщите всю информацию разработчику лаунчера.");
+				e.printStackTrace(writer);
+				writer.close();
+			}
 		} catch(Exception e1)
 		{
 		}

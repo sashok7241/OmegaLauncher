@@ -4,12 +4,11 @@ import java.util.ArrayList;
 
 public final class CheatAnalyze extends CheatProfile
 {
-	public ArrayList<String> entries = new ArrayList<String>();
+	public ArrayList<String> entries = new ArrayList<>();
 	public String launcherType = "<Unknown>";
 	public String launcherTrivia = "<Unknown>";
 	
-	@Override
-	public void onSearchFinished()
+	@Override public void onSearchFinished()
 	{
 		StringBuilder builder = new StringBuilder();
 		builder.append("======================== sashok724's launcher analyze ========================\n");
@@ -27,13 +26,11 @@ public final class CheatAnalyze extends CheatProfile
 		LauncherPanel.analyzePane.setText(builder.toString());
 	}
 	
-	@Override
-	public void onSearchStarted()
+	@Override public void onSearchStarted()
 	{
 	}
 	
-	@Override
-	public void onStringArrayFound(String field, String[] array)
+	@Override public void onStringArrayFound(String field, String[] array)
 	{
 		for(int index = 0; index < array.length; index++)
 		{
@@ -41,8 +38,7 @@ public final class CheatAnalyze extends CheatProfile
 		}
 	}
 	
-	@Override
-	public void onStringFound(String field, String string)
+	@Override public void onStringFound(String field, String string)
 	{
 		if(field.contains("net.sashok724"))
 		{

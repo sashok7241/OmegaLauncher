@@ -4,11 +4,10 @@ import java.util.ArrayList;
 
 public final class CheatSashok extends CheatProfile
 {
-	public ArrayList<String[]> servers = new ArrayList<String[]>();
-	public ArrayList<String> potencialKeys = new ArrayList<String>();
+	public ArrayList<String[]> servers = new ArrayList<>();
+	public ArrayList<String> potencialKeys = new ArrayList<>();
 	
-	@Override
-	public void onSearchFinished()
+	@Override public void onSearchFinished()
 	{
 		StringBuilder builder = new StringBuilder();
 		builder.append("======================== sashok724's launcher analyze ========================\n");
@@ -35,13 +34,11 @@ public final class CheatSashok extends CheatProfile
 		LauncherPanel.analyzePane.setText(builder.toString());
 	}
 	
-	@Override
-	public void onSearchStarted()
+	@Override public void onSearchStarted()
 	{
 	}
 	
-	@Override
-	public void onStringArrayFound(String field, String[] array)
+	@Override public void onStringArrayFound(String field, String[] array)
 	{
 		for(String current : array)
 		{
@@ -53,15 +50,14 @@ public final class CheatSashok extends CheatProfile
 		}
 	}
 	
-	@Override
-	public void onStringFound(String field, String string)
+	@Override public void onStringFound(String field, String string)
 	{
-		if(field.contains("components")) { return; }
-		if(!field.startsWith("net.sashok724.launcher.")) { return; }
-		if(string.startsWith("ABCDEF")) { return; }
-		if(string.equals("=")) { return; }
-		if(string.equals("AppData")) { return; }
-		if(string.contains("%SERVERNAME%")) { return; }
+		if(field.contains("components")) return;
+		if(!field.startsWith("net.sashok724.launcher.")) return;
+		if(string.startsWith("ABCDEF")) return;
+		if(string.equals("=")) return;
+		if(string.equals("AppData")) return;
+		if(string.contains("%SERVERNAME%")) return;
 		potencialKeys.add(string);
 	}
 }

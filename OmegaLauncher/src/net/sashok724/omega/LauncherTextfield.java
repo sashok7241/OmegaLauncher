@@ -35,34 +35,29 @@ public final class LauncherTextfield extends JTextField implements LauncherConst
 		name = param;
 	}
 	
-	@Override
-	public void changedUpdate(DocumentEvent e)
+	@Override public void changedUpdate(DocumentEvent e)
 	{
 		LauncherConfig.set(name, getText());
 	}
 	
-	@Override
-	public void focusGained(FocusEvent e)
+	@Override public void focusGained(FocusEvent e)
 	{
 		focused = true;
 		repaint();
 	}
 	
-	@Override
-	public void focusLost(FocusEvent e)
+	@Override public void focusLost(FocusEvent e)
 	{
 		focused = false;
 		repaint();
 	}
 	
-	@Override
-	public void insertUpdate(DocumentEvent e)
+	@Override public void insertUpdate(DocumentEvent e)
 	{
 		LauncherConfig.set(name, getText());
 	}
 	
-	@Override
-	public void paintComponent(Graphics maing)
+	@Override public void paintComponent(Graphics maing)
 	{
 		Graphics2D g = LauncherUtils.getG2D(maing);
 		if(focused)
@@ -76,8 +71,7 @@ public final class LauncherTextfield extends JTextField implements LauncherConst
 		super.paintComponent(maing);
 	}
 	
-	@Override
-	public void removeUpdate(DocumentEvent e)
+	@Override public void removeUpdate(DocumentEvent e)
 	{
 		LauncherConfig.set(name, getText());
 	}

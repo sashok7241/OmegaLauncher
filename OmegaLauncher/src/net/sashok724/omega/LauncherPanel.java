@@ -20,10 +20,10 @@ public final class LauncherPanel extends JPanel
 	public static int currentByte = 0, currentSize = 0;
 	public static String currentStat = "<Unknown>", currentFile = "<Unknown>", username, session;
 	public static ArrayList<String> requiredFiles;
-	public static ArrayList<JComponent> loginElements = new ArrayList<JComponent>();
-	public static ArrayList<JComponent> offlineElements = new ArrayList<JComponent>();
-	public static ArrayList<JComponent> analyzeElements = new ArrayList<JComponent>();
-	public static ArrayList<JComponent> addserverElements = new ArrayList<JComponent>();
+	public static ArrayList<JComponent> loginElements = new ArrayList<>();
+	public static ArrayList<JComponent> offlineElements = new ArrayList<>();
+	public static ArrayList<JComponent> analyzeElements = new ArrayList<>();
+	public static ArrayList<JComponent> addserverElements = new ArrayList<>();
 	// ========================= LOGIN ELEMENTS ===========================================
 	public static ServerLists serverPanel = new ServerLists(new Rectangle(5, 5, 600, 515));
 	public static LauncherButton addserver = new LauncherButton("Добавить сервер", 610, 5).setW(245);
@@ -58,6 +58,32 @@ public final class LauncherPanel extends JPanel
 	public static LauncherTextfield offline_session = new LauncherTextfield(null, 250, 250, "123456", false);
 	public static LauncherLabel offline_login_title = new LauncherLabel("Логин:", 255, 145);
 	public static LauncherLabel offline_session_title = new LauncherLabel("Сессия:", 255, 225);
+	
+	public LauncherPanel()
+	{
+		instance = this;
+		setLayout(null);
+		setPreferredSize(new Dimension(850, 515));
+		applyElements(loginElements);
+	}
+	
+	public void applyElements(ArrayList<JComponent> components)
+	{
+		instance.removeAll();
+		for(JComponent current : components)
+		{
+			instance.add(current);
+		}
+		addserver.setEnabled(serverPanel.getComponents().length < 6);
+		instance.repaint();
+	}
+	
+	@Override public void paintComponent(Graphics g)
+	{
+		Graphics2D g2d = LauncherUtils.getG2D(g);
+		LauncherUtils.drawBackground(g2d);
+	}
+	
 	static
 	{
 		analyzePane.setFont(new Font("Courier New", 0, 12));
@@ -93,31 +119,5 @@ public final class LauncherPanel extends JPanel
 		addserverElements.add(addserver_logn);
 		addserverElements.add(addserver_pass_title);
 		addserverElements.add(addserver_pass);
-	}
-	
-	public LauncherPanel()
-	{
-		instance = this;
-		setLayout(null);
-		setPreferredSize(new Dimension(850, 515));
-		applyElements(loginElements);
-	}
-	
-	public void applyElements(ArrayList<JComponent> components)
-	{
-		instance.removeAll();
-		for(JComponent current : components)
-		{
-			instance.add(current);
-		}
-		addserver.setEnabled(serverPanel.getComponents().length < 6);
-		instance.repaint();
-	}
-	
-	@Override
-	public void paintComponent(Graphics g)
-	{
-		Graphics2D g2d = LauncherUtils.getG2D(g);
-		LauncherUtils.drawBackground(g2d);
 	}
 }

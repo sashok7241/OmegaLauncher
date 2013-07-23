@@ -33,8 +33,7 @@ public class ServerLists extends JPanel implements LauncherConstants
 		rebuildSizes(save);
 	}
 	
-	@Override
-	public void paintComponent(Graphics g)
+	@Override public void paintComponent(Graphics g)
 	{
 		Graphics2D g2d = LauncherUtils.getG2D(g);
 		LauncherUtils.drawTransparentRect(g2d, 0, 0, getWidth(), getHeight());

@@ -24,41 +24,34 @@ public final class LauncherFrame extends JFrame implements LauncherConstants
 		{
 			addWindowListener(new WindowListener()
 			{
-				@Override
-				public void windowActivated(WindowEvent e)
+				@Override public void windowActivated(WindowEvent e)
 				{
 				}
 				
-				@Override
-				public void windowClosed(WindowEvent e)
+				@Override public void windowClosed(WindowEvent e)
 				{
 				}
 				
-				@Override
-				public void windowClosing(WindowEvent e)
+				@Override public void windowClosing(WindowEvent e)
 				{
 					mcapplet.stop();
 					mcapplet.destroy();
 					System.exit(0);
 				}
 				
-				@Override
-				public void windowDeactivated(WindowEvent e)
+				@Override public void windowDeactivated(WindowEvent e)
 				{
 				}
 				
-				@Override
-				public void windowDeiconified(WindowEvent e)
+				@Override public void windowDeiconified(WindowEvent e)
 				{
 				}
 				
-				@Override
-				public void windowIconified(WindowEvent e)
+				@Override public void windowIconified(WindowEvent e)
 				{
 				}
 				
-				@Override
-				public void windowOpened(WindowEvent e)
+				@Override public void windowOpened(WindowEvent e)
 				{
 				}
 			});

@@ -9,8 +9,7 @@ import net.minecraft.LauncherFrame;
 
 public final class LauncherActionListener implements ActionListener, LauncherConstants
 {
-	@Override
-	public void actionPerformed(ActionEvent e)
+	@Override public void actionPerformed(ActionEvent e)
 	{
 		if(e.getSource() == LauncherPanel.analyzeClose)
 		{
